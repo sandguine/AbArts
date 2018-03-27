@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ArtTask</title>
+    <script src="jspsych-6.0.1/jspsych.js"></script>
+    <script src="jspsych-6.0.1/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych-6.0.1/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="jspsych-6.0.1/plugins/jspsych-image-button-response.js"></script>
+    <script src="jspsych-6.0.1/plugins/jspsych-fullscreen.js"></script>
+    <link rel="stylesheet" href="jspsych-6.0.1/css/jspsych.css"></link>
+  </head>
+  <body></body>
+  <script>
+
+    /* create timeline */
+    var timeline = [];
+
+    timeline.push({
+      type: 'fullscreen',
+      fullscreen_mode: true
+    });
+
+    /* define welcome message trial */
+    var welcome = {
+      type: "html-keyboard-response",
+      stimulus: "Welcome to the experiment. Press any key to begin."
+    };
+    timeline.push(welcome);
+
+    /* define instructions trial */
+    var instructions = {
+      type: "html-keyboard-response",
+      stimulus: "<p>In this experiment, an artwork will appear in the center " +
+          "of the screen.</p><p>Follows by a series of questions related to " +
+          "likeness, familiarity, and visual object seen.</p>" +
+          "<p>Press any key to begin.</p>",
+      post_trial_gap: 0
+    };
+    timeline.push(instructions);
+
+    var questions = ["<p>How do you like this picture?</p>", "<p>Are you familiar with the artist of this picture?</p>", "<p>Do you see human in this picture?</p>"]
+
+    var like_options = ["Strongly Dislike", "Dislike", "Somewhat Dislike", "Somewhat Like", "Like", "Strongly Like"];
+    var familiar_options = ["Strongly Not-familiar", "Not-familiar", "Somewhat Not-familiar", "Somewhat Familiar", "Familiar", "Strongly Familiar"];
+    var human_options = ["Strongly Not-human", "Not-human", "Somewhat Not-human", "Somewhat Human", "Human", "Strongly Human"];
+
+    var test_stimuli = []
+
+    for (i = 0; i < 10; i++){
+      test_stimuli.push('{stimulus: \"img/'+ i + '.jpg\"}');
+    }
+
+    var test_stimuli = [
+      {stimulus: "img/0.jpg"},
+      {stimulus: "img/1.jpg"},
+      {stimulus: "img/2.jpg"},
+      {stimulus: "img/3.jpg"},
+      {stimulus: "img/4.jpg"},
+      {stimulus: "img/5.jpg"},
+      {stimulus: "img/6.jpg"},
+      {stimulus: "img/7.jpg"},
+      {stimulus: "img/8.jpg"},
+      {stimulus: "img/9.jpg"},
+    ]
+
+    var qLike = {
+      type: 'image-button-response',
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      trial_duration: 4000,
+      response_ends_trial: true,
+      prompt: questions[0], //[, questions[1], questions[2]],
+      choices: like_options //[, familiar_options, human_options]
+    }
+
+    var qFamiliar = {
+      type: 'image-button-response',
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      trial_duration: 4000,
+      response_ends_trial: true,
+      prompt: questions[1], //[, questions[1], questions[2]],
+      choices: familiar_options //[, familiar_options, human_options]
+    }
+
+    var qHuman = {
+      type: 'image-button-response',
+      stimulus: jsPsych.timelineVariable('stimulus'),
+      trial_duration: 4000,
+      response_ends_trial: true,
+      prompt: questions[2], //[, questions[1], questions[2]],
+      choices: human_options //[, familiar_options, human_options]
+    }
+
+    var fixation = {
+      type: 'html-keyboard-response',
+      stimulus: '<div style="font-size:60px;">+</div>',
+      choices: jsPsych.NO_KEYS,
+      trial_duration: function(){
+        return jsPsych.randomization.sampleWithoutReplacement([250, 500, 750, 1000], 1)[0];
+      },
+      data: {test_part: 'fixation'}
+    }
+
+
+    var test_procedure = {
+      timeline: [fixation, qLike, fixation, qHuman, fixation, qFamiliar],
+      timeline_variables: test_stimuli,
+      repetitions: 0,
+      randomize_order: true
+    }
+    timeline.push(test_procedure);
+
+
+    /* start the experiment */
+    jsPsych.init({
+      timeline: timeline,
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+  </script>
+</html>
