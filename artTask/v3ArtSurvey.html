@@ -29,6 +29,7 @@
 
     /* define instructions trial */
     // extend instructions and show example of task
+    /*
     var instructions = {
       type: "html-keyboard-response",
       stimulus: "<p>In this experiment, an artwork will appear in the center " +
@@ -40,7 +41,11 @@
     timeline.push(instructions);
 
     /* declare necessary variables */
-    var questions = ["<p>Are you familiar with the artist who painted this picture?</p>", "<p>How do you like this picture?</p>", "<p>Do you see a human in this picture?</p>"]
+    var questions = [
+    "<p>Are you familiar with the artist who painted this picture?</p>",
+    "<p>On a scale of 1 star to 4 stars, how many star would you give to this picture?</p>",
+    "<p>Do you see a human in this picture?</p>"
+    ]
 
     var familiar_options = ["Unfamiliar", "Familiar"];
     var like_options = ["*", "**", "***", "****"];
@@ -49,7 +54,7 @@
     var test_stimuli = []
 
     for (i = 0; i < 10; i++){
-      test_stimuli.push('{stimulus: \"img/'+ i + '.jpg\"}');
+      test_stimuli.push('{stimulus: \"img/'+ i + '.jpg\"}'+'<br />');
     }
 
     var test_stimuli = [
@@ -64,7 +69,30 @@
       {stimulus: "img/8.jpg"},
       {stimulus: "img/9.jpg"},
     ]
+/*
+   var familiarInstructions = {
+      type: image-button-response,
+      stimulus: "img/example.jpg",
+      trial_duration: 4000,
+      response_ends_trial: true,
+      prompt: questions[0], //[, questions[1], questions[2]],
+      choices: familiar_options
+    }
 
+    //data = button_pressed: button to get which button_pressed
+
+    var debrief_block = {
+      type: "html-keyboard-response",
+      stimulus: function() {
+
+        var response = jsPsych.data.get().filter({button_pressed: 'button'});
+
+        return "<p>You responded was "+response+"on this trial.</p>"+
+        "<p>Press any key to start the experiment.</p>";
+      }
+    };
+    timeline.push(debrief_block);
+*/
     var qFamiliar = {
       type: 'image-button-response',
       stimulus: jsPsych.timelineVariable('stimulus'),
@@ -118,6 +146,7 @@
     }
     timeline.push(testFamiliar);
     timeline.push(pausePeriod);
+
 
     var testLike = {
       timeline: [fixation, qLike],
