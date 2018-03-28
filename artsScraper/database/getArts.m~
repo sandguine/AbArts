@@ -28,10 +28,9 @@ cd dirName
 % create new sub directory called real
 mkdir real
 
-% add full file path
+% add full
 desDir = [dirName, 'real'];
 
-% copy and paste 200 pictures
 for i = 1:length(realArts)
     real = realArts(i);
     copyfile(real{1}, desDir);
