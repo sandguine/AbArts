@@ -63,6 +63,55 @@
       {stimulus: "img/8.jpg"},
       {stimulus: "img/9.jpg"},
     ]
+    /*
+        var fs = require("fs");
+        var test_stimuli = fs.readFileSync("img/v1.txt").toString('utf-8');
+
+        var test_stimuli = [
+          {stimulus: "img/0.jpg"},
+          {stimulus: "img/1.jpg"},
+          {stimulus: "img/2.jpg"},
+          {stimulus: "img/3.jpg"},
+          {stimulus: "img/4.jpg"},
+          {stimulus: "img/5.jpg"},
+          {stimulus: "img/6.jpg"},
+          {stimulus: "img/7.jpg"},
+          {stimulus: "img/8.jpg"},
+          {stimulus: "img/9.jpg"},
+        ]
+
+        var client = new XMLHttpRequest();
+        //client.open('GET', 'img/v1.txt');
+        client.open('GET', 'img/v1.txt');
+        client.onreadystatechange = function() {
+          alert(client.responseText);
+        }
+        client.send();
+    /*
+       var familiarInstructions = {
+          type: image-button-response,
+          stimulus: "img/example.jpg",
+          trial_duration: 4000,
+          response_ends_trial: true,
+          prompt: questions[0], //[, questions[1], questions[2]],
+          choices: familiar_options
+        }
+
+        //data = button_pressed: button to get which button_pressed
+
+        var debrief_block = {
+          type: "html-keyboard-response",
+          stimulus: function() {
+
+            var response = jsPsych.data.get().filter({button_pressed: 'button'});
+
+            return "<p>You responded was "+response+"on this trial.</p>"+
+            "<p>Press any key to start the experiment.</p>";
+          }
+        };
+        timeline.push(debrief_block);
+    */
+
 
 /*    var questions = [
       {prompt: "<p>How do you like this picture?</p>", options: like_options, required:true},

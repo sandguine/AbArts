@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ArtTask</title>
+    <script src="img/v1.js"></script>
     <script src="jspsych-6.0.1/jspsych.js"></script>
     <script src="jspsych-6.0.1/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych-6.0.1/plugins/jspsych-image-keyboard-response.js"></script>
@@ -48,50 +49,6 @@
 
     var familiar_options = ["Unfamiliar", "Familiar"];
     var like_options = ["0", "1", "2", "3"];
-/*
-    var test_stimuli = [
-      {stimulus: "img/0.jpg"},
-      {stimulus: "img/1.jpg"},
-      {stimulus: "img/2.jpg"},
-      {stimulus: "img/3.jpg"},
-      {stimulus: "img/4.jpg"},
-      {stimulus: "img/5.jpg"},
-      {stimulus: "img/6.jpg"},
-      {stimulus: "img/7.jpg"},
-      {stimulus: "img/8.jpg"},
-      {stimulus: "img/9.jpg"},
-    ]
-*/
-    var client = new XMLHttpRequest();
-    client.open('GET', '/v1.txt');
-    client.onreadystatechange = function() {
-      alert(client.responseText);
-    }
-    client.send();
-/*
-   var familiarInstructions = {
-      type: image-button-response,
-      stimulus: "img/example.jpg",
-      trial_duration: 4000,
-      response_ends_trial: true,
-      prompt: questions[0], //[, questions[1], questions[2]],
-      choices: familiar_options
-    }
-
-    //data = button_pressed: button to get which button_pressed
-
-    var debrief_block = {
-      type: "html-keyboard-response",
-      stimulus: function() {
-
-        var response = jsPsych.data.get().filter({button_pressed: 'button'});
-
-        return "<p>You responded was "+response+"on this trial.</p>"+
-        "<p>Press any key to start the experiment.</p>";
-      }
-    };
-    timeline.push(debrief_block);
-*/
     var arts = jsPsych.timelineVariable('stimulus');
     var artShowTime = 2000
     var responsePeriod = 3000
