@@ -29,7 +29,7 @@
 
     /* define instructions trial */
     // extend instructions and show example of task
-    /*
+
     var instructions = {
       type: "html-keyboard-response",
       stimulus: "<p>In this experiment, an artwork will appear in the center " +
@@ -43,19 +43,11 @@
     /* declare necessary variables */
     var questions = [
     "<p>Are you familiar with the artist who painted this picture?</p>",
-    "<p>On a scale of 1 star to 4 stars, how many star would you give to this picture?</p>",
-    "<p>Do you see a human in this picture?</p>"
+    "<p>On a scale of 1 star to 4 stars, how many star would you give to this picture?</p>"
     ]
 
     var familiar_options = ["Unfamiliar", "Familiar"];
-    var like_options = ["*", "**", "***", "****"];
-    var human_options = ["Not-human", "Human"];
-
-    var test_stimuli = []
-
-    for (i = 0; i < 10; i++){
-      test_stimuli.push('{stimulus: \"img/'+ i + '.jpg\"}'+'<br />');
-    }
+    var like_options = ["0", "1", "2", "3"];
 
     var test_stimuli = [
       {stimulus: "img/0.jpg"},
@@ -69,6 +61,7 @@
       {stimulus: "img/8.jpg"},
       {stimulus: "img/9.jpg"},
     ]
+
 /*
    var familiarInstructions = {
       type: image-button-response,
@@ -93,31 +86,31 @@
     };
     timeline.push(debrief_block);
 */
+    var arts = jsPsych.timelineVariable('stimulus');
+    var artShowTime = 2000
+    var responsePeriod = 3000
+
+    var showArts ={
+      type: 'image-keyboard-response',
+      stimulus: arts,
+      trial_duration: artShowTime,
+      response_ends_trial: false
+    }
+
     var qFamiliar = {
       type: 'image-button-response',
-      stimulus: jsPsych.timelineVariable('stimulus'),
-      trial_duration: 4000,
+      stimulus: arts,
+      trial_duration: responsePeriod,
       response_ends_trial: true,
-      prompt: questions[0], //[, questions[1], questions[2]],
       choices: familiar_options //[, familiar_options, human_options]
     }
 
     var qLike = {
       type: 'image-button-response',
-      stimulus: jsPsych.timelineVariable('stimulus'),
-      trial_duration: 4000,
+      stimulus: arts,
+      trial_duration: responsePeriod,
       response_ends_trial: true,
-      prompt: questions[1], //[, questions[1], questions[2]],
       choices: like_options //[, familiar_options, human_options]
-    }
-
-    var qHuman = {
-      type: 'image-button-response',
-      stimulus: jsPsych.timelineVariable('stimulus'),
-      trial_duration: 4000,
-      response_ends_trial: true,
-      prompt: questions[2], //[, questions[1], questions[2]],
-      choices: human_options //[, familiar_options, human_options]
     }
 
     var fixation = {
@@ -138,8 +131,16 @@
       post_trial_gap: 0
     }
 
+    var familiarInstructions = {
+      type: 'html-keyboard-response',
+      stimulus: "<p>For the following set of arts, you will be answering the following question. </br> </p>" +
+      "<p>\"Are you familiar with the artist who painted this picture?\" </br> </p>" +
+      "<p>Press any key to begin.</p>"
+    }
+    timeline.push(familiarInstructions)
+
     var testFamiliar = {
-      timeline: [fixation, qFamiliar],
+      timeline: [fixation, showArts, qFamiliar],
       timeline_variables: test_stimuli,
       repetitions: 0,
       randomize_order: true
@@ -147,23 +148,22 @@
     timeline.push(testFamiliar);
     timeline.push(pausePeriod);
 
+    var likeInstructions = {
+      type: 'html-keyboard-response',
+      stimulus: "<p>For the following set of arts, you will be answering the following question. </br> </p>" +
+      "<p>\"On a scale of 0 to 3 where 0 means \'Not at all\' and 3 means \'Strongly\', how much do you like the artwork shown?\" </br> </p>" +
+      "<p>Press any key to begin.</p>"
+    }
+    timeline.push(likeInstructions)
 
     var testLike = {
-      timeline: [fixation, qLike],
+      timeline: [fixation, showArts, qLike],
       timeline_variables: test_stimuli,
       repetitions: 0,
       randomize_order: true
     }
     timeline.push(testLike);
     timeline.push(pausePeriod);
-
-    var testHuman = {
-      timeline: [fixation, qHuman],
-      timeline_variables: test_stimuli,
-      repetitions: 0,
-      randomize_order: true
-    }
-    timeline.push(testHuman);
 
     /* start the experiment */
     jsPsych.init({
