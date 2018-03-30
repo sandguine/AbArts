@@ -34,7 +34,7 @@
       type: "html-keyboard-response",
       stimulus: "<p>In this experiment, an artwork will appear in the center " +
           "of the screen.</p><p>Follows by a series of questions related to " +
-          "likeness, familiarity, and visual object seen.</p>" +
+          "likeness, familiarity.</p>" +
           "<p>Press any key to begin.</p>",
       post_trial_gap: 0
     };
@@ -42,13 +42,13 @@
 
     /* declare necessary variables */
     var questions = [
-    "<p>Are you familiar with the artist who painted this picture?</p>",
-    "<p>On a scale of 1 star to 4 stars, how many star would you give to this picture?</p>"
+      "<p>Are you familiar with the artist who painted this picture?</p>",
+      "<p>On a scale of 1 star to 4 stars, how many star would you give to this picture?</p>"
     ]
 
     var familiar_options = ["Unfamiliar", "Familiar"];
     var like_options = ["0", "1", "2", "3"];
-
+/*
     var test_stimuli = [
       {stimulus: "img/0.jpg"},
       {stimulus: "img/1.jpg"},
@@ -61,7 +61,13 @@
       {stimulus: "img/8.jpg"},
       {stimulus: "img/9.jpg"},
     ]
-
+*/
+    var client = new XMLHttpRequest();
+    client.open('GET', '/v1.txt');
+    client.onreadystatechange = function() {
+      alert(client.responseText);
+    }
+    client.send();
 /*
    var familiarInstructions = {
       type: image-button-response,
