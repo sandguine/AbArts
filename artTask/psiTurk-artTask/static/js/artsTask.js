@@ -22,10 +22,9 @@ var pages = [
 psiTurk.preloadPages(pages);
 
 var instructionPages = [ // add as a list as many pages as you like
-	"instructions/instruct-1.html",
+	//instructions/instruct-1.html",
 	"instructions/instruct-ready.html"
 ];
-
 
 /********************
 * HTML manipulation
@@ -37,479 +36,305 @@ var instructionPages = [ // add as a list as many pages as you like
 *
 ********************/
 
-/********************
-* STROOP TEST       *
-********************/
-/*
-var StroopExperiment = function() {
-
-	var wordon, // time word is presented
-	    listening = false;
-
-	// Stimuli for a basic Stroop experiment
-	var stims = [
-			["SHIP", "red", "unrelated"],
-			["MONKEY", "green", "unrelated"],
-			["ZAMBONI", "blue", "unrelated"],
-			["RED", "red", "congruent"],
-			["GREEN", "green", "congruent"],
-			["BLUE", "blue", "congruent"],
-			["GREEN", "red", "incongruent"],
-			["BLUE", "green", "incongruent"],
-			["RED", "blue", "incongruent"]
-		];
-
-	stims = _.shuffle(stims);
-
-	var next = function() {
-		if (stims.length===0) {
-			finish();
-		}
-		else {
-			stim = stims.shift();
-			show_word( stim[0], stim[1] );
-			wordon = new Date().getTime();
-			listening = true;
-			d3.select("#query").html('<p id="prompt">Type "R" for Red, "B" for blue, "G" for green.</p>');
-		}
-	};
-
-	var response_handler = function(e) {
-		if (!listening) return;
-
-		var keyCode = e.keyCode,
-			response;
-
-		switch (keyCode) {
-			case 82:
-				// "R"
-				response="red";
-				break;
-			case 71:
-				// "G"
-				response="green";
-				break;
-			case 66:
-				// "B"
-				response="blue";
-				break;
-			default:
-				response = "";
-				break;
-		}
-		if (response.length>0) {
-			listening = false;
-			var hit = response == stim[1];
-			var rt = new Date().getTime() - wordon;
-
-			psiTurk.recordTrialData({'phase':"TEST",
-                                     'word':stim[0],
-                                     'color':stim[1],
-                                     'relation':stim[2],
-                                     'response':response,
-                                     'hit':hit,
-                                     'rt':rt}
-                                   );
-			remove_word();
-			next();
-		}
-	};
-
-	var finish = function() {
-	    $("body").unbind("keydown", response_handler); // Unbind keys
-	    currentview = new Questionnaire();
-	};
-
-	var show_word = function(text, color) {
-		d3.select("#stim")
-			.append("div")
-			.attr("id","word")
-			.style("color",color)
-			.style("text-align","center")
-			.style("font-size","150px")
-			.style("font-weight","400")
-			.style("margin","20px")
-			.text(text);
-	};
-
-	var remove_word = function() {
-		d3.select("#word").remove();
-	};
-
-
-	// Load the stage.html snippet into the body of the page
-	psiTurk.showPage('stage.html');
-
-	// Register the response handler that is defined above to handle any
-	// key down events.
-	$("body").focus().keydown(response_handler);
-
-	// Start the test
-	next();
-};
-*/
-
 var ArtExperiment = function() {
-		/* create timeline */
-		var timeline = [];
+	/* create timeline */
+	var timeline = [];
 
-		timeline.push({
-			type: 'fullscreen',
-			fullscreen_mode: true
-		});
+	timeline.push({
+		type: 'fullscreen',
+		fullscreen_mode: true
+	});
 
-		/* define welcome message trial */
-		var welcome = {
-			type: "html-keyboard-response",
-			stimulus: "<p>Welcome to our easy and simple survey!</p>" +
-								"<p>Press any key to begin.</p>",
-		};
-		timeline.push(welcome);
-		/* define instructions trial */
-		// extend instructions and show example of task
+	/* declare necessary variables */
+	var questions = [
+		"<p>Do you know the name of the artist who painted this picture?</p>",
+		"<p>How much do you like the artwork shown? </br> 0 = \'Not at all\', and 3 = \'Strongly Like\'\" </br> </p>"
+	]
 
-		var mainInstructions = {
-			type: "html-keyboard-response",
-			stimulus: "<p>In this survey, you will see various paintings created by different artists.</p>" +
-					"<p>We will ask you a few simple questions about the artwork.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		};
-		timeline.push(mainInstructions);
+	var familiar_options = ["I don't know.", "I know."];
+	var like_options = ["0", "1", "2", "3"];
+	var arts = jsPsych.timelineVariable('stimulus');
+	var artShowTime = 2000
+	var responsePeriodArtist = 3000
+	var responsePeriodLike = 6000
+	var fixationTime = 500
 
-		var mainInstructions1 = {
-			type: "html-keyboard-response",
-			stimulus: "<p>You will recieve $3 when you complete the task regardless of your responses. </p>" +
-								"<p>This is not a test of your knowledge, so please answer as honestly as you can. </p>" +
-								"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		};
-		timeline.push(mainInstructions1);
+	var showArtsFam ={
+		type: 'image-button-response',
+		stimulus: arts,
+		trial_duration: artShowTime,
+		response_ends_trial: false,
+		prompt: questions[0]
+	}
 
-		/* declare necessary variables */
-		var questions = [
-			"<p>Do you know the name of the artist who painted this picture?</p>",
-			"<p>How much do you like the artwork shown? </br> 0 = \'Not at all\', and 3 = \'Strongly\'\" </br> </p>"
-		]
+	var showArtsLike ={
+		type: 'image-button-response',
+		stimulus: arts,
+		trial_duration: artShowTime,
+		response_ends_trial: false,
+		prompt: questions[1]
+	}
 
-		var familiar_options = ["I don't know.", "I know."];
-		var like_options = ["0", "1", "2", "3"];
-		var arts = jsPsych.timelineVariable('stimulus');
-		var artShowTime = 2//000
-		var responsePeriodArtist = 3//000
-		var responsePeriodLike = 6//000
-		var fixationTime = 5//00
+	var qFamiliar = {
+		type: 'image-button-response',
+		stimulus: arts,
+		prompt: questions[0],
+		trial_duration: responsePeriodArtist,
+		response_ends_trial: true,
+		choices: familiar_options //[, familiar_options, human_options]
+	}
 
-		var showArtsFam ={
-			type: 'image-button-response',
-			stimulus: arts,
-			trial_duration: artShowTime,
-			response_ends_trial: false,
-			prompt: questions[0]
-		}
+	var qLike = {
+		type: 'image-button-response',
+		stimulus: arts,
+		prompt: questions[1],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: like_options //[, familiar_options, human_options]
+	}
 
-		var showArtsLike ={
-			type: 'image-button-response',
-			stimulus: arts,
-			trial_duration: artShowTime,
-			response_ends_trial: false,
-			prompt: questions[1]
-		}
+	var fixation = {
+		type: 'html-keyboard-response',
+		stimulus: '<div style="font-size:60px;">+</div>',
+		choices: jsPsych.NO_KEYS,
+		trial_duration: function(){
+			return jsPsych.randomization.sampleWithoutReplacement([fixationTime], 1)[0];
+		},
+		data: {test_part: 'fixation'},
+		response_ends_trial: false
+	}
 
-		var qFamiliar = {
-			type: 'image-button-response',
-			stimulus: arts,
-			prompt: questions[0],
-			trial_duration: responsePeriodArtist,
-			response_ends_trial: true,
-			choices: familiar_options //[, familiar_options, human_options]
-		}
+	// write a pause between trial function
+	var pausePeriod = {
+		type: "html-button-response",
+		stimulus: "<p>The new set of questions is about to start.</p>" +
+				"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Next \>"],
+		response_ends_trial: true
+	}
 
-		var qLike = {
-			type: 'image-button-response',
-			stimulus: arts,
-			prompt: questions[1],
-			trial_duration: responsePeriodLike,
-			response_ends_trial: true,
-			choices: like_options //[, familiar_options, human_options]
-		}
+	// example shows here
+	var showArtsEx1 ={
+		type: 'image-button-response',
+		stimulus: 'img/0.jpg',
+		trial_duration: artShowTime,
+		response_ends_trial: false,
+		prompt: questions[0]
+	}
 
-		var fixation = {
-			type: 'html-keyboard-response',
-			stimulus: '<div style="font-size:60px;">+</div>',
-			choices: jsPsych.NO_KEYS,
-			trial_duration: function(){
-				return jsPsych.randomization.sampleWithoutReplacement([fixationTime], 1)[0];
-			},
-			data: {test_part: 'fixation'}
-		}
+	var qFamEx = {
+		type: 'image-button-response',
+		stimulus: 'img/0.jpg',
+		prompt: questions[0],
+		trial_duration: responsePeriodArtist,
+		response_ends_trial: true,
+		choices: familiar_options //[, familiar_options, human_options]
+	}
 
-		// write a pause between trial function
-		var pausePeriod = {
-			type: "html-keyboard-response",
-			stimulus: "<p>The new set of questions is about to start.</p>" +
-					"<p>Press any key to begin.</p>",
-			post_trial_gap: 0
-		}
+	var qLikeEx = {
+		type: 'image-button-response',
+		stimulus: 'img/0.jpg',
+		prompt: questions[1],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: like_options //[, familiar_options, human_options]
+	}
 
-		// example shows here
-		var exampleP1 ={
-			type: "html-keyboard-response",
-			stimulus: "<p>Ok, let's do an example together.</p>" +
-					"<p>Press any key to begin.</p>",
-			post_trial_gap: 0
-		}
-
-		var exampleP2 ={
-			type: "html-keyboard-response",
-			stimulus: "<p>You will see a \"+\" at the beginning of each round.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var exampleP3 ={
-			type: "html-keyboard-response",
-			stimulus: "<p>A painting will appear at the center of the screen.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var exampleP4 ={
-			type: "html-keyboard-response",
-			stimulus: "<p>You have 2 seconds to look at the painting.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var showArtsEx1 ={
-			type: 'image-button-response',
-			stimulus: '/static/js/img/0.jpg',
-			trial_duration: artShowTime,
-			response_ends_trial: false,
-			prompt: questions[0]
-		}
-
-		var explanationQFam ={
-			type: "html-keyboard-response",
-			stimulus: "<p>You can click on one of the two options that will appear at the bottom of the screen.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var explFamChoices1 = {
-			type: 'html-keyboard-response',
-			stimulus: "<p>If you think you DO NOT know the name of the artist, please click \"I don't know\".</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var explFamChoices2 = {
-			type: 'html-keyboard-response',
-			stimulus: "<p>If you think you know the name of the artist, please click \"I know\".</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var responseTime = {
-			type: 'html-keyboard-response',
-			stimulus: "<p>You have 3 seconds to respond.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var responseTimeLike = {
-			type: 'html-keyboard-response',
-			stimulus: "<p>You have 6 seconds to respond.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var qFamEx = {
-			type: 'image-button-response',
-			stimulus: '/static/js/img/0.jpg',
-			prompt: questions[0],
-			trial_duration: responsePeriodArtist,
-			response_ends_trial: true,
-			choices: familiar_options //[, familiar_options, human_options]
-		}
-
-		var explanationQLike = {
-			type: "html-keyboard-response",
-			stimulus: "<p>You can click on one of the four options that will appear at the bottom of the screen.</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var explanationQLike0 = {
-			type: "html-keyboard-response",
-			stimulus: "<p>If you DO NOT LIKE the painting AT ALL, please click on the option \"0\".</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var explanationQLike1 = {
-			type: "html-keyboard-response",
-			stimulus: "<p>If you LIKE the painting A LITTLE, please click on the option \"1\".</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var explanationQLike2 = {
-			type: "html-keyboard-response",
-			stimulus: "<p>If you LIKE the painting, please click on the option \"2\".</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var explanationQLike3 = {
-			type: "html-keyboard-response",
-			stimulus: "<p>If you STRONGLY LIKE the painting, please click on the option \"3\".</p>" +
-					"<p>Press any key to continue.</p>",
-			post_trial_gap: 0
-		}
-
-		var qLikeEx = {
-			type: 'image-button-response',
-			stimulus: '/static/js/img/0.jpg',
-			prompt: questions[1],
-			trial_duration: responsePeriodLike,
-			response_ends_trial: true,
-			choices: like_options //[, familiar_options, human_options]
-		}
-
-		var exampleP5 ={
-			type: "html-keyboard-response",
-			stimulus: "<p>Ok, very simple, right?</p>" +
-					"<p>Press any key to begin the real survey.</p>",
-			post_trial_gap: 0
-		}
-
-		var showExample = {
-			timeline: [exampleP1, exampleP2, fixation, exampleP3, exampleP4, showArtsEx1,
-				explanationQFam, explFamChoices1, explFamChoices2, responseTime, qFamEx, exampleP5],
-			repetitions: 0,
-			randomize_order: true
-		}
-		timeline.push(showExample)
-
-		var familiarInstructions = {
-			type: 'html-keyboard-response',
-			stimulus: "<p>In this part of survey, we ask you to answer the following question. </br> </p>" +
-			"<p>\"Do you know the name of the artist who painted this picture?\" </br> </p>" +
-			"<p>Press any key to begin.</p>"
-		}
-		timeline.push(familiarInstructions)
-
-		var testFamiliar = {
-			timeline: [fixation, showArtsFam, qFamiliar],
-			timeline_variables: test_stimuli,
-			repetitions: 0,
-			randomize_order: true
-		}
-		timeline.push(testFamiliar);
-		timeline.push(pausePeriod);
-
-		var likeExample = {
-			timeline: [explanationQLike, explanationQLike0, explanationQLike1,
-				explanationQLike2, explanationQLike3, responseTimeLike, qLikeEx, exampleP5],
-			repetitions: 0,
-			randomize_order: true
-		}
-		timeline.push(likeExample);
-
-		var likeInstructions = {
-			type: 'html-keyboard-response',
-			stimulus: "<p>In this part of survey, we ask you to answer the following question. </br> </p>" +
-			"<p>\"How much do you like the artwork shown? </br> </p>"+
-			"0 = \'Not at all\', and 3 = \'Strongly\'\" </br> </p>" +
-			"<p>Press any key to begin.</p>"
-		}
-		timeline.push(likeInstructions)
-
-		var testLike = {
-			timeline: [fixation, showArtsLike, qLike],
-			timeline_variables: test_stimuli,
-			repetitions: 0,
-			randomize_order: true
-		}
-		timeline.push(testLike);
-
-		var surveyIntro = {
-			type: "html-keyboard-response",
-			stimulus: "<p>You are almost done!</p>" +
-						"<p>Please answer a few more questions.</p>" +
-						"<p>Press any key to begin.</p>",
-			post_trial_gap: 0
-		}
-		timeline.push(surveyIntro);
-
-		var yesNo = ["Yes", "No", "Prefer not to answer"];
-		var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above", "Prefer not to answer"];
-		var genders = ["Female", "Male", "Prefer not to answer"];
-		var degrees = ["Did not complete High School", "High School/GED", "Some College or Associate Degree",
-									"Bachelor's Degree", "Master's Degree or higher", "Prefer not to answer"]
-		var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more", "Prefer not to answer"]
-		var races = ["American Indian or Alaska Native", "Asian or Asian American", "Black or African American",
-								"Native Hawaiian and Other Pacific Islander", "White or Caucasian", "Prefer not to answer"]
-
-		var ageQ = {
-			type: 'survey-multi-choice',
-			questions: [{prompt: "How old are you?", options: ageRange, required: true}]
-		}
-
-		var genderQ = {
-			type: 'survey-multi-choice',
-			questions: [{prompt: "What's your gender?", options: genders, required: true}]
-		}
-
-		var artHistQ = {
-			type: 'survey-multi-choice',
-			questions: [{prompt: "Do you have a degree in fine arts or art history?", options: yesNo, required: true}]
-		}
-
-		var degreeQ = {
-			type: 'survey-multi-choice',
-			questions: [{prompt: "Please select the highest degree you have earned?", options: degrees, required: true}]
-		}
-
-		var artMuseumQ = {
-			type: 'survey-multi-choice',
-			questions: [{prompt: "How often do you visit art museums?", options: artMuseum, required: true}]
-		}
-
-		var raceQ = {
-			type: 'survey-multi-select',
-			questions: [{prompt: "Which ethnicity or ethnicities do you identify yourself as?", options: races, required: true}]
-		}
-
-		var testSurvey = {
-			timeline: [ageQ, genderQ, raceQ, degreeQ, artHistQ, artMuseumQ],
-			repetitions: 0,
-			randomize_order: true
-		}
-		timeline.push(testSurvey);
-
-		var suggestionsBox = {
-			type: 'survey-text',
-			questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type them down in the box below.", rows: 5, columns: 100}],
-		};
-		timeline.push(suggestionsBox);
-
-		var all_data = jsPsych.data.get();
-
-		/* start the survey */
-		jsPsych.init({
-			timeline: timeline,
-			on_finish: function() {
-          psiTurk.saveData({
-          		success: function() { psiTurk.completeHIT(); }
-      		});
-			},
-			on_data_update: function(data) {
-                psiTurk.recordTrialData(data);
-								psiTurk.recordTrialData(all_data);
+	var beginRealSurvey ={
+		type: "html-button-response",
+		stimulus: "<p>Ok, very simple, right?</p>" +
+				"<p>Click on the button below to begin the real survey.</p>",
+				post_trial_gap: 0,
+				choices: ["Next \>"],
+				response_ends_trial: true
 			}
-		});
+
+	var welcome = {
+		type: 'instructions',
+		pages: [
+				"<p>Welcome to our easy and simple survey!</p>",
+				"<p>In this survey, you will see various paintings created by different artists.</p>" +
+				"<p>We will ask you a few simple questions about the artwork.</p>",
+				"<p>You will recieve <b>$3</b> when you complete the task regardless of your responses.</p>" +
+				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>",
+				"<p>Ok, let's do an example together.</p>",
+				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
+				"<p>A painting will appear at the center of the screen.</p>" +
+				"<p>You have <b>2 seconds</b> to look at the painting.</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	};
+	timeline.push(welcome);
+
+	var afterFamExpInstr = {
+		type: 'instructions',
+		pages: [
+				"<p>You can click on one of the two options that will appear at the bottom of the screen.</p>",
+				"<p>If you think you <b>DO NOT KNOW</b> the name of the artist, please click <b>\"I don't know\"</b>.</p>",
+				"<p>If you think you <b>KNOW</b> the name of the artist, please click <b>\"I know\"</b>.</p>",
+				"<p>You have <b>3 seconds</b> to respond.</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	};
+
+
+	var showExample = {
+		timeline: [fixation, showArtsEx1, afterFamExpInstr, qFamEx, beginRealSurvey],
+		repetitions: 0,
+		randomize_order: true
+	}
+	timeline.push(showExample)
+
+	var familiarInstructions = {
+		type: 'html-button-response',
+		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
+		"<p><b>\"Do you know the name of the artist who painted this picture?\"</b></br></p>" +
+		"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Next \>"],
+		response_ends_trial: true
+	}
+	timeline.push(familiarInstructions)
+
+	var testFamiliar = {
+		timeline: [fixation, showArtsFam, qFamiliar],
+		timeline_variables: test_stimuli,
+		repetitions: 0,
+		randomize_order: true
+	}
+	timeline.push(testFamiliar);
+	timeline.push(pausePeriod);
+
+	var likeExpInstr = {
+		type: 'instructions',
+		pages: [
+				"<p>Ok, let's do another example together.</p>",
+				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
+				"<p>A painting will appear at the center of the screen.</p>" +
+				"<p>You have <b>2 seconds</b> to look at the painting.</p>",
+				"<p>You can click on one of the four options that will appear at the bottom of the screen.</p>",
+				"<p>If you <b>DO NOT LIKE</b> the painting <b>AT ALL</b>, please click on the option <b>\"0\"</b>.</p>",
+				"<p>If you <b>LIKE</b> the painting <b>A LITTLE</b>, please click on the option <b>\"1\"</b>.</p>",
+				"<p>If you <b>LIKE</b> the painting, please click on the option <b>\"2\"</b>.</p>",
+				"<p>If you <b>STRONGLY LIKE</b> the painting, please click on the option <b>\"3\"</b>.</p>",
+				"<p>You have <b>6 seconds</b> to respond.</p>",
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	};
+
+	var likeExample = {
+		timeline: [likeExpInstr, fixation, qLikeEx, beginRealSurvey],
+		repetitions: 0,
+		randomize_order: true
+	}
+	timeline.push(likeExample);
+
+	var likeInstructions = {
+		type: 'html-button-response',
+		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
+		"<p>\"How much do you like the artwork shown? </br> </p>"+
+		"0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'.\"</br></p>" +
+		"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Next \>"],
+		response_ends_trial: true
+	}
+	timeline.push(likeInstructions)
+
+	var testLike = {
+		timeline: [fixation, showArtsLike, qLike],
+		timeline_variables: test_stimuli,
+		repetitions: 0,
+		randomize_order: true
+	}
+	timeline.push(testLike);
+
+	var surveyIntro = {
+		type: "html-button-response",
+		stimulus: "<p>You are almost done!</p>" +
+					"<p>Please answer a few more questions.</p>" +
+					"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Next \>"],
+		response_ends_trial: true
+
+	}
+	timeline.push(surveyIntro);
+
+	var yesNo = ["Yes", "No", "Prefer not to answer"];
+	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above", "Prefer not to answer"];
+	var genders = ["Female", "Male", "Prefer not to answer"];
+	var degrees = ["Did not complete High School", "High School/GED", "Some College or Associate Degree",
+								"Bachelor's Degree", "Master's Degree or higher", "Prefer not to answer"]
+	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more", "Prefer not to answer"]
+	var races = ["American Indian or Alaska Native", "Asian or Asian American", "Black or African American",
+							"Native Hawaiian and Other Pacific Islander", "White or Caucasian", "Prefer not to answer"]
+
+	var postSurveyQ = ["How old are you?", "What's your gender?", "Do you have a degree in fine arts or art history?",
+									"Please select the highest degree you have earned?", "How often do you visit art museums?"]
+
+	var ageQ = {
+		type: 'survey-multi-choice',
+		questions: [{prompt: postSurveyQ[0], options: ageRange, required: true}]
+	}
+
+	var genderQ = {
+		type: 'survey-multi-choice',
+		questions: [{prompt: postSurveyQ[1], options: genders, required: true}]
+	}
+
+	var artHistQ = {
+		type: 'survey-multi-choice',
+		questions: [{prompt: postSurveyQ[2], options: yesNo, required: true}]
+	}
+
+	var degreeQ = {
+		type: 'survey-multi-choice',
+		questions: [{prompt: postSurveyQ[3], options: degrees, required: true}]
+	}
+
+	var artMuseumQ = {
+		type: 'survey-multi-choice',
+		questions: [{prompt: postSurveyQ[4], options: artMuseum, required: true}]
+	}
+
+	var raceQ = {
+		type: 'survey-multi-select',
+		questions: [{prompt: "Which ethnicity or ethnicities do you identify yourself as?", options: races, required: true}]
+	}
+
+	var testSurvey = {
+		timeline: [ageQ, genderQ, raceQ, degreeQ, artHistQ, artMuseumQ],
+		repetitions: 0,
+		randomize_order: true
+	}
+	timeline.push(testSurvey);
+
+	var suggestionsBox = {
+		type: 'survey-text',
+		questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type it down in the box below.", rows: 5, columns: 100}],
+	};
+	timeline.push(suggestionsBox);
+
+	var all_data = jsPsych.data.get();
+
+	/* start the survey */
+	jsPsych.init({
+		timeline: timeline,
+		on_finish: function() {
+        psiTurk.saveData({
+        		success: function() { psiTurk.completeHIT(); }
+    		});
+		},
+		on_data_update: function(data) {
+              psiTurk.recordTrialData(data);
+							psiTurk.recordTrialData(all_data);
+		}
+	});
 
 }
 
