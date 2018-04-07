@@ -55,7 +55,7 @@ var ArtExperiment = function() {
 	var responsePeriodArtist = 3000
 	var responsePeriodLike = 6000
 	var fixationTime = 500
-	var instrChoices = ["Repeat the example", "Next >"];
+	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/js/img/0.jpg'
 
 	var showArtsFam ={
@@ -143,8 +143,8 @@ var ArtExperiment = function() {
 	var beginRealSurvey ={
 		type: "html-button-response",
 		stimulus: "<p>Ok, very simple, right?</p>" +
-				"<p>Click on \"Repeat the example\" button to repeat the example.</p>" +
-				"<p>Click on the \"Next \>\" button to continue.</p>",
+				"<p>To repeat the example, click on <b>\"Repeat the example.\"</b> button.</p>" +
+				"<p>Ready for the task? Click on the <b>\"I'm ready!\"</b> button.</p>",
 				post_trial_gap: 0,
 				choices: instrChoices,
 				response_ends_trial: true
@@ -167,7 +167,7 @@ var ArtExperiment = function() {
 	var famExpInstr = {
 		type: 'instructions',
 		pages: [
-				"<p>Ok, let's do an example together.</p>",
+				"<p>Ok, let's do an example.</p>",
 				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
 				"<p>A painting will appear at the center of the screen.</p>" +
 				"<p>You have <b>2 seconds</b> to look at the painting.</p>"
@@ -225,7 +225,7 @@ var ArtExperiment = function() {
 	var likeExpInstr = {
 		type: 'instructions',
 		pages: [
-				"<p>Ok, let's do another example together.</p>",
+				"<p>Ok, let's do another example.</p>",
 				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
 				"<p>A painting will appear at the center of the screen.</p>" +
 				"<p>You have <b>2 seconds</b> to look at the painting.</p>",
