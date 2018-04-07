@@ -13,10 +13,7 @@ var mycounterbalance = counterbalance;  // they tell you which condition you hav
 
 // All pages to be loaded
 var pages = [
-	"instructions/instruct-1.html",
-	"instructions/instruct-ready.html",
-	"stage.html",
-	"postquestionnaire.html"
+	"instructions/instruct-ready.html"
 ];
 
 psiTurk.preloadPages(pages);
@@ -58,6 +55,8 @@ var ArtExperiment = function() {
 	var responsePeriodArtist = 3000
 	var responsePeriodLike = 6000
 	var fixationTime = 500
+	var instrChoices = ["Repeat the example", "Next >"];
+	var mona = 'static/js/img/0.jpg'
 
 	var showArtsFam ={
 		type: 'image-button-response',
@@ -110,14 +109,14 @@ var ArtExperiment = function() {
 		stimulus: "<p>The new set of questions is about to start.</p>" +
 				"<p>Click on the button below to begin.</p>",
 		post_trial_gap: 0,
-		choices: ["Next \>"],
+		choices: ["Begin the new set"],
 		response_ends_trial: true
 	}
 
 	// example shows here
 	var showArtsEx1 ={
 		type: 'image-button-response',
-		stimulus: 'img/0.jpg',
+		stimulus: mona,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[0]
@@ -125,7 +124,7 @@ var ArtExperiment = function() {
 
 	var qFamEx = {
 		type: 'image-button-response',
-		stimulus: 'img/0.jpg',
+		stimulus: mona,
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
@@ -134,7 +133,7 @@ var ArtExperiment = function() {
 
 	var qLikeEx = {
 		type: 'image-button-response',
-		stimulus: 'img/0.jpg',
+		stimulus: mona,
 		prompt: questions[1],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -144,9 +143,10 @@ var ArtExperiment = function() {
 	var beginRealSurvey ={
 		type: "html-button-response",
 		stimulus: "<p>Ok, very simple, right?</p>" +
-				"<p>Click on the button below to begin the real survey.</p>",
+				"<p>Click on \"Repeat the example\" button to repeat the example.</p>" +
+				"<p>Click on the \"Next \>\" button to continue.</p>",
 				post_trial_gap: 0,
-				choices: ["Next \>"],
+				choices: instrChoices,
 				response_ends_trial: true
 			}
 
@@ -156,8 +156,17 @@ var ArtExperiment = function() {
 				"<p>Welcome to our easy and simple survey!</p>",
 				"<p>In this survey, you will see various paintings created by different artists.</p>" +
 				"<p>We will ask you a few simple questions about the artwork.</p>",
-				"<p>You will recieve <b>$3</b> when you complete the task regardless of your responses.</p>" +
-				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>",
+				"<p>You will recieve <b>$1</b> when you complete the task regardless of your knowledge and preferences.</p>" +
+				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	}
+	timeline.push(welcome);
+
+	var famExpInstr = {
+		type: 'instructions',
+		pages: [
 				"<p>Ok, let's do an example together.</p>",
 				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
 				"<p>A painting will appear at the center of the screen.</p>" +
@@ -165,8 +174,7 @@ var ArtExperiment = function() {
 		],
 		show_clickable_nav: true,
 		allow_backward: true
-	};
-	timeline.push(welcome);
+	}
 
 	var afterFamExpInstr = {
 		type: 'instructions',
@@ -178,15 +186,21 @@ var ArtExperiment = function() {
 		],
 		show_clickable_nav: true,
 		allow_backward: true
-	};
-
-
-	var showExample = {
-		timeline: [fixation, showArtsEx1, afterFamExpInstr, qFamEx, beginRealSurvey],
-		repetitions: 0,
-		randomize_order: true
 	}
-	timeline.push(showExample)
+
+	var repeatInstructions = {
+			timeline: [famExpInstr, fixation, showArtsEx1, afterFamExpInstr, qFamEx, beginRealSurvey],
+			loop_function: function(data){
+					var data = jsPsych.data.get().last(1).values()[0];
+					console.log(data)
+					if(data.button_pressed == 0){
+							return true;
+					} else {
+							return false;
+					}
+			}
+	}
+	timeline.push(repeatInstructions);
 
 	var familiarInstructions = {
 		type: 'html-button-response',
@@ -194,7 +208,7 @@ var ArtExperiment = function() {
 		"<p><b>\"Do you know the name of the artist who painted this picture?\"</b></br></p>" +
 		"<p>Click on the button below to begin.</p>",
 		post_trial_gap: 0,
-		choices: ["Next \>"],
+		choices: ["Begin the task!"],
 		response_ends_trial: true
 	}
 	timeline.push(familiarInstructions)
@@ -224,14 +238,21 @@ var ArtExperiment = function() {
 		],
 		show_clickable_nav: true,
 		allow_backward: true
-	};
-
-	var likeExample = {
-		timeline: [likeExpInstr, fixation, qLikeEx, beginRealSurvey],
-		repetitions: 0,
-		randomize_order: true
 	}
-	timeline.push(likeExample);
+
+	var repeatLikeInstructions = {
+			timeline: [likeExpInstr, fixation, qLikeEx, beginRealSurvey],
+			loop_function: function(data){
+					var data = jsPsych.data.get().last(1).values()[0];
+					console.log(data)
+					if(data.button_pressed == 0){
+							return true;
+					} else {
+							return false;
+					}
+			}
+	}
+	timeline.push(repeatLikeInstructions);
 
 	var likeInstructions = {
 		type: 'html-button-response',
@@ -240,7 +261,7 @@ var ArtExperiment = function() {
 		"0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'.\"</br></p>" +
 		"<p>Click on the button below to begin.</p>",
 		post_trial_gap: 0,
-		choices: ["Next \>"],
+		choices: ["Begin the task!"],
 		response_ends_trial: true
 	}
 	timeline.push(likeInstructions)
@@ -261,10 +282,10 @@ var ArtExperiment = function() {
 		post_trial_gap: 0,
 		choices: ["Next \>"],
 		response_ends_trial: true
-
 	}
 	timeline.push(surveyIntro);
 
+	//survey parameters
 	var yesNo = ["Yes", "No", "Prefer not to answer"];
 	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above", "Prefer not to answer"];
 	var genders = ["Female", "Male", "Prefer not to answer"];
@@ -273,51 +294,29 @@ var ArtExperiment = function() {
 	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more", "Prefer not to answer"]
 	var races = ["American Indian or Alaska Native", "Asian or Asian American", "Black or African American",
 							"Native Hawaiian and Other Pacific Islander", "White or Caucasian", "Prefer not to answer"]
-
 	var postSurveyQ = ["How old are you?", "What's your gender?", "Do you have a degree in fine arts or art history?",
 									"Please select the highest degree you have earned?", "How often do you visit art museums?"]
-
-	var ageQ = {
-		type: 'survey-multi-choice',
-		questions: [{prompt: postSurveyQ[0], options: ageRange, required: true}]
-	}
-
-	var genderQ = {
-		type: 'survey-multi-choice',
-		questions: [{prompt: postSurveyQ[1], options: genders, required: true}]
-	}
-
-	var artHistQ = {
-		type: 'survey-multi-choice',
-		questions: [{prompt: postSurveyQ[2], options: yesNo, required: true}]
-	}
-
-	var degreeQ = {
-		type: 'survey-multi-choice',
-		questions: [{prompt: postSurveyQ[3], options: degrees, required: true}]
-	}
-
-	var artMuseumQ = {
-		type: 'survey-multi-choice',
-		questions: [{prompt: postSurveyQ[4], options: artMuseum, required: true}]
-	}
+	var arrayofchoices = [ageRange, genders, yesNo, degrees, artMuseum]
 
 	var raceQ = {
 		type: 'survey-multi-select',
 		questions: [{prompt: "Which ethnicity or ethnicities do you identify yourself as?", options: races, required: true}]
 	}
+	timeline.push(raceQ);
 
-	var testSurvey = {
-		timeline: [ageQ, genderQ, raceQ, degreeQ, artHistQ, artMuseumQ],
-		repetitions: 0,
-		randomize_order: true
+	var i;
+	for (i = 0; i < postSurveyQ.length; i++) {
+    	var surveyQ = {
+				type: 'survey-multi-choice',
+				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: true}]
+			}
+			timeline.push(surveyQ)
 	}
-	timeline.push(testSurvey);
 
 	var suggestionsBox = {
 		type: 'survey-text',
-		questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type it down in the box below.", rows: 5, columns: 100}],
-	};
+		questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type them down in the box below.", rows: 5, columns: 100}],
+	}
 	timeline.push(suggestionsBox);
 
 	var all_data = jsPsych.data.get();
@@ -332,7 +331,6 @@ var ArtExperiment = function() {
 		},
 		on_data_update: function(data) {
               psiTurk.recordTrialData(data);
-							psiTurk.recordTrialData(all_data);
 		}
 	});
 
@@ -390,7 +388,7 @@ var Questionnaire = function() {
 	    psiTurk.saveData({
             success: function(){
                 psiTurk.computeBonus('compute_bonus', function() {
-                	psiTurk.completeHIT(); // when finished saving compute bonus, the quit
+                psiTurk.completeHIT(); // when finished saving compute bonus, the quit
                 });
             },
             error: prompt_resubmit});

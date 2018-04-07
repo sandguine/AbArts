@@ -3168,3 +3168,426 @@ Traceback (most recent call last):
   File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
     raise TemplateNotFound(template)
 TemplateNotFound: img/0.jpg
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38784)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38785)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38786)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38787)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38771)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38772)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38773)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38774)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38775)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38776)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38777)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38778)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38779)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38780)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38781)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38782)
+[2018-04-05 22:57:11 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:38783)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48576)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48577)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48578)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48579)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48580)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48581)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48557)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48558)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48559)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48560)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48561)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48562)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48566)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48569)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48573)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48574)
+[2018-04-05 22:58:55 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48575)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48710)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48711)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48713)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48716)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48720)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48721)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48722)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48723)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48724)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48725)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48726)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48727)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48728)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48729)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48730)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48731)
+[2018-04-05 23:05:45 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48732)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48960)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48961)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48962)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48964)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48965)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48948)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48949)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48950)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48951)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48952)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48953)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48954)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48955)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48956)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48957)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48958)
+[2018-04-05 23:31:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:48959)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49088)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49089)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49090)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49091)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49092)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49093)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49094)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49095)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49096)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49097)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49098)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49099)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49100)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49101)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49102)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49085)
+[2018-04-05 23:38:03 -0700] [38766] [CRITICAL] WORKER TIMEOUT (pid:49086)
+[2018-04-05 23:38:34,242] ERROR in app: Exception on /img/0.jpg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 726, in regularpage
+    return render_template(foldername+"/"+pagename)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+TemplateNotFound: img/0.jpg
+[2018-04-05 23:39:58,152] ERROR in app: Exception on /img/0.jpg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 726, in regularpage
+    return render_template(foldername+"/"+pagename)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+TemplateNotFound: img/0.jpg
+[2018-04-05 23:40:51,991] ERROR in app: Exception on /img/0.jpg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 726, in regularpage
+    return render_template(foldername+"/"+pagename)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+TemplateNotFound: img/0.jpg
+[2018-04-05 23:40:56,289] ERROR in app: Exception on /img/0.jpg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 726, in regularpage
+    return render_template(foldername+"/"+pagename)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+TemplateNotFound: img/0.jpg
+[2018-04-05 23:41:57,165] ERROR in app: Exception on /img/0.jpg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 726, in regularpage
+    return render_template(foldername+"/"+pagename)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+TemplateNotFound: img/0.jpg
+[2018-04-05 23:42:01,643] ERROR in app: Exception on /img/0.jpg [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 726, in regularpage
+    return render_template(foldername+"/"+pagename)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 133, in render_template
+    return _render(ctx.app.jinja_env.get_or_select_template(template_name_or_list),
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 869, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 830, in get_template
+    return self._load_template(name, self.make_globals(globals))
+  File "/usr/local/lib/python2.7/site-packages/jinja2/environment.py", line 804, in _load_template
+    template = self.loader.load(self, name, globals)
+  File "/usr/local/lib/python2.7/site-packages/jinja2/loaders.py", line 113, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 57, in get_source
+    return self._get_source_fast(environment, template)
+  File "/usr/local/lib/python2.7/site-packages/flask/templating.py", line 85, in _get_source_fast
+    raise TemplateNotFound(template)
+TemplateNotFound: img/0.jpg
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58884)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58885)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58886)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58887)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58888)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58889)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58890)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58891)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58892)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58893)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58894)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58895)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58896)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58897)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58898)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58899)
+[2018-04-06 01:46:09 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:58900)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70750)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70751)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70752)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70753)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70754)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70755)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70756)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70757)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70758)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70759)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70760)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70761)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70762)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70763)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70764)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70766)
+[2018-04-06 05:34:33 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70774)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70874)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70875)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70876)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70877)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70878)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70879)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70880)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70881)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70882)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70883)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70884)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70885)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70886)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70887)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70888)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70889)
+[2018-04-06 08:02:59 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:70890)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71013)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71014)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71015)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71016)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71017)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71018)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71019)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71020)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71021)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71022)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71023)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71024)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71025)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71026)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71027)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71028)
+[2018-04-06 08:03:35 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71029)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71042)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71043)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71044)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71045)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71046)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71047)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71048)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71049)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71050)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71051)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71052)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71054)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71055)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71056)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71057)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71058)
+[2018-04-06 09:09:44 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71059)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71169)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71173)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71174)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71175)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71176)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71177)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71178)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71154)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71155)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71156)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71160)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71161)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71162)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71164)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71165)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71166)
+[2018-04-06 09:12:40 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71167)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71302)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71303)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71304)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71305)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71306)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71307)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71308)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71309)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71310)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71311)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71312)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71313)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71319)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71323)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71324)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71325)
+[2018-04-06 09:13:57 -0700] [56926] [CRITICAL] WORKER TIMEOUT (pid:71326)
+[2018-04-06 10:11:54 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1984)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1985)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1986)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1987)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1988)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1989)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1990)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1991)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1992)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1993)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1994)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1995)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1996)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1997)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1998)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1982)
+[2018-04-06 10:11:55 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:1983)
+[2018-04-06 10:22:40 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5760)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5761)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5762)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5763)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5764)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5765)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5766)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5767)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5741)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5742)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5743)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5744)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5746)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5754)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5755)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5756)
+[2018-04-06 10:22:41 -0700] [1978] [CRITICAL] WORKER TIMEOUT (pid:5759)
+[2018-04-06 18:33:24 -0700] [54477] [ERROR] Invalid address: ('131.215.9.114', 22362)
+[2018-04-06 18:33:24 -0700] [54477] [ERROR] Retrying in 1 second.
+[2018-04-06 18:33:25 -0700] [54477] [ERROR] Invalid address: ('131.215.9.114', 22362)
+[2018-04-06 18:33:25 -0700] [54477] [ERROR] Retrying in 1 second.
+[2018-04-06 18:33:26 -0700] [54477] [ERROR] Invalid address: ('131.215.9.114', 22362)
+[2018-04-06 18:33:26 -0700] [54477] [ERROR] Retrying in 1 second.
+[2018-04-06 18:33:27 -0700] [54477] [ERROR] Invalid address: ('131.215.9.114', 22362)
+[2018-04-06 18:33:27 -0700] [54477] [ERROR] Retrying in 1 second.
+[2018-04-06 18:33:28 -0700] [54477] [ERROR] Invalid address: ('131.215.9.114', 22362)
+[2018-04-06 18:33:28 -0700] [54477] [ERROR] Retrying in 1 second.
+[2018-04-06 18:33:29 -0700] [54477] [ERROR] Can't connect to ('131.215.9.114', 22362)
