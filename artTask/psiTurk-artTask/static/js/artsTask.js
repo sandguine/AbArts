@@ -45,11 +45,16 @@ var ArtExperiment = function() {
 	/* declare necessary variables */
 	var questions = [
 		"<p>Do you know the name of the artist who painted this picture?</p>",
-		"<p>How much do you like the artwork shown? </br> 0 = \'Not at all\', and 3 = \'Strongly Like\'\" </br> </p>"
+		"<p>How much do you like the artwork shown?</br>\"0 = \'Not at all\', and 3 = \'Strongly Like\'\"</br></p>",
+		"<p>Do you know the name of the artist who painted this picture?</br>Please press \"I pay attention\.\"</br></p>",
+		"<p>How much do you like the artwork shown?</br>Please press \"C\.\"</br></p>"
 	]
 
 	var familiar_options = ["I don't know.", "I know."];
 	var like_options = ["0", "1", "2", "3"];
+	var catch1_options = ["I don't pay attention", "I pay attention"];
+	var catch2_options = ["A", "B", "C", "D"];
+	var allOptions = [familiar_options, like_options, catch1_options, catch2_options]
 	var arts = jsPsych.timelineVariable('stimulus');
 	var artShowTime = 2000
 	var responsePeriodArtist = 3000
@@ -80,7 +85,7 @@ var ArtExperiment = function() {
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
-		choices: familiar_options //[, familiar_options, human_options]
+		choices: allOptions[0] //[, familiar_options, human_options]
 	}
 
 	var qLike = {
@@ -89,7 +94,7 @@ var ArtExperiment = function() {
 		prompt: questions[1],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		choices: like_options //[, familiar_options, human_options]
+		choices: allOptions[1] //[, familiar_options, human_options]
 	}
 
 	var fixation = {
@@ -128,7 +133,7 @@ var ArtExperiment = function() {
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
-		choices: familiar_options //[, familiar_options, human_options]
+		choices: allOptions[0] //[, familiar_options, human_options]
 	}
 
 	var qLikeEx = {
@@ -137,7 +142,7 @@ var ArtExperiment = function() {
 		prompt: questions[1],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		choices: like_options //[, familiar_options, human_options]
+		choices: allOptions[1] //[, familiar_options, human_options]
 	}
 
 	var beginRealSurvey ={
@@ -257,8 +262,8 @@ var ArtExperiment = function() {
 	var likeInstructions = {
 		type: 'html-button-response',
 		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
-		"<p>\"How much do you like the artwork shown? </br> </p>"+
-		"0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'.\"</br></p>" +
+		"<p><b>\"How much do you like the artwork shown?\"</b></br></p>"+
+		"<b>0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'.\"</b></br></p>" +
 		"<p>Click on the button below to begin.</p>",
 		post_trial_gap: 0,
 		choices: ["Begin the task!"],
