@@ -173,7 +173,8 @@ jsPsych.plugins["image-button-response"] = (function() {
       var trial_data = {
         "rt": response.rt,
         "stimulus": trial.stimulus,
-        "button_pressed": response.button
+        "button_pressed": response.button,
+        "button_order": trial.choices
       };
 
       // clear the display

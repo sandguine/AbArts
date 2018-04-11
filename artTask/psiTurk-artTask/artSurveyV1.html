@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>ArtTask</title>
-    <script src="static/js/img/v5.js"></script>
-    <script src="/static/js/catchTrials.js"></script>
+    <script src="static/js/v5.js"></script>
+    <script src="static/js/catchTrials.js"></script>
     <script src="jspsych-6.0.1/jspsych.js"></script>
     <script src="jspsych-6.0.1/plugins/jspsych-survey-text.js"></script>
     <script src="jspsych-6.0.1/plugins/jspsych-survey-multi-choice.js"></script>
@@ -41,13 +41,16 @@
 	var allOptions = [familiar_options, like_options, catch1_options, catch2_options]
 	var arts = jsPsych.timelineVariable('stimulus');
   var catchMe = jsPsych.timelineVariable('catchy');
-	var artShowTime = 2000
-	var responsePeriodArtist = 3000
-	var responsePeriodLike = 6000
-	var fixationTime = 500
+	var artShowTime = 2//000
+	var responsePeriodArtist = 3//000
+	var responsePeriodLike = 6//000
+	var fixationTime = 5//00
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/js/img/0.jpg'
-  var mortyScream = 'static/js/img/1.jpg'
+  var theScream = 'static/js/img/1.jpg'
+	var pseudoRandArr = Array.apply(null, Array(test_stimuli.length)).map(function(item, index){
+    										return Math.round(Math.random())
+											});
 
 	var showArtsFam ={
 		type: 'image-button-response',
@@ -71,21 +74,42 @@
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
-		choices: allOptions[0] //[, familiar_options, human_options]
+		choices: function(){
+      return jsPsych.randomization.shuffle(familiar_options);
+    }
 	}
 
 	var qLike = {
 		type: 'image-button-response',
 		stimulus: arts,
 		prompt: questions[1],
+    trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: allOptions[1]
+  }
+    /*function(){
+      //
+      var counter = 0;
+      //if counter is divisible by 10 then question = questions[3]
+      question = questions[1]
+
+      question = questions[3]
+
+      return question
+    },
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		choices: allOptions[1] //[, familiar_options, human_options]
+		choices: function(){
+      if question ==
+      choice
+      allOptions[1]
+    }
 	}
+  */
 
   var catch1 = {
     type: 'image-button-response',
-		stimulus: arts,
+		stimulus: catchMe,
 		prompt: questions[2],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -94,7 +118,7 @@
 
   var catch2 = {
     type: 'image-button-response',
-		stimulus: arts,
+		stimulus: catchMe,
 		prompt: questions[3],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -208,21 +232,49 @@
 		allow_backward: true
 	}
 
+	var catch2Instr = {
+		type: 'instructions',
+		pages: [
+				"<p>From time to time, we will check whether you pay attention to the task.</p>",
+				"<p>If you pay attention, please click <b>\"C\"</b> to confirm that you pay attention.</p>",
+				"<p>Similarly, you have <b>6 seconds</b> to respond.</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	}
+
   var catch1Ex = {
 		type: 'image-button-response',
-		stimulus: mortyScream,
+		stimulus: theScream,
 		prompt: questions[2],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
 		choices: allOptions[2] //[, familiar_options, human_options]
 	}
 
+	var catch2Ex = {
+		type: 'image-button-response',
+		stimulus: theScream,
+		prompt: questions[3],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: allOptions[3] //[, familiar_options, human_options]
+	}
+
   var showArtsExCatch1 ={
 		type: 'image-button-response',
-		stimulus: mortyScream,
+		stimulus: theScream,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[2]
+	}
+
+	var showArtsExCatch2 ={
+		type: 'image-button-response',
+		stimulus: theScream,
+		trial_duration: artShowTime,
+		response_ends_trial: false,
+		prompt: questions[3]
 	}
 
   var debriefCatch = {
@@ -238,7 +290,8 @@
 
 	var repeatInstructions = {
 			timeline: [famExpInstr, fixation, showArtsEx1, afterFamExpInstr, qFamEx,
-         catch1Instr, fixation, showArtsExCatch1, catch1Ex, debriefCatch, beginRealSurvey],
+         //catch1Instr, fixation, showArtsExCatch1, catch1Ex, debriefCatch,
+				 beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -290,7 +343,8 @@
 	}
 
 	var repeatLikeInstructions = {
-			timeline: [likeExpInstr, fixation, qLikeEx, beginRealSurvey],
+			timeline: [likeExpInstr, fixation, qLikeEx, catch2Instr,
+				fixation, showArtsExCatch2, catch2Ex, debriefCatch, beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -357,7 +411,7 @@
 	for (i = 0; i < postSurveyQ.length; i++) {
     	var surveyQ = {
 				type: 'survey-multi-choice',
-				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: true}]
+				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: false}]
 			}
 			timeline.push(surveyQ)
 	}
@@ -369,12 +423,14 @@
 	timeline.push(suggestionsBox);
 
 	var all_data = jsPsych.data.get();
+	var interactions = jsPsych.data.getInteractionData();
 
     /* start the survey */
     jsPsych.init({
       timeline: timeline,
       on_finish: function() {
         jsPsych.data.displayData();
+        jsPsych.data.getInteractionData().displayData();
       }
     });
 

@@ -46,22 +46,24 @@ var ArtExperiment = function() {
 	var questions = [
 		"<p>Do you know the name of the artist who painted this picture?</p>",
 		"<p>How much do you like the artwork shown?</br>\"0 = \'Not at all\', and 3 = \'Strongly Like\'\"</br></p>",
-		"<p>Do you know the name of the artist who painted this picture?</br>Please press \"I pay attention\.\"</br></p>",
-		"<p>How much do you like the artwork shown?</br>Please press \"C\.\"</br></p>"
+		"<p>Do you know the name of the artist who painted this picture?</br>Please click \"I pay attention\.\"</br></p>",
+		"<p>How much do you like the artwork shown?</br>Please click on \"C\" to confirm that you pay attention.</br></p>"
 	]
 
 	var familiar_options = ["I don't know.", "I know."];
 	var like_options = ["0", "1", "2", "3"];
-	var catch1_options = ["I don't pay attention", "I pay attention"];
+	var catch1_options = ["I don't pay attention.", "I pay attention."];
 	var catch2_options = ["A", "B", "C", "D"];
 	var allOptions = [familiar_options, like_options, catch1_options, catch2_options]
 	var arts = jsPsych.timelineVariable('stimulus');
-	var artShowTime = 2000
-	var responsePeriodArtist = 3000
-	var responsePeriodLike = 6000
-	var fixationTime = 500
+  var catchMe = jsPsych.timelineVariable('catchy');
+	var artShowTime = 2//000
+	var responsePeriodArtist = 3//000
+	var responsePeriodLike = 6//000
+	var fixationTime = 5//00
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/js/img/0.jpg'
+  var theScream = 'static/js/img/1.jpg'
 
 	var showArtsFam ={
 		type: 'image-button-response',
@@ -85,7 +87,8 @@ var ArtExperiment = function() {
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
-		choices: allOptions[0] //[, familiar_options, human_options]
+		choices: function(){
+			return jsPsych.randomization.shuffle(familiar_options);
 	}
 
 	var qLike = {
@@ -96,6 +99,24 @@ var ArtExperiment = function() {
 		response_ends_trial: true,
 		choices: allOptions[1] //[, familiar_options, human_options]
 	}
+
+  var catch1 = {
+    type: 'image-button-response',
+		stimulus: catchMe,
+		prompt: questions[2],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: allOptions[2]
+  }
+
+  var catch2 = {
+    type: 'image-button-response',
+		stimulus: catchMe,
+		prompt: questions[3],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: allOptions[3]
+  }
 
 	var fixation = {
 		type: 'html-keyboard-response',
@@ -193,8 +214,77 @@ var ArtExperiment = function() {
 		allow_backward: true
 	}
 
+  var catch1Instr = {
+		type: 'instructions',
+		pages: [
+				"<p>From time to time, we will check whether you pay attention to the task.</p>",
+				"<p>If you pay attention, please click <b>\"I pay attention.\"</b></p>",
+				"<p>Similarly, you have <b>3 seconds</b> to respond.</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	}
+
+	var catch2Instr = {
+		type: 'instructions',
+		pages: [
+				"<p>From time to time, we will check whether you pay attention to the task.</p>",
+				"<p>If you pay attention, please click <b>\"C\"</b> to confirm that you pay attention.</p>",
+				"<p>Similarly, you have <b>6 seconds</b> to respond.</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	}
+
+  var catch1Ex = {
+		type: 'image-button-response',
+		stimulus: theScream,
+		prompt: questions[2],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: allOptions[2] //[, familiar_options, human_options]
+	}
+
+	var catch2Ex = {
+		type: 'image-button-response',
+		stimulus: theScream,
+		prompt: questions[3],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		choices: allOptions[3] //[, familiar_options, human_options]
+	}
+
+  var showArtsExCatch1 ={
+		type: 'image-button-response',
+		stimulus: theScream,
+		trial_duration: artShowTime,
+		response_ends_trial: false,
+		prompt: questions[2]
+	}
+
+	var showArtsExCatch2 ={
+		type: 'image-button-response',
+		stimulus: theScream,
+		trial_duration: artShowTime,
+		response_ends_trial: false,
+		prompt: questions[3]
+	}
+
+  var debriefCatch = {
+		type: 'instructions',
+		pages: [
+				"<p>If you failed these catch trials more than a few times, we will assume that you do not pay attention.</p>",
+				"<p>As a result, you work will be rejected and your payment will be withheld.</b></p>",
+				"<p>We want to give you the full payment. So, please <b>pay attention</b>.</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	}
+
 	var repeatInstructions = {
-			timeline: [famExpInstr, fixation, showArtsEx1, afterFamExpInstr, qFamEx, beginRealSurvey],
+			timeline: [famExpInstr, fixation, showArtsEx1, afterFamExpInstr, qFamEx,
+         //catch1Instr, fixation, showArtsExCatch1, catch1Ex, debriefCatch,
+				 beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -246,7 +336,8 @@ var ArtExperiment = function() {
 	}
 
 	var repeatLikeInstructions = {
-			timeline: [likeExpInstr, fixation, qLikeEx, beginRealSurvey],
+			timeline: [likeExpInstr, fixation, qLikeEx, catch2Instr,
+				fixation, showArtsExCatch2, catch2Ex, debriefCatch, beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -325,6 +416,7 @@ var ArtExperiment = function() {
 	timeline.push(suggestionsBox);
 
 	var all_data = jsPsych.data.get();
+	var interactions = jsPsych.data.getInteractionData();
 
 	/* start the survey */
 	jsPsych.init({
@@ -336,6 +428,7 @@ var ArtExperiment = function() {
 		},
 		on_data_update: function(data) {
               psiTurk.recordTrialData(data);
+							psiTurk.recordTrialData(interactions);
 		}
 	});
 
