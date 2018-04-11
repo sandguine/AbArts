@@ -53,13 +53,13 @@ var ArtExperiment = function() {
 	var familiar_options = ["I don't know.", "I know."];
 	var like_options = ["0", "1", "2", "3"];
 	var catch1_options = ["I don't pay attention.", "I pay attention."];
-	var catch2_options = ["A", "B", "C", "D"];
-	var allOptions = [familiar_options, like_options, catch1_options, catch2_options]
+	var qCatch_options = ["A", "B", "C", "D"];
+	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options]
 	var arts = jsPsych.timelineVariable('stimulus');
-  var catchMe = jsPsych.timelineVariable('catchy');
+  var catchMe = jsPsych.timelineVariable('stimulus');
 	var artShowTime = 2//000
 	var responsePeriodArtist = 3//000
-	var responsePeriodLike = 6//000
+	var responsePeriodLike = 6000
 	var fixationTime = 5//00
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/js/img/0.jpg'
@@ -88,34 +88,56 @@ var ArtExperiment = function() {
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
 		choices: function(){
-			return jsPsych.randomization.shuffle(familiar_options);
+				return jsPsych.randomization.shuffle(familiar_options);
+			}
 	}
 
 	var qLike = {
 		type: 'image-button-response',
 		stimulus: arts,
-		prompt: questions[1],
+		prompt:  questions[1],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		choices: allOptions[1] //[, familiar_options, human_options]
+		choices: allOptions[1]
 	}
 
-  var catch1 = {
-    type: 'image-button-response',
-		stimulus: catchMe,
-		prompt: questions[2],
+/*
+	var qLike = {
+		type: 'image-button-response',
+		stimulus: arts,
+		prompt: function(){
+			var question;
+			if(){
+				question = questions[1];
+			}
+			else{
+				question = questions[3];
+			}
+			return question;
+		},
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		choices: allOptions[2]
-  }
-
-  var catch2 = {
+		choices: function(){
+			var options;
+			if(){
+				options = allOptions[1];
+			}
+			else{
+				options = allOptions[3];
+			}
+			return options;
+		}
+	}
+*/
+  var qCatch = {
     type: 'image-button-response',
 		stimulus: catchMe,
 		prompt: questions[3],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		choices: allOptions[3]
+		choices: function(){
+				return jsPsych.randomization.shuffle(allOptions[3]);
+			}
   }
 
 	var fixation = {
@@ -225,7 +247,7 @@ var ArtExperiment = function() {
 		allow_backward: true
 	}
 
-	var catch2Instr = {
+	var qCatchInstr = {
 		type: 'instructions',
 		pages: [
 				"<p>From time to time, we will check whether you pay attention to the task.</p>",
@@ -245,7 +267,7 @@ var ArtExperiment = function() {
 		choices: allOptions[2] //[, familiar_options, human_options]
 	}
 
-	var catch2Ex = {
+	var qCatchEx = {
 		type: 'image-button-response',
 		stimulus: theScream,
 		prompt: questions[3],
@@ -262,7 +284,7 @@ var ArtExperiment = function() {
 		prompt: questions[2]
 	}
 
-	var showArtsExCatch2 ={
+	var showArtsExqCatch ={
 		type: 'image-button-response',
 		stimulus: theScream,
 		trial_duration: artShowTime,
@@ -336,8 +358,8 @@ var ArtExperiment = function() {
 	}
 
 	var repeatLikeInstructions = {
-			timeline: [likeExpInstr, fixation, qLikeEx, catch2Instr,
-				fixation, showArtsExCatch2, catch2Ex, debriefCatch, beginRealSurvey],
+			timeline: [likeExpInstr, fixation, qLikeEx, qCatchInstr,
+				fixation, showArtsExqCatch, qCatchEx, debriefCatch, beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -362,13 +384,23 @@ var ArtExperiment = function() {
 	}
 	timeline.push(likeInstructions)
 
+	var test;
+
 	var testLike = {
 		timeline: [fixation, showArtsLike, qLike],
 		timeline_variables: test_stimuli,
 		repetitions: 0,
 		randomize_order: true
 	}
-	timeline.push(testLike);
+
+	var testCatch = {
+		timeline: [fixation, showArtsLike, qCatch],
+		timeline_variables: catchies,
+		repetitions: 0,
+		randomize_order: true
+	}
+
+	timeline.push(testLike)
 
 	var surveyIntro = {
 		type: "html-button-response",
