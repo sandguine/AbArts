@@ -59,11 +59,11 @@ var ArtExperiment = function() {
   var catchMe = jsPsych.timelineVariable('stimulus');
 	var artShowTime = 2//000
 	var responsePeriodArtist = 3//000
-	var responsePeriodLike = 6000
+	var responsePeriodLike = 6//000
 	var fixationTime = 5//00
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
-	var mona = 'static/js/img/0.jpg'
-  var theScream = 'static/js/img/1.jpg'
+	var mona = 'static/images/0.jpg'
+  var theScream = 'static/images/1.jpg'
 
 	var showArtsFam ={
 		type: 'image-button-response',
@@ -102,6 +102,8 @@ var ArtExperiment = function() {
 	}
 
 /*
+if (x%10 != 0) then run normal
+else run catch
 	var qLike = {
 		type: 'image-button-response',
 		stimulus: arts,
@@ -129,6 +131,7 @@ var ArtExperiment = function() {
 		}
 	}
 */
+
   var qCatch = {
     type: 'image-button-response',
 		stimulus: catchMe,
@@ -157,7 +160,7 @@ var ArtExperiment = function() {
 		stimulus: "<p>The new set of questions is about to start.</p>" +
 				"<p>Click on the button below to begin.</p>",
 		post_trial_gap: 0,
-		choices: ["Begin the new set"],
+		choices: ["Begin the new set!"],
 		response_ends_trial: true
 	}
 
@@ -414,21 +417,31 @@ var ArtExperiment = function() {
 	timeline.push(surveyIntro);
 
 	//survey parameters
-	var yesNo = ["Yes", "No", "Prefer not to answer"];
-	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above", "Prefer not to answer"];
-	var genders = ["Female", "Male", "Prefer not to answer"];
+	var yesNo = ["Yes", "No"];
+	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above"];
+	var genders = ["Female", "Male"];
 	var degrees = ["Did not complete High School", "High School/GED", "Some College or Associate Degree",
-								"Bachelor's Degree", "Master's Degree or higher", "Prefer not to answer"]
-	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more", "Prefer not to answer"]
+								"Bachelor's Degree", "Master's Degree or higher"]
+	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more"]
 	var races = ["American Indian or Alaska Native", "Asian or Asian American", "Black or African American",
-							"Native Hawaiian and Other Pacific Islander", "White or Caucasian", "Prefer not to answer"]
-	var postSurveyQ = ["How old are you?", "What's your gender?", "Do you have a degree in fine arts or art history?",
-									"Please select the highest degree you have earned?", "How often do you visit art museums?"]
-	var arrayofchoices = [ageRange, genders, yesNo, degrees, artMuseum]
+							"Native Hawaiian and Other Pacific Islander", "White or Caucasian"]
+	var artSurveyQ = ["Do you have a degree in fine arts or art history?", "How often do you visit arts museum?"]
+	var postSurveyQ = ["How old are you?", "What's your gender?", "Please select the highest degree you have earned?"]
+	var arrayofartchoices = [yesNo, artMuseum]
+	var arrayofchoices = [ageRange, genders, degrees]
+
+	var i;
+	for (i = 0; i < artSurveyQ.length; i++) {
+    	var artSur= {
+				type: 'survey-multi-choice',
+				questions: [{prompt: artSurveyQ[i], options: arrayofartchoices[i], required: true}]
+			}
+			timeline.push(artSur)
+	}
 
 	var raceQ = {
 		type: 'survey-multi-select',
-		questions: [{prompt: "Which ethnicity or ethnicities do you identify yourself as?", options: races, required: true}]
+		questions: [{prompt: "Which ethnicity or ethnicities do you identify yourself as?", options: races, required: false}]
 	}
 	timeline.push(raceQ);
 
@@ -436,7 +449,7 @@ var ArtExperiment = function() {
 	for (i = 0; i < postSurveyQ.length; i++) {
     	var surveyQ = {
 				type: 'survey-multi-choice',
-				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: true}]
+				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: false}]
 			}
 			timeline.push(surveyQ)
 	}
