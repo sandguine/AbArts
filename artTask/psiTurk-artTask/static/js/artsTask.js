@@ -45,7 +45,7 @@ var ArtExperiment = function() {
 	/* declare necessary variables */
 	var questions = [
 		"<p>Do you know the name of the artist who painted this picture?</p>",
-		"<p>How much do you like the artwork shown?</br>\"0 = \'Not at all\', and 3 = \'Strongly Like\'\"</br></p>",
+		"<p>How much do you like the artwork shown?</br>\"0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'\"</br></p>",
 		"<p>Do you know the name of the artist who painted this picture?</br>Please click \"I pay attention\.\"</br></p>",
 		"<p>How much do you like the artwork shown?</br>Please click on \"C\" to confirm that you pay attention.</br></p>"
 	]
@@ -57,10 +57,10 @@ var ArtExperiment = function() {
 	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options]
 	var arts = jsPsych.timelineVariable('stimulus');
   var catchMe = jsPsych.timelineVariable('stimulus');
-	var artShowTime = 2//000
-	var responsePeriodArtist = 3//000
-	var responsePeriodLike = 6//000
-	var fixationTime = 5//00
+	var artShowTime = 2000
+	var responsePeriodArtist = 3000
+	var responsePeriodLike = 6000
+	var fixationTime = 500
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/images/0.jpg'
   var theScream = 'static/images/1.jpg'
@@ -100,37 +100,6 @@ var ArtExperiment = function() {
 		response_ends_trial: true,
 		choices: allOptions[1]
 	}
-
-/*
-if (x%10 != 0) then run normal
-else run catch
-	var qLike = {
-		type: 'image-button-response',
-		stimulus: arts,
-		prompt: function(){
-			var question;
-			if(){
-				question = questions[1];
-			}
-			else{
-				question = questions[3];
-			}
-			return question;
-		},
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: function(){
-			var options;
-			if(){
-				options = allOptions[1];
-			}
-			else{
-				options = allOptions[3];
-			}
-			return options;
-		}
-	}
-*/
 
   var qCatch = {
     type: 'image-button-response',
@@ -361,8 +330,9 @@ else run catch
 	}
 
 	var repeatLikeInstructions = {
-			timeline: [likeExpInstr, fixation, qLikeEx, qCatchInstr,
-				fixation, showArtsExqCatch, qCatchEx, debriefCatch, beginRealSurvey],
+			timeline: [likeExpInstr, fixation, qLikeEx,
+				//qCatchInstr, fixation, showArtsExqCatch, qCatchEx, debriefCatch,
+				beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -417,6 +387,10 @@ else run catch
 	timeline.push(surveyIntro);
 
 	//survey parameters
+
+	//“Color,” “Composition,” “Meaning/Content,” and “Texture/Brushstrokes.”
+	//Other factors mentioned by people include“Shape,” “Perspective,”
+	//“Feeling of Motion,” “Balance,”“Style,” “Mood,” “Originality,” “Unity,” etc.
 	var yesNo = ["Yes", "No"];
 	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above"];
 	var genders = ["Female", "Male"];
@@ -425,8 +399,12 @@ else run catch
 	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more"]
 	var races = ["American Indian or Alaska Native", "Asian or Asian American", "Black or African American",
 							"Native Hawaiian and Other Pacific Islander", "White or Caucasian"]
+	var features = ["Color", "Composition", "Meaning/Content", "Texture/Brushstrokes",
+								"Shape", "Perspective", "Feeling of Motion", "Balance", "Style",
+								"Mood", "Originality", "Unity", "Others"]
+			features = jsPsych.randomization.shuffle(features)
 	var artSurveyQ = ["Do you have a degree in fine arts or art history?", "How often do you visit arts museum?"]
-	var postSurveyQ = ["How old are you?", "What's your gender?", "Please select the highest degree you have earned?"]
+	var postSurveyQ = ["How old are you?", "Which gender do you most closely identify yourself as?", "Please select the highest degree you have earned?"]
 	var arrayofartchoices = [yesNo, artMuseum]
 	var arrayofchoices = [ageRange, genders, degrees]
 
@@ -439,9 +417,21 @@ else run catch
 			timeline.push(artSur)
 	}
 
+	var featuresQ = {
+		type: 'survey-multi-select',
+		questions: [{prompt: "What are the important factors you concerned with when judging a piece of artwork?", options: features, required: true}]
+	}
+	timeline.push(featuresQ);
+
+	var otherFeatures = {
+		type: 'survey-text',
+		questions: [{prompt: "Are there other factors you concerned with when judging a piece of artwork? Please type them down in the box below.", rows: 5, columns: 100}]
+	}
+	timeline.push(otherFeatures);
+
 	var raceQ = {
 		type: 'survey-multi-select',
-		questions: [{prompt: "Which ethnicity or ethnicities do you identify yourself as?", options: races, required: false}]
+		questions: [{prompt: "Which ethnicity or ethnicities do you closely identify yourself as?", options: races, required: false}]
 	}
 	timeline.push(raceQ);
 
@@ -456,7 +446,7 @@ else run catch
 
 	var suggestionsBox = {
 		type: 'survey-text',
-		questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type them down in the box below.", rows: 5, columns: 100}],
+		questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type them down in the box below.", rows: 5, columns: 100}]
 	}
 	timeline.push(suggestionsBox);
 

@@ -1,0 +1,33 @@
+function [ max_k ] = edge_distribution( input_image )
+% input must be GRB
+%x=mean(input_image,3);  % brightness
+
+alpha=0.2;
+f = fspecial('laplacian',alpha);
+
+for k=1:3
+    x=input_image(:,:,k);
+    
+    y=imgaussfilt(x);
+    
+    z= imfilter(y,f,'replicate');
+    
+    z_s(:,:,k)=abs(z);
+    
+    clearvars x y z
+end
+
+edge_image=mean(z_s,3);
+
+edge_x=mean(edge_image,1);
+edge_y=mean(edge_image,2);
+
+
+    
+
+
+
+
+
+end
+
