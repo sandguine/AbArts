@@ -13,7 +13,7 @@ browser_exclude_rule = None
 allow_repeats = false
 
 [Database Parameters]
-database_url = sqlite:///participants.db
+database_url = postgres://lrsmeytcqcdzrx:ec7b604818bac9ce3a6fe8ac5c4f9bf468b72a96b82d728d13301bc27d6ec04a@ec2-54-235-193-34.compute-1.amazonaws.com:5432/d21f7vd8q2bjne
 table_name = artTask
 
 [Server Parameters]
@@ -45,4 +45,4 @@ launch_in_sandbox_mode = true
 #   https://<host>:<port>/ad 
 
 use_psiturk_ad_server = true
-ad_location = false
+ad_location = https://whispering-refuge-29698.herokuapp.com

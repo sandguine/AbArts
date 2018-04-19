@@ -49,5 +49,5 @@ Z10= brightness_contrast(X, n_bin );
 
 threshold=4;
 Z11=blurr( X,threshold );
-
-Z12=
+n_sample=1000;
+Z12=edge_distribution( X,n_sample );
