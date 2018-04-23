@@ -176,7 +176,7 @@ var ArtExperiment = function() {
 				"<p>Welcome to our easy and simple survey!</p>",
 				"<p>In this survey, you will see various paintings created by different artists.</p>" +
 				"<p>We will ask you a few simple questions about the artwork.</p>",
-				"<p>You will recieve <b>$1</b> when you complete the task regardless of your knowledge and preferences.</p>" +
+				"<p>You will recieve <b>$1.5</b> when you complete the task regardless of your knowledge and preferences.</p>" +
 				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>"
 		],
 		show_clickable_nav: true,

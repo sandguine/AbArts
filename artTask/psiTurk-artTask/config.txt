@@ -1,6 +1,6 @@
 [HIT Configuration]
 title = Arts task
-description = A brief survey about artwork.
+description = A brief 10 to 15 minutes survey about artwork. Please disable ad blocker before accepting the task.
 amt_keywords = Arts, Value, Art, Decision Making, Value-based, Evaluation
 lifetime = 24
 us_only = true
@@ -13,7 +13,7 @@ browser_exclude_rule = None
 allow_repeats = false
 
 [Database Parameters]
-database_url = postgres://lrsmeytcqcdzrx:ec7b604818bac9ce3a6fe8ac5c4f9bf468b72a96b82d728d13301bc27d6ec04a@ec2-54-235-193-34.compute-1.amazonaws.com:5432/d21f7vd8q2bjne
+database_url = postgres://eneflvjtawxscm:e5e02f6f462765f3031507adc82c34e60025ce6052c348c9ca9806ac959ece5e@ec2-54-83-204-6.compute-1.amazonaws.com:5432/devrm87s17goqg
 table_name = artTask
 
 [Server Parameters]
@@ -38,11 +38,11 @@ num_conds = 1
 num_counters = 1
 
 [Shell Parameters]
-launch_in_sandbox_mode = true
+launch_in_sandbox_mode = false
 
 # If you are not using the psiturk ad server, set `use_psiturk_ad_server` to `false` and point `ad_location` to your proxy server <host> and <port>. Format the ad_location like this:
 #
 #   https://<host>:<port>/ad 
 
-use_psiturk_ad_server = true
-ad_location = https://whispering-refuge-29698.herokuapp.com
+use_psiturk_ad_server = false
+ad_location = https://shielded-hollows-85687.herokuapp.com/pub
