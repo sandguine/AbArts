@@ -29,6 +29,8 @@ end
 
 best_k=find(F_k==min(F_k));
 
+best_k=best_k(1);
+
 
 
 

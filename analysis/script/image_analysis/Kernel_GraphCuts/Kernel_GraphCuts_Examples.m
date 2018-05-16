@@ -32,11 +32,13 @@ clear all; close all;
 %%%%%%%%%%%%%%%%%%%%%%%Example with a color image%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %path = 'Images/Color_image.jpg';
-path='/Users/sandy/Dropbox/Caltech/AbArts/artsScraper/database/AbstractArt/000/2005-60-80.jpg!PinterestLarge.jpg'
-
+%path='/Users/sandy/Dropbox/Caltech/AbArts/artsScraper/database/AbstractArt/000/2005-60-80.jpg!PinterestLarge.jpg'
+%path='/Users/miles/Dropbox/AbArts/artsScraper/database/AbstractArt/000/2005-60-80.jpg!PinterestLarge.jpg'
+%path='/Users/miles/Dropbox/AbArts/ArtsScraper/database/Cubism/000/crane-and-pitcher-1945.jpg!PinterestLarge.jpg'
+path='/Users/miles/Dropbox/AbArts/ArtsScraper/database/Impressionism/000/chestnut-trees-louveciennes-spring-1870.jpg!PinterestLarge.jpg'
 im = im2double(imread(path)); 
-alpha = 2; %The weight of the smoothness constraint
-k = 6; %The number of regions
+alpha = 3; %The weight of the smoothness constraint
+k = 5; %The number of regions
 
  
 %addpath D:\Dropbox\AbArts\papers\arts_ml\GCMex

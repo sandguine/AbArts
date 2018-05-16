@@ -2,8 +2,8 @@ clear all
 close all
 %%
 
-addpath /Users/sandy/Dropbox/Caltech/AbArts/papers/arts_ml/GCMex
-% addpath D:\Dropbox\AbArts\papers\arts_ml\GCMex
+%addpath /Users/sandy/Dropbox/Caltech/AbArts/papers/arts_ml/gco-v3.0/matlab
+addpath D:\Dropbox\AbArts\papers\arts_ml\GCMex
 
 addpath('./functions')
 
@@ -13,9 +13,9 @@ addpath('./functions')
 
 %image_file = 'D:/Dropbox/AbArts/ArtsScraper/database/AbstractArt/000/2005-60-80.jpg!PinterestLarge.jpg';
 
-image_file = '/Users/sandy/Dropbox/Caltech/AbArts/ArtsScraper/database/Impressionism/a-cloudy-day-bluebonnets-near-san-antonio-texas-1918.jpg!PinterestLarge.jpg';
+%image_file = '/Users/sandy/Dropbox/Caltech/AbArts/ArtsScraper/database/Impressionism/a-cloudy-day-bluebonnets-near-san-antonio-texas-1918.jpg!PinterestLarge.jpg';
 
-%image_file = 'D:\Dropbox\AbArts\ArtsScraper\database\Impressionism\a-cloudy-day-bluebonnets-near-san-antonio-texas-1918.jpg!PinterestLarge.jpg';
+image_file = 'D:\Dropbox\AbArts\ArtsScraper\database\Impressionism\a-cloudy-day-bluebonnets-near-san-antonio-texas-1918.jpg!PinterestLarge.jpg';
 
 
 im = imread(image_file); 

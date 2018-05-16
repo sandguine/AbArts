@@ -6,6 +6,8 @@ counts=h.BinCounts;
 
 max_bin=find(counts==max(counts));
 
+max_bin=max_bin(1);
+
 fraction =max(counts)/sum(counts);
 k=1;
 while fraction <0.98
@@ -18,6 +20,8 @@ end
 
 
 contrast=(min(max_bin+k,h.NumBins)-(max(max_bin-k,1)+1))*h.BinWidth;
+
+
 
 end
 

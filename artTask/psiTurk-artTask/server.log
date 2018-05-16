@@ -30121,3 +30121,1523 @@ Traceback (most recent call last):
     conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
 OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
  None None
+[2018-04-24 11:04:37 -0700] [81425] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:37 -0700] [81426] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81422] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81427] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81433] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81435] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81436] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81437] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81438] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81439] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81440] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81441] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81442] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81443] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81444] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+[2018-04-24 11:04:38 -0700] [81445] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment_server.py", line 47, in load
+    return util.import_app("psiturk.experiment:app")
+  File "/usr/local/lib/python2.7/site-packages/gunicorn/util.py", line 357, in import_app
+    __import__(module)
+  File "/usr/local/lib/python2.7/site-packages/psiturk/experiment.py", line 89, in <module>
+    init_db()
+  File "/usr/local/lib/python2.7/site-packages/psiturk/db.py", line 37, in init_db
+    Base.metadata.create_all(bind=engine)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/schema.py", line 2848, in create_all
+    tables=tables)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1478, in _run_visitor
+    with self._optional_conn_ctx_manager(connection) as conn:
+  File "/usr/local/Cellar/python@2/2.7.14_3/Frameworks/Python.framework/Versions/2.7/lib/python2.7/contextlib.py", line 17, in __enter__
+    return self.gen.next()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1471, in _optional_conn_ctx_manager
+    with self.contextual_connect() as conn:
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/base.py", line 1661, in contextual_connect
+    self.pool.connect(),
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 272, in connect
+    return _ConnectionFairy(self).checkout()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 431, in __init__
+    rec = self._connection_record = pool._do_get()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 788, in _do_get
+    con = self._create_connection()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 225, in _create_connection
+    return _ConnectionRecord(self)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 318, in __init__
+    self.connection = self.__connect()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/pool.py", line 379, in __connect
+    connection = self.__pool._creator()
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/strategies.py", line 80, in connect
+    return dialect.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/sqlalchemy/engine/default.py", line 283, in connect
+    return self.dbapi.connect(*cargs, **cparams)
+  File "/usr/local/lib/python2.7/site-packages/psycopg2/__init__.py", line 130, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+OperationalError: (OperationalError) FATAL:  too many connections for role "eneflvjtawxscm"
+ None None

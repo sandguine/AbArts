@@ -1,10 +1,10 @@
 function [ max_k ] = blurr( input_image,threshold )
 % input must be GRB
-x=mean(input_image,3);  % brightness
+x=nanmean(input_image,3);  % brightness
 y=fft2(x);
 z=fftshift(y);
 
-imagesc(abs(z).^2/numel(z)>threshold)
+%imagesc(abs(z).^2/numel(z)>threshold)
 n=size(z,1);
 m=size(z,2);
        
@@ -22,6 +22,10 @@ ks_x=2*(is_x-n/2)/n;
 ks_y=2*(is_y-m/2)/m;
 
 max_k=max(max(ks_x(kx_index_unique)),max(ks_y(ky_index_unique)));
+
+if isempty(find(abs(z).^2/numel(z)>threshold))
+    max_k=0;
+end
 
 
 

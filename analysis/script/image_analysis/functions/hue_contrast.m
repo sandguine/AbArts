@@ -32,5 +32,9 @@ else
     output=max(diffs);
 end
 
+
+if isempty(output)
+    output=0;
+end
 end
 

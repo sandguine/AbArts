@@ -1,0 +1,144 @@
+
+clear all
+close all
+
+ %% I'm not sure the difference between HSV and HSL
+addpath('./functions')
+
+image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+
+categories={'Impressionism','AbstractArt','ColorFieldPainting','Cubism'};
+
+load('/Users/miles/Dropbox/AbArts/analysis/data/segments_v2'); %%'n_labels','label_segments','image_file_names'
+
+i_image=0;
+
+n_iamges=length(image_file_names.image_names);
+
+for i_category =1:length(categories)
+    
+    current_folder=[image_base, categories{i_category}, '/', '000/']
+    
+    filelist=dir([current_folder, '*.jpg']);
+    
+    for i=1:length(filelist)
+        
+        i_image=i_image+1
+        
+        current_name=filelist(i).name;
+        
+        
+        image_file = [current_folder,  filelist(i).name];
+        
+        
+        for j=1: n_iamges
+            if current_name == image_file_names.image_names(j)
+                
+                image_index=j;
+                
+                break
+            end
+            
+        end
+        
+        label_pixels=label_segments{j};
+        current_n_labels=n_labels(j);
+        
+        if current_n_labels<2
+            %put all features NaN
+        else
+            label_array=reshape(label_pixels,[],1);
+
+            labels_sorted = maxk(label_array,current_n_labels);
+            
+            Z13=
+            
+            
+            
+            
+            
+        
+        
+        
+        
+        
+            
+                
+                
+            
+%         
+%         
+%         X = imread(image_file); 
+% 
+%        % image(X)
+% 
+%         X = double(X)/255;  %% RGB 0 to 1
+% 
+%         Y=colorspace('rgb->hsl',X);  %% HSL  hue is expressed in dgree 0 - 360. 
+%         
+%         
+%         
+%         
+%         
+% 
+%         Z(i_image,1) = mean_hue(Y);
+% 
+%         Z(i_image,2) = mean_s(Y);
+% 
+%         n_bin=20;
+%         threshold =0.1;
+%         Z(i_image,3) = hue_count( Y,n_bin, threshold );
+% 
+%         Z(i_image,4) = number_most_count_hue( Y,n_bin);
+% 
+%         Z(i_image,5)= hue_contrast( Y,n_bin,threshold);
+%         
+%         n_sample=5;
+% 
+%         [Z(i_image,6), F_k, best_angles]= hue_model_choose( Y, n_sample);
+%         
+%         Z7(i_image,7) = 0;   %% I haven't done it yet. Do we need this?
+%         
+%         Z(i_image,8)=mean_brightness(X);
+% 
+%         Z(i_image,9)=mean_log_brightness(X);
+% 
+%         n_bin=100;
+% 
+%         Z(i_image,10)= brightness_contrast(X, n_bin );
+% 
+%         threshold=4;
+%         Z(i_image,11)=blurr( X,threshold );
+%         n_sample=5;
+%         Z(i_image,12)=edge_distribution( X,n_sample );
+%         
+%         
+%         image_names{i_image}=filelist(i).name;
+%         image_folder{i_image}=filelist(i).folder;
+        
+    
+    
+
+
+    end
+end
+
+%%
+
+image_file_names=table(image_names,image_folder);
+image_features=Z;
+
+
+if boolean(strfind(pwd, 'sandy'))
+    savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
+else
+    savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
+end
+ 
+
+name_file_2='features';
+
+save(fullfile(savdir,name_file_2),'image_features','image_file_names');
+
+
+
