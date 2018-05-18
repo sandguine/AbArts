@@ -5,7 +5,7 @@ close all
  %% I'm not sure the difference between HSV and HSL
 addpath('./functions')
 
-image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+image_base='D:/Dropbox/AbArts/ArtsScraper/database/';
 
 categories={'Impressionism','AbstractArt','ColorFieldPainting','Cubism'};
 
@@ -69,6 +69,14 @@ for i_category =1:length(categories)
         image_names{i_image}=filelist(i).name;
         image_folder{i_image}=filelist(i).folder;
         
+        C(i_image,1:4)=0;
+        
+        C(i_image,i_category)=1;
+        
+        
+            
+            
+        
     
     
 
@@ -81,17 +89,22 @@ end
 image_file_names=table(image_names,image_folder);
 image_features=Z;
 
+categories=C;
+
 
 if boolean(strfind(pwd, 'sandy'))
     savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
-else
+elseif  boolean(strfind(pwd, 'miles'))
     savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
+else
+     savdir = 'D:/Dropbox/AbArts/analysis/data'
 end
  
 
 name_file_2='features';
 
-save(fullfile(savdir,name_file_2),'image_features','image_file_names');
+save(fullfile(savdir,name_file_2),'image_features','image_file_names','categories');
+
 
 
 

@@ -14,8 +14,11 @@ close all
 %% Initialize variables.
 if boolean(strfind(pwd, 'sandy'))
     filename = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/data/180424trialdata.csv';
-else
+elseif boolean(strfind(pwd, 'miles'))
     filename = '/Users/miles/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
+else
+   %  filename = 'D:/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
+     filename = 'D:\Dropbox\AbArts\ArtTask\psiTurk-artTask/trialdata.csv';
 end
 
 delimiter = ',';
@@ -245,8 +248,10 @@ name_file_1='main_task';
 
 if boolean(strfind(pwd, 'sandy'))
     savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
-else
+elseif boolean(strfind(pwd, 'miles'))
     savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
+else
+     savdir = 'D:/Dropbox/AbArts/analysis/data'
 end
  
 

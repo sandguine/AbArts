@@ -4,8 +4,10 @@ close all
 %%
 if boolean(strfind(pwd, 'sandy'))
     savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
+elseif boolean(strfind(pwd, 'miles'))
+    savdir = '/Users/miles/Dropbox/AbArts/analysis/data';
 else
-    savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
+    savdir = 'D:/Dropbox/AbArts/analysis/data';
 end
  
 load([savdir '/', 'main_task', '.mat']);

@@ -6,13 +6,21 @@ close all
 addpath('./functions')
 
 %image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+if boolean(strfind(pwd, 'sandy'))
+   % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
+elseif  boolean(strfind(pwd, 'miles'))
+    image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+    load('/Users/miles/Dropbox/AbArts/analysis/data/segments_raw_v2')
+else
+      image_base='D:/Dropbox/AbArts/ArtsScraper/database/';
+      load('D:/Dropbox/AbArts/analysis/data/segments_raw_v2')
+end
 
-image_base='D:/Dropbox/AbArts/ArtsScraper/database/';
 
 categories={'Impressionism','AbstractArt','ColorFieldPainting','Cubism'};
 
 % load('/Users/miles/Dropbox/AbArts/analysis/data/segments_v2'); %%'n_labels','label_segments','image_file_names'
-load('D:/Dropbox/AbArts/analysis/data/segments_raw_v1')
+
 i_image=0;
 
 n_images=length(image_file_names.image_names);
@@ -46,11 +54,14 @@ for i_category =1:length(categories)
         for j=1: n_images
             if strcmp(current_name,image_file_names.image_names{j}) 
                 
-                image_index=j
+                if size(X(:,:,1)) == size(label_segments{j})
+                
+                    image_index=j
                 
                
                 
-                break
+                    break
+                end
             end
             
         end
@@ -61,13 +72,19 @@ for i_category =1:length(categories)
         if current_n_labels<4
             %put all features NaN
         else
-            label_array=reshape(label_pixels,[],1);
+            label_array=double(reshape(label_pixels,[],1));
             n_pixel=length(label_array);
+            
+            [n,bin] = hist(label_array,unique(label_array));
+            [~,idx] = sort(-n);
+           % n(idx) % count instances
+            label_list=bin(idx) ;% corresponding values
 
-            label_list = maxk(label_array,current_n_labels);
+
+           % label_list = maxk(label_array,current_n_labels);
             
             
-            
+            clearvars Label_ones
             for i_label=1:current_n_labels
                 
                 Label_ones{i_label}= (label_pixels==label_list(i_label));
@@ -149,7 +166,7 @@ for i_category =1:length(categories)
                 
                 threshold=1;
                 
-                clearvars z
+                clearvars z localimage
                 
                 for q=1:3
                     z=X(:,:,q);
@@ -158,6 +175,8 @@ for i_category =1:length(categories)
                 
                  %localimage=X(row,col,:);
                 local_blur(i_label)=blurr( localimage,threshold );
+                
+                clearvars localimage index_ones z 
             end
             
             s=0;
@@ -180,7 +199,7 @@ for i_category =1:length(categories)
              
              F(i_image,37)= max(diffB);
              
-             clearvars diffH diffS diffL difB localimage index_ones z Label_ones
+             clearvars diffH diffS diffL difB localimage index_ones z Label_ones 
              
              
                 
@@ -206,7 +225,7 @@ for i_category =1:length(categories)
         
         
         
-        clearvars diffH diffS diffL difB localimage index_ones z Label_ones
+        clearvars diffH diffS diffL difB localimage index_ones z Label_ones current_name X Y
             
             
             

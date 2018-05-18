@@ -74,56 +74,60 @@ image_index=zeros(length(image_name_list),1);
 %             
 %     
 % end
+
+%%
 if indexing
-    
-for i=1:length(image_name_task_r)
-    
-    current_image=image_name_task_r{i};
-    
-    
-    for j=1: n_images
-    
-   
-        
-        if strcmp(current_image,image_file_names.image_names{j}) 
 
-                image_index=j;
-                
-                
-                rated_image_index(i)=image_index;
+    for i=1:length(image_name_task_r)
+
+        current_image=image_name_task_r{i};
+
+
+        for j=1: n_images
 
 
 
-                break
+            if strcmp(current_image,image_file_names.image_names{j}) 
+
+                    image_index=j;
+
+
+                    rated_image_index(i)=image_index;
+
+
+
+                    break
+            end
         end
+
+
+
     end
-    
-    
-    
-end
 
-if boolean(strfind(pwd, 'sandy'))
-    savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
-elseif  boolean(strfind(pwd, 'miles'))
-    savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
-else
-      savdir = 'D:\Dropbox/AbArts/analysis/data'
-end
- 
+    if boolean(strfind(pwd, 'sandy'))
+        savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
+    elseif  boolean(strfind(pwd, 'miles'))
+        savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
+    else
+          savdir = 'D:\Dropbox/AbArts/analysis/data'
+    end
 
-name_file_2='image_index_main_task';
 
-save(fullfile(savdir,name_file_2),'rated_image_index');
+    name_file_2='image_index_main_task';
+
+    save(fullfile(savdir,name_file_2),'rated_image_index');
 
 else 
+    name_file_2='image_index_main_task';
     
     load(fullfile(savdir,name_file_2),'rated_image_index')
     
 end
 
 %%
-n_sub=length(list_id);
+
 list_id=unique(sub_id_rating);
+n_sub=length(list_id);
 bs=NaN(length(list_id),n_feature+1);
 for i_sub=1:length(list_id)
      current_id=list_id(i_sub);     
@@ -135,6 +139,9 @@ for i_sub=1:length(list_id)
      bs(i_sub,:)= regress(current_response_list,X)'  ;
 end
    
+
+%beta = mvregress(X,Y) need to sort images for everyone. use NaN for
+%non-rated figures?
 %%
 
 figure(1)
@@ -149,7 +156,7 @@ end
 figure(2)
 boxplot(bs)
     
-   ylim([-10,10])
+ylim([-10,10])
  
 %%
 % min_n_trials = 90;
