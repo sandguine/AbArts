@@ -8,6 +8,8 @@ addpath('./functions')
 %image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
 if boolean(strfind(pwd, 'sandy'))
    % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
+   image_base='/Users/sandy/Dropbox/Caltech/AbArts/ArtsScraper/database/';
+   load('/Users/sandy/Dropbox/Caltech/AbArts/analysis/data/segments_raw_v2')
 elseif  boolean(strfind(pwd, 'miles'))
     image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
     load('/Users/miles/Dropbox/AbArts/analysis/data/segments_raw_v2')

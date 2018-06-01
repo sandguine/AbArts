@@ -8,6 +8,8 @@ elseif boolean(strfind(pwd, 'miles'))
     savdir = '/Users/miles/Dropbox/AbArts/analysis/data';
 else
     savdir = 'D:/Dropbox/AbArts/analysis/data';
+    
+    im_dir= 'D:\Dropbox\AbArts\ArtTask\psiTurk-artTask\static\images'
 end
  
 load([savdir '/', 'main_task', '.mat']);
@@ -28,6 +30,8 @@ response_r =  maintask_table_rating.response_meaning;
 image_f = maintask_table_familiarity.image_path;
 
 image_r = maintask_table_rating.image_path;
+
+
 
 %%
 min_n_trials = 90;
@@ -143,8 +147,54 @@ for j=1: length(id_to_analyze)
 
 end
 
+%%
+
+%y=cellfun(@(x) split(x,'/'),image_r ,'UniformOutput',false);
+%y=image_r;
+%image_r_name=cellfun(@(x) x(end),y ,'UniformOutput',false);
+
+image_r_name=image_r;
+
+unique_image=unique([image_r_name{:}]);
+
+for j=1:length(unique_image)    
+    current_image=unique_image{j};
+    
+    index_ones=cellfun(@(x) strcmp(x{1}, current_image),image_r_name ,'UniformOutput',false);
+    
+    
+     index_ones=cell2mat(index_ones);
+    
+    rating_image(j)=mean(response_r(index_ones));
+    
+    
+    
+
+end
+
+%%
+[sort_rate, ind]=sort(rating_image);
+
+sort_image=unique_image(ind);
+
+figure(100)
+for j=1:10
+    subplot(2,5,j)
+    im_path=[im_dir,sort_image{end-j+1}];
+        
+    imshow(im_path)
+
+end
 
 
+figure(101)
+for j=1:10
+    subplot(2,5,j)
+    im_path=[im_dir,sort_image{j+1}];
+        
+    imshow(im_path)
+
+end
 
 
 

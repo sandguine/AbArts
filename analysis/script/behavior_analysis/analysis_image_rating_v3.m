@@ -297,3 +297,31 @@ for j=1:4
 
     
 end
+
+
+%% it should have ones for each subjects..
+
+sub_ones=zeros(size(length(response_r),n_sub));
+
+for i_sub=1:length(list_id)
+     current_id=list_id(i_sub);     
+     sub_ones(sub_id_rating==current_id,i_sub)=1;
+     
+end
+
+
+[b,bint] =regress(response_r,[image_features(rated_image_index,:), sub_ones]);
+figure(100)
+
+
+ e=errorbar(1:length(b),b,b-bint(:,1),bint(:,2)-b,'black')
+ e.LineStyle = 'none';
+ hold all
+ bar(1:length(b),b,0.9)
+ xlim([0,40])
+ 
+ figure(101)
+
+br=b(1:40);
+ 
+ bar(1:length(br),br,0.9)

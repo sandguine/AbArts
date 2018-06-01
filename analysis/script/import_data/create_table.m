@@ -13,9 +13,11 @@ close all
 
 %% Initialize variables.
 if boolean(strfind(pwd, 'sandy'))
-    filename = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/data/180424trialdata.csv';
+     filename = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/psiTurk-artTask-v3/trialdata.csv'; % v2
+    % filename = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/data/180424trialdata.csv';
 elseif boolean(strfind(pwd, 'miles'))
-    filename = '/Users/miles/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
+     filename = '/Users/miles/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
+    % filename = '/Users/miles/Dropbox/AbArts/ArtTask/data/180518trialdata.csv'; % v2
 else
    %  filename = 'D:/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
      filename = 'D:\Dropbox\AbArts\ArtTask\psiTurk-artTask/trialdata.csv';
@@ -221,7 +223,6 @@ for i=1:l_matrix
             current_response_meaning = 0;
         elseif current_response==1
             current_response_meaning = 1;
-
         end
         
     else
@@ -242,16 +243,20 @@ for i=1:l_matrix
    
 end
 %%
-maintask_table=table(name_maintask,sub_id,trial_type,trial_type_1or2, Response,button_order,response_meaning, RT,image_path);
+% maintask_table=table(name_maintask,sub_id,trial_type,trial_type_1or2, Response,button_order,response_meaning, RT,image_path);
+maintask_table_v2=table(name_maintask,sub_id,trial_type,trial_type_1or2, Response,button_order,response_meaning, RT,image_path);
 
-name_file_1='main_task';
+
+name_file_1='main_task_v2';
 
 if boolean(strfind(pwd, 'sandy'))
+    % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
     savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
 elseif boolean(strfind(pwd, 'miles'))
+    % savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
     savdir = '/Users/miles/Dropbox/AbArts/analysis/data'
 else
-     savdir = 'D:/Dropbox/AbArts/analysis/data'
+    savdir = 'D:/Dropbox/AbArts/analysis/data'
 end
  
 
@@ -259,19 +264,23 @@ end
  
 index_task1=find(trial_type_1or2==1);
 
-maintask_table_familiarity=maintask_table(index_task1,:);
+% maintask_table_familiarity=maintask_table(index_task1,:);
+maintask_table_familiarity_v2=maintask_table_v2(index_task1,:);
 
 index_task2=find(trial_type_1or2==2);
 
-maintask_table_rating=maintask_table(index_task2,:);
+% maintask_table_rating=maintask_table(index_task2,:);
+maintask_table_rating_v2=maintask_table_v2(index_task2,:);
  
-save(fullfile(savdir,name_file_1),'maintask_table', 'maintask_table_familiarity','maintask_table_rating','uniq_names');
+%save(fullfile(savdir,name_file_1),'maintask_table', 'maintask_table_familiarity','maintask_table_rating','uniq_names');
+save(fullfile(savdir,name_file_1),'maintask_table_v2', 'maintask_table_familiarity_v2','maintask_table_rating_v2','uniq_names');
 
 
 %%
 name_file_2='completion_data';
 
-n_trials=114;
+%n_trials=114;
+ n_trials=120;
 
 for i=1:length(names_all)
     

@@ -1,0 +1,370 @@
+clear all
+close all
+
+%%
+if boolean(strfind(pwd, 'sandy'))
+    savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
+elseif boolean(strfind(pwd, 'miles'))
+    savdir = '/Users/miles/Dropbox/AbArts/analysis/data';
+    im_dir= '/Users/miles/Dropbox/AbArts/ArtTask/psiTurk-artTask-v1/static/images'
+    %im_dir='/Users/miles/Dropbox/AbArts/ArtsScraper/database'
+else
+    savdir = 'D:/Dropbox/AbArts/analysis/data';
+    
+    im_dir= 'D:\Dropbox\AbArts\ArtTask\psiTurk-artTask-v1\static\images'
+end
+ 
+load([savdir '/', 'main_task_all_v1', '.mat']);
+
+%name= maintask_table.name_maintask;
+sub_id=maintask_table.sub_id;
+trial_type_1or2=maintask_table.trial_type_1or2;
+response= maintask_table.response_meaning;
+
+
+sub_id_familiarity=maintask_table_familiarity.sub_id;
+sub_id_rating=maintask_table_rating.sub_id;
+
+response_f =  maintask_table_familiarity.response_meaning;
+
+response_r =  maintask_table_rating.response_meaning;
+
+image_f = maintask_table_familiarity.image_path;
+
+image_r = maintask_table_rating.image_path;
+
+
+
+%%
+min_n_trials = 90;
+
+
+
+%%
+
+all_ids=unique(sub_id, 'stable');
+id_to_analyze=[];
+for j= 1:length(all_ids)
+    
+    current_id=all_ids(j);
+    
+    n_trials=length(find(sub_id==current_id));
+    
+    if n_trials > min_n_trials
+        
+       id_to_analyze=[id_to_analyze; current_id];
+    end
+end
+    
+%%
+
+for j=1: length(id_to_analyze)
+    
+    current_id=id_to_analyze(j);
+    
+    index_f=(sub_id_familiarity==current_id);
+    
+    current_response_f= response_f(index_f);
+    
+    mean_f(j,:)=mean(current_response_f);
+    std_f(j,:)= std(current_response_f);
+    
+    
+    current_image_list_f=image_f(index_f);
+    
+    
+        
+    
+    
+    
+    index_r=(sub_id_rating==current_id);
+    
+    current_response_r= response_r(index_r);
+    
+    mean_r(j,:)=mean(current_response_r);
+    std_r(j,:)= std(current_response_r);
+    
+    
+    current_image_list_r=image_r(index_r);
+    image_pair=[];
+    
+    for i=1:length(current_image_list_f)
+        
+        f_image = string(current_image_list_f{i});
+        
+        for k=1:length(current_image_list_r)
+            
+            r_image = string(current_image_list_r{k});
+            
+            if f_image == r_image
+                
+                image_pair=[image_pair;
+                              i,k     ];
+            end
+        end
+    end
+    
+    image_pairs{j}=image_pair;
+                
+    
+    
+end
+%%
+reordered_fs=[]; reordered_rs=[];
+for j=1: length(id_to_analyze)
+     
+    image_pair=image_pairs{j};
+    
+    current_id=id_to_analyze(j);
+    
+    index_f=(sub_id_familiarity==current_id);
+    
+    current_response_f= response_f(index_f);
+    
+    current_image=image_f(index_f); 
+    
+      
+    index_r=(sub_id_rating==current_id);
+    
+    current_response_r= response_r(index_r);
+    
+    fs_image_index=image_pair(:,1);
+    rs_image_index=image_pair(:,2);
+    
+    x=current_response_f(fs_image_index);
+    y=current_response_r(rs_image_index);
+    
+    
+    reordered_f{j}=x;
+    reordered_r{j}=y;
+    
+    images{j}=current_image;
+    
+    
+    reordered_fs=[reordered_fs;x];
+    reordered_rs=[reordered_rs;y];
+    
+    
+    
+
+end
+
+%%
+
+%y=cellfun(@(x) split(x,'/'),image_r ,'UniformOutput',false);
+%y=image_r;
+%image_r_name=cellfun(@(x) x(end),y ,'UniformOutput',false);
+
+image_r_name=image_r;
+
+unique_image=unique([image_r_name{:}]);
+
+for j=1:length(unique_image)    
+    current_image=unique_image{j};
+    
+    index_ones=cellfun(@(x) strcmp(x{1}, current_image),image_r_name ,'UniformOutput',false);
+    
+    
+     index_ones=cell2mat(index_ones);
+    
+    rating_image(j)=mean(response_r(index_ones));
+    
+    
+    
+
+end
+
+name_file_1='rating_image'
+save(fullfile(savdir,name_file_1),'rating_image');
+
+
+%%
+[sort_rate, ind]=sort(rating_image);
+
+sort_image=unique_image(ind);
+
+figure(100)
+for j=1:10
+    subplot(2,5,j)
+    im_path=[im_dir,sort_image{end-j+1}];
+        
+    imshow(im_path)
+
+end
+
+
+figure(101)
+for j=1:10
+    subplot(2,5,j)
+    im_path=[im_dir,sort_image{j+1}];
+        
+    imshow(im_path)
+
+end
+
+
+
+
+%%
+figure(1)
+
+edges=0:0.1:1;
+
+for i =1:4
+    subplot(2,2,i)
+    if i==1
+        histogram(mean_f,edges)
+        title('mean familiarity')
+    elseif i ==2
+        
+        histogram(std_f,edges)
+        title('std familiarity')
+    elseif i ==3
+         histogram(mean_r,edges*3)
+        title('mean rating')
+    elseif i ==4
+        
+        histogram(std_r,edges*3)
+        title('std rating')
+    end
+end
+    
+        
+        
+%%
+figure(2)
+for j=1:2
+    subplot(1,2,j)
+    if j==1
+       x1=mean_f;
+       y1=mean_r;
+       xlabel('mean fam')
+       ylabel('mean rating')
+       
+    else
+       x1=std_f;
+       y1=std_r;
+       xlabel('std fam')
+       ylabel('std rating')
+    end
+        
+    p1=fit(x1,y1,'poly1');
+    scatter(x1,y1);
+    rangex=0:0.05:1;
+    hold all
+    plot(rangex,feval(p1,rangex))
+    set(gca,'TickDir','in','Ticklength',[0.01,1],'box','off'); % The only other option is 'in'
+    ax=gca;
+    
+    [R,P]=corrcoef(x1,y1);
+    pvalue=P(2,1);
+    string=sprintf('r=%5.2f, p=%5.3f',R(2,1),P(2,1));
+    text(0.5,1,string)
+    
+    if j==1
+      
+       xlabel('mean fam')
+       ylabel('mean rating')
+       
+    else
+      
+       xlabel('std fam')
+       ylabel('std rating')
+    end
+    
+
+end
+   
+
+%%
+
+figure(3)
+x1=reordered_fs;
+y1=reordered_rs;
+
+
+p1=fit(x1,y1,'poly1');
+scatter(x1,y1);
+rangex=0:0.05:1;
+hold all
+plot(rangex,feval(p1,rangex))
+set(gca,'TickDir','in','Ticklength',[0.01,1],'box','off'); % The only other option is 'in'
+ax=gca;
+
+[R,P]=corrcoef(x1,y1);
+pvalue=P(2,1);
+string=sprintf('r=%5.2f, p=%5.3f',R(2,1),P(2,1));
+text(0.5,1,string)
+
+ylabel('rating')
+
+xlabel(' not-know or know')
+    
+
+figure(4)
+
+
+
+for j=1:2
+    
+    subplot(1,2,j)
+    
+    n_perm=1000;
+    
+    if j==1
+        x=reordered_rs(reordered_fs==0);
+        y=reordered_rs(reordered_fs==1);
+    else
+        x=length(find(reordered_fs==0));
+        y=length(find(reordered_fs==1));
+    end
+
+
+    e=errorbar([1,2],[mean(x),mean(y)],[std(x)/sqrt(length(x)),std(y)/sqrt(length(y))],'black')
+    e.LineStyle = 'none';
+    hold all
+    %bar([1,2],[mean(x),mean(y)],0.2,col(1))
+
+
+    bar([1,2],[mean(x),mean(y)],0.2)
+
+
+    set(gca,'TickDir','out','Ticklength',[0.02,1],'box','off'); % The only other option is 'in'
+
+    ax = gca;
+    
+    if j==1
+       
+        ax.XTick = [1,2];
+        ax.YTick = [0,1,2,3];    
+        ylabel(' rating')
+
+        ylim([0,3])
+
+
+        ax.XTickLabel = {'I dont know','I know'};
+
+
+        p=permutation_test_mean(x,y ,n_perm)
+        text(1.5,2,['p=' sprintf('%5.3f',p) ])
+        
+    
+    else
+        
+        ax.XTick = [1,2];
+       % ax.YTick = [0,1,2,3];    
+        ylabel('number of trials')
+
+      %  ylim([0,3])
+
+
+        ax.XTickLabel = {'I dont know','I know'};
+
+
+        p=permutation_test_mean(x,y ,n_perm)
+        text(1.5,2,['p=' sprintf('%5.3f',p) ])
+    end
+        
+
+    
+end
