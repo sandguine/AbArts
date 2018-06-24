@@ -13,7 +13,7 @@ browser_exclude_rule = None
 allow_repeats = false
 
 [Database Parameters]
-database_url = postgres://fdbvlgbiyyfsme:0abaacb7b608778dee1f79e65b6806c778596fc9f124e47ac765183700bf11e1@ec2-107-21-103-146.compute-1.amazonaws.com:5432/dbaj46kq6f4ils
+database_url = postgres://uyrstuuzzagxso:594097f9c3953daff367404dfef87a966b9a9433ffa19e76dc99eca79b401238@ec2-54-163-229-212.compute-1.amazonaws.com:5432/d5ii3mt3vjnkvt
 table_name = artTask
 
 [Server Parameters]
@@ -45,4 +45,4 @@ launch_in_sandbox_mode = true
 #   https://<host>:<port>/ad 
 
 use_psiturk_ad_server = false
-ad_location = https://gentle-escarpment-43512.herokuapp.com/pub
+ad_location = https://shrouded-escarpment-21257.herokuapp.com/pub

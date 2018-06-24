@@ -24,6 +24,12 @@ jsPsych.plugins["image-button-response"] = (function() {
         default: undefined,
         description: 'The image to be displayed'
       },
+      training: {
+        type: jsPsych.plugins.parameterType.HTML_STRING,
+        pretty_name: 'training',
+        default: undefined,
+        description: 'The HTML string for training set'
+      },
       prompt: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Prompt',
@@ -87,6 +93,11 @@ jsPsych.plugins["image-button-response"] = (function() {
     }
 
     var html = '<div id="jspsych-image-button-response">'+trial.prompt+'</div>';
+
+    // add the training image
+    html += '<img src="'+trial.training+'" id="jspsych-image-button-response-training"></img>';
+
+    html += '<br>'
 
     // display stimulus
     html += '<img src="'+trial.stimulus+'" id="jspsych-image-button-response-stimulus"></img>';

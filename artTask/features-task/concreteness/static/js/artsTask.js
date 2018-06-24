@@ -64,12 +64,14 @@ var ArtExperiment = function() {
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/images/0.jpg'
   var theScream = 'static/images/1.jpg'
+	var concreteness = 'static/images/training-for-features-task/abstract-training.bmp'
 	var testBlocks = [test_stimuli_r1, test_stimuli_r2, test_stimuli_r3, test_stimuli_r4, test_stimuli_r5,
 	test_stimuli_r6, test_stimuli_r7, test_stimuli_r8, test_stimuli_r9, test_stimuli_r10];
 
 	var showArtsFam ={
 		type: 'image-button-response',
 		stimulus: arts,
+		training: concreteness,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[0]
@@ -78,6 +80,7 @@ var ArtExperiment = function() {
 	var showArtsLike ={
 		type: 'image-button-response',
 		stimulus: arts,
+		training: concreteness,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[1]
@@ -86,6 +89,7 @@ var ArtExperiment = function() {
 	var qFamiliar = {
 		type: 'image-button-response',
 		stimulus: arts,
+		training: concreteness,
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
@@ -97,6 +101,7 @@ var ArtExperiment = function() {
 	var qLike = {
 		type: 'image-button-response',
 		stimulus: arts,
+		training: concreteness,
 		prompt:  questions[1],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -106,6 +111,7 @@ var ArtExperiment = function() {
   var qCatch = {
     type: 'image-button-response',
 		stimulus: catchMe,
+		training: concreteness,
 		prompt: questions[3],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -139,6 +145,7 @@ var ArtExperiment = function() {
 	var showArtsEx1 ={
 		type: 'image-button-response',
 		stimulus: mona,
+		training: concreteness,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[0]
@@ -147,6 +154,7 @@ var ArtExperiment = function() {
 	var qFamEx = {
 		type: 'image-button-response',
 		stimulus: mona,
+		training: concreteness,
 		prompt: questions[0],
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
@@ -156,6 +164,7 @@ var ArtExperiment = function() {
 	var qLikeEx = {
 		type: 'image-button-response',
 		stimulus: mona,
+		training: concreteness,
 		prompt: questions[1],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -235,6 +244,7 @@ var ArtExperiment = function() {
   var catch1Ex = {
 		type: 'image-button-response',
 		stimulus: theScream,
+		training: concreteness,
 		prompt: questions[2],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -244,6 +254,7 @@ var ArtExperiment = function() {
 	var qCatchEx = {
 		type: 'image-button-response',
 		stimulus: theScream,
+		training: concreteness,
 		prompt: questions[3],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
@@ -253,6 +264,7 @@ var ArtExperiment = function() {
   var showArtsExCatch1 ={
 		type: 'image-button-response',
 		stimulus: theScream,
+		training: concreteness,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[2]
@@ -261,6 +273,7 @@ var ArtExperiment = function() {
 	var showArtsExqCatch ={
 		type: 'image-button-response',
 		stimulus: theScream,
+		training: concreteness,
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[3]

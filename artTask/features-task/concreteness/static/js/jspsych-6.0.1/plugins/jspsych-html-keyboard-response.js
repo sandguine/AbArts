@@ -23,12 +23,6 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
         default: undefined,
         description: 'The HTML string to be displayed'
       },
-      training: {
-        type: jsPsych.plugins.parameterType.HTML_STRING,
-        pretty_name: 'training',
-        default: undefined,
-        description: 'The HTML string for training set'
-      },
       choices: {
         type: jsPsych.plugins.parameterType.KEYCODE,
         array: true,
@@ -67,7 +61,6 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
   plugin.trial = function(display_element, trial) {
 
     var new_html = '<div id="jspsych-html-keyboard-response-stimulus">'+trial.training+'</div>';
-    var new_html_2 = '<div id="jspsych-html-keyboard-response-stimulus">'+trial.stimulus+'</div>';
 
     // add prompt
     if(trial.prompt !== null){
@@ -76,7 +69,6 @@ jsPsych.plugins["html-keyboard-response"] = (function() {
 
     // draw
     display_element.innerHTML = new_html;
-    display_element.innerHTML = new_html_2;
 
     // store response
     var response = {
