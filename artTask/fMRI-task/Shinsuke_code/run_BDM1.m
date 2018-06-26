@@ -7,6 +7,7 @@ try
     num_rep = 2;
     
     % Load image files for the subject
+    % Change to Arts image folder here
     file_items = ['data/item_id_sub_',subID];
     load(file_items) % item_id_sub is loaded
     
@@ -54,6 +55,7 @@ try
         time_ITI = [time_ITI; [time_ITIstrt, time_ITIend]];
         
         % DEC (PRESENTATION)
+        % images are here
         shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
         time_DECstrt = GetSecs - time_zero;
         disp_item(wpt, w, h, shown_item, durDEC);
