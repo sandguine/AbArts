@@ -63,7 +63,6 @@ var ArtExperiment = function() {
 	var qCatch_options = ["A", "B", "C", "D"];
 	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options]
 	var arts = jsPsych.timelineVariable('stimulus');
-  var catchMe = jsPsych.timelineVariable('stimulus');
 	var artShowTime = 0
 	var responsePeriodArtist = 3000
 	var responsePeriodLike = 8000
@@ -85,68 +84,14 @@ var ArtExperiment = function() {
 	var valence_options = ["Positive", "Negative"]
 
 
-	var showArtsFam ={
-		type: 'image-button-response',
-		stimulus: arts,
-		trial_duration: artShowTime,
-		response_ends_trial: false,
-		prompt: questions[0]
-	}
-
-	var showArtsLike ={
-		type: 'image-button-response',
-		stimulus: arts,
-		trial_duration: artShowTime,
-		response_ends_trial: false,
-		prompt: questions[1]
-	}
-
-	var qFamiliar = {
-		type: 'image-button-response',
-		stimulus: arts,
-		prompt: questions[0],
-		trial_duration: responsePeriodArtist,
-		response_ends_trial: true,
-		choices: function(){
-				return jsPsych.randomization.shuffle(familiar_options);
-			}
-	}
-
-	var qLike = {
-		type: 'image-button-response',
-		stimulus: arts,
-		prompt:  questions[1],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: allOptions[1]
-	}
-
-  var qCatch = {
-    type: 'image-button-response',
-		stimulus: catchMe,
-		prompt: questions[3],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: function(){
-				return jsPsych.randomization.shuffle(allOptions[3]);
-			}
-  }
-
-	var trial_1 = {
-    type: 'image-slider-response',
-    stimulus: 'img/happy_face_1.jpg',
-    labels: ['1 (least happy)', '100 (most happy)'],
-    prompt: '<p>How happy is this person on a scale of 1-100?</p>'
-  }
-
-	var qConcreteness = {
+	var qConc = {
     type: 'image-slider-response',
 		stimulus: arts,
 		training: concreteness,
 		prompt: features_questions[0],
-		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		labels: concreteness_options
+		labels: concreteness_options,
+		button_label: "Next"
   }
 
 	var qDynamic = {
@@ -200,41 +145,14 @@ var ArtExperiment = function() {
 		response_ends_trial: true
 	}
 
-	// example shows here
-	var showArtsEx1 ={
-		type: 'image-button-response',
-		stimulus: mona,
-		trial_duration: artShowTime,
-		response_ends_trial: false,
-		prompt: questions[0]
-	}
-
-	var qFamEx = {
-		type: 'image-button-response',
-		stimulus: mona,
-		prompt: questions[0],
-		trial_duration: responsePeriodArtist,
-		response_ends_trial: true,
-		choices: allOptions[0] //[, familiar_options, human_options]
-	}
-
-	var qLikeEx = {
-		type: 'image-button-response',
-		stimulus: mona,
-		prompt: questions[1],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: allOptions[1] //[, familiar_options, human_options]
-	}
-
 	var qConcEx = {
 		type: 'image-slider-response',
 		stimulus: mona,
 		training: concreteness,
 		prompt: feature_questions[0],
-		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		labels: concreteness_options //[, familiar_options, human_options]
+		labels: concreteness_options, //[, familiar_options, human_options]
+		button_label: "Next"
 	}
 
 	var beginRealSurvey ={
@@ -253,7 +171,7 @@ var ArtExperiment = function() {
 				"<p>Welcome to our easy and simple survey!</p>",
 				"<p>In this survey, you will see various paintings created by different artists.</p>" +
 				"<p>We will ask you a few simple questions about the artwork.</p>",
-				"<p>You will recieve <b>$40</b> when you complete the task regardless of your knowledge and preferences.</p>" +
+				"<p>You will recieve <b>$20</b> when you complete the task regardless of your knowledge and preferences.</p>" +
 				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>"
 		],
 		show_clickable_nav: true,
@@ -283,9 +201,7 @@ var ArtExperiment = function() {
 	}
 
 	var repeatConcInstructions = {
-			timeline: [concExpInstr, fixation, qConcEx,
-				//qCatchInstr, fixation, showArtsExqCatch, qCatchEx, debriefCatch,
-				beginRealSurvey],
+			timeline: [concExpInstr, fixation, qConcEx, beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data)
@@ -297,17 +213,6 @@ var ArtExperiment = function() {
 			}
 	}
 	timeline.push(repeatConcInstructions);
-
-	var likeInstructions = {
-		type: 'html-button-response',
-		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
-		"<p><b>\"How much do you like the artwork shown?\"</b></br></p>"+
-		"<b>0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'.\"</b></br></p>" +
-		"<p>Click on the button below to begin.</p>",
-		post_trial_gap: 0,
-		choices: ["Begin the task!"],
-		response_ends_trial: true
-	}
 
 	var concInstructions = {
 		type: 'html-button-response',
@@ -321,16 +226,14 @@ var ArtExperiment = function() {
 	}
 	timeline.push(concInstructions)
 
-	var test;
-
 	for (i = 0; i < testBlocks.length; i++) {
 			var testConc = {
-				timeline: [fixation, qConcreteness],
+				timeline: [fixation, qConc],
 				timeline_variables: testBlocks[i],
 				repetitions: 0,
 				randomize_order: true
 	}
-		timeline.push(testConc)
+	timeline.push(testConc)
 
 	var surveyIntro = {
 		type: "html-button-response",
