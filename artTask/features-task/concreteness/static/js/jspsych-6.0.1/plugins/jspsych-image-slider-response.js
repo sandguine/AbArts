@@ -25,6 +25,12 @@ jsPsych.plugins['image-slider-response'] = (function() {
         default: undefined,
         description: 'The image to be displayed'
       },
+      training: {
+        type: jsPsych.plugins.parameterType.HTML_STRING,
+        pretty_name: 'Training image',
+        default: undefined,
+        description: 'The HTML string for training set'
+      },
       min: {
         type: jsPsych.plugins.parameterType.INT,
         pretty_name: 'Min slider',
@@ -93,6 +99,8 @@ jsPsych.plugins['image-slider-response'] = (function() {
   plugin.trial = function(display_element, trial) {
 
     var html = '<div id="jspsych-image-slider-response-wrapper" style="margin: 100px 0px;">';
+    html += '<div id="jspsych-image-slider-response-stimulus"><img src="'+trial.training+'" id="jspsych-image-button-response-training"></div>';
+    html += '<br>'
     html += '<div id="jspsych-image-slider-response-stimulus"><img src="' + trial.stimulus + '"></div>';
     html += '<div class="jspsych-image-slider-response-container" style="position:relative;">';
     html += '<input type="range" value="'+trial.start+'" min="'+trial.min+'" max="'+trial.max+'" step="'+trial.step+'" style="width: 100%;" id="jspsych-image-slider-response-response"></input>';
@@ -143,7 +151,9 @@ jsPsych.plugins['image-slider-response'] = (function() {
       // save data
       var trialdata = {
         "rt": response.rt,
-        "response": response.response
+        "response": response.response,
+        "stimulus": trial.stimulus,
+        "label_order": trial.labels
       };
 
       display_element.innerHTML = '';

@@ -50,6 +50,13 @@ var ArtExperiment = function() {
 		"<p>How much do you like the artwork shown?</br>Please click on \"C\" to confirm that you pay attention.</br></p>"
 	]
 
+	var features_questions = [
+		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown?</p>",
+		"<p>On a scale of -2 = Still to 2 = Movement, what is the <em>Dynamicity</em> is the artwork shown?</p>",
+		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown?</p>",
+		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown?</p>"
+	]
+
 	var familiar_options = ["I don't know.", "I know."];
 	var like_options = ["0", "1", "2", "3"];
 	var catch1_options = ["I don't pay attention.", "I pay attention."];
@@ -64,9 +71,18 @@ var ArtExperiment = function() {
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/images/0.jpg'
   var theScream = 'static/images/1.jpg'
-	var concreteness = 'static/images/training-for-features-task/abstract-training.bmp'
 	var testBlocks = [test_stimuli_r1, test_stimuli_r2, test_stimuli_r3, test_stimuli_r4, test_stimuli_r5,
 	test_stimuli_r6, test_stimuli_r7, test_stimuli_r8, test_stimuli_r9, test_stimuli_r10];
+
+	var concreteness = 'static/images/training-for-features-task/abstract-training.bmp'
+	var dynamics = 'static/images/training-for-features-task/dynamic-training.jpg'
+	var temperature = 'static/images/training-for-features-task/colortemperature-training.bmp'
+	var valence = 'static/images/training-for-features-task/valence-training.jpg'
+
+	var concreteness_options = ["Abstract", "Concrete"]
+	var dynamic_options = ["Still", "Dynamic"]
+	var temperature_options = ["Warm", "Cold"]
+	var valence_options = ["Positive", "Negative"]
 
 	var showArtsFam ={
 		type: 'image-button-response',
@@ -120,6 +136,46 @@ var ArtExperiment = function() {
 			}
   }
 
+	var qConcreteness = {
+    type: 'image-slider-response',
+		stimulus: arts,
+		training: concreteness,
+		prompt: features_questions[0],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		labels: concreteness_options
+  }
+
+	var qDynamic = {
+		type: 'image-slider-response',
+		stimulus: arts,
+		training: dynamic,
+		prompt: features_questions[1],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		labels: dynamic_options
+	}
+
+	var qTemperature = {
+		type: 'image-slider-response',
+		stimulus: arts,
+		training: temperature,
+		prompt: features_questions[2],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		labels: temperature_options
+	}
+
+	var qValence = {
+		type: 'image-slider-response',
+		stimulus: arts,
+		training: valence,
+		prompt: features_questions[3],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		labels: valence_options
+	}
+
 	var fixation = {
 		type: 'html-keyboard-response',
 		stimulus: '<div style="font-size:60px;">+</div>',
@@ -171,6 +227,16 @@ var ArtExperiment = function() {
 		choices: allOptions[1] //[, familiar_options, human_options]
 	}
 
+	var qConcEx = {
+		type: 'image-slider-response',
+		stimulus: mona,
+		training: concreteness,
+		prompt: feature_questions[0],
+		trial_duration: responsePeriodLike,
+		response_ends_trial: true,
+		labels: concreteness_options //[, familiar_options, human_options]
+	}
+
 	var beginRealSurvey ={
 		type: "html-button-response",
 		stimulus: "<p>Ok, very simple, right?</p>" +
@@ -187,7 +253,7 @@ var ArtExperiment = function() {
 				"<p>Welcome to our easy and simple survey!</p>",
 				"<p>In this survey, you will see various paintings created by different artists.</p>" +
 				"<p>We will ask you a few simple questions about the artwork.</p>",
-				"<p>You will recieve <b>$40</b> when you complete the task regardless of your knowledge and preferences.</p>" +
+				"<p>You will recieve <b>$20</b> when you complete the task regardless of your knowledge and preferences.</p>" +
 				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>"
 		],
 		show_clickable_nav: true,
@@ -344,6 +410,26 @@ var ArtExperiment = function() {
 		allow_backward: true
 	}
 
+	var concExpInstr = {
+		type: 'instructions',
+		pages: [
+				"<p>Ok, let's do an example.</p>",
+				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
+				"<p>A painting will appear at the center of the screen.</p>",
+				"<p>An example of abstract vs concrete image will appear on top of the painting.</p>",
+				//"<p>You have <b>2 seconds</b> to look at the painting.</p>",
+				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
+				"<p>If you think this picture is <b>ABSTRACT</b>, please move the slider to the -2</p>",
+				"<p>If you think this picture is <b>SLIGHTLY ABSTRACT</b>, please move the slider to -1.</p>",
+				"<p>If you think this picture is <b>NEUTRAL</b>, please move the slider to 0.</p>",
+				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please move the slider to 2.</p>",
+				"<p>If you think this picture is <b>CONCRETE</b>, please move the slider to 2.</p>",
+				"<p>You have <b>8 seconds</b> to respond.</p>",
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	}
+
 	var repeatLikeInstructions = {
 			timeline: [likeExpInstr, fixation, qLikeEx,
 				//qCatchInstr, fixation, showArtsExqCatch, qCatchEx, debriefCatch,
@@ -358,7 +444,22 @@ var ArtExperiment = function() {
 					}
 			}
 	}
-	timeline.push(repeatLikeInstructions);
+
+	var repeatConcInstructions = {
+			timeline: [concExpInstr, fixation, qConcEx,
+				//qCatchInstr, fixation, showArtsExqCatch, qCatchEx, debriefCatch,
+				beginRealSurvey],
+			loop_function: function(data){
+					var data = jsPsych.data.get().last(1).values()[0];
+					console.log(data)
+					if(data.button_pressed == 0){
+							return true;
+					} else {
+							return false;
+					}
+			}
+	}
+	timeline.push(repeatConcInstructions);
 
 	var likeInstructions = {
 		type: 'html-button-response',
@@ -370,7 +471,18 @@ var ArtExperiment = function() {
 		choices: ["Begin the task!"],
 		response_ends_trial: true
 	}
-	timeline.push(likeInstructions)
+
+	var concInstructions = {
+		type: 'html-button-response',
+		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
+		"<p><b>\"What is the REALISTICITY the artwork shown?\"</b></br></p>"+
+		"<b>-2 = \'ABSTRACT\', -1 = \'SLIGHTLY ABSTRACT\', 0 = \'NEUTRAL\', 1 = \'SLIGHTLY CONCRETE\',  and 2 = \'CONCRETE\'.\"</b></br></p>" +
+		"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Begin the task!"],
+		response_ends_trial: true
+	}
+	timeline.push(concInstructions)
 
 	var test;
 
