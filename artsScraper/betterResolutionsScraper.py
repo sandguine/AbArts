@@ -3,15 +3,13 @@
 """
 Created on Thu Jun 28 10:30:23 2018
 
-@authors: iman edited from sandy's code
+@authors: sandy and iman
 """
 
 import requests
 from bs4 import BeautifulSoup
 import os
-import sys
 import urllib
-import json
 import re
 import time
 
