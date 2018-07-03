@@ -43,9 +43,12 @@ for style in styles:
         data = r.text
         # Parse it with through HTML parser
         soup = BeautifulSoup(data, 'html.parser')
+        
 
         # Upon speculations (using print(soup.prettify()), the links of pictures were stored in JSON format.
         # The JSON of picture-urls is stored under <script> HTML tag. Let's grab it.
+        
+        # problem here empty list
         links = soup.find_all('script', type = "text/plain")
 
         # I'm not sure how to deal with JSON so I find another way around.

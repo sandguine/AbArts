@@ -12,24 +12,32 @@ options = optimset('MaxFunEvals',10,'TolX',1.5)
 warning('off','all')
 
 %%
-image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
-image_base='D:\Dropbox\AbArts\data_from_leslie\artworks_175\';
+image_base='/Users/miles/Dropbox/AbArts/data_from_leslie/artworks_175/';
+%image_base='D:\Dropbox\AbArts\data_from_leslie\artworks_175\';
 
-categories={'Impressionism','AbstractArt','ColorFieldPainting','Cubism'};
+%categories={'Impressionism','AbstractArt','ColorFieldPainting','Cubism'};
 
-i_image=0;
-for i_category =1:length(categories)
+  current_folder=image_base;
+    
+    %filelist=dir([current_folder, '*.jpg']);
+    
+    filelist=dir([current_folder, '*.bmp']);
+i_image=0;    
+for i=1:length(filelist)
+
+
+%for i_category =1:length(categories)
 %for    i_category =1:3
-    i_category
+%    i_category
     
-    current_folder=[image_base, categories{i_category}, '/', '000/']
+ %   current_folder=[image_base, categories{i_category}, '/', '000/']
     
-    filelist=dir([current_folder, '*.jpg']);
+  %  filelist=dir([current_folder, '*.jpg']);
     
    
         
     
-    for i=1:length(filelist)
+ %   for i=1:length(filelist)
     %for i=1:2
         i
         
@@ -83,8 +91,8 @@ for i_category =1:length(categories)
 
         n_labels(i_image,1)=n_label;
         label_segments{i_image,1}=label_L;
-    end
 end
+%end
 
 
 image_file_names=table(image_names,image_folder);
@@ -97,7 +105,7 @@ else
 end
  
 
-name_file_2='segments_raw_v2';
+name_file_2='segments_leslie_v1';
 
 save(fullfile(savdir,name_file_2),'n_labels','label_segments','image_file_names');
 

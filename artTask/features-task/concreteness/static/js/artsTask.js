@@ -48,41 +48,41 @@ var ArtExperiment = function() {
 		"<p>How much do you like the artwork shown?</br>\"0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'\"</br></p>",
 		"<p>Do you know the name of the artist who painted this picture?</br>Please click \"I pay attention\.\"</br></p>",
 		"<p>How much do you like the artwork shown?</br>Please click on \"C\" to confirm that you pay attention.</br></p>"
-	]
+	];
 
 	var features_questions = [
 		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown?</p>",
 		"<p>On a scale of -2 = Still to 2 = Movement, what is the <em>Dynamicity</em> is the artwork shown?</p>",
 		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown?</p>",
 		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown?</p>"
-	]
+	];
 
 	var familiar_options = ["I don't know.", "I know."];
 	var like_options = ["0", "1", "2", "3"];
 	var catch1_options = ["I don't pay attention.", "I pay attention."];
 	var qCatch_options = ["A", "B", "C", "D"];
-	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options]
+	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options];
 	var arts = jsPsych.timelineVariable('stimulus');
   var catchMe = jsPsych.timelineVariable('stimulus');
-	var artShowTime = 0
-	var responsePeriodArtist = 3000
-	var responsePeriodLike = 8000
-	var fixationTime = 250
+	var artShowTime = 0;
+	var responsePeriodArtist = 3000;
+	var responsePeriodLike = 8000;
+	var fixationTime = 250;
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
-	var mona = 'static/images/0.jpg'
-  var theScream = 'static/images/1.jpg'
+	var mona = 'static/images/0.jpg';
+  var theScream = 'static/images/1.jpg';
 	var testBlocks = [test_stimuli_r1, test_stimuli_r2, test_stimuli_r3, test_stimuli_r4, test_stimuli_r5,
 	test_stimuli_r6, test_stimuli_r7, test_stimuli_r8, test_stimuli_r9, test_stimuli_r10];
 
-	var concreteness = 'static/images/training-for-features-task/abstract-training.bmp'
-	var dynamics = 'static/images/training-for-features-task/dynamic-training.jpg'
-	var temperature = 'static/images/training-for-features-task/colortemperature-training.bmp'
-	var valence = 'static/images/training-for-features-task/valence-training.jpg'
+	var concreteness = 'static/images/training-for-features-task/abstract-training.bmp';
+	var dynamics = 'static/images/training-for-features-task/dynamic-training.jpg';
+	var temperature = 'static/images/training-for-features-task/colortemperature-training.bmp';
+	var valence = 'static/images/training-for-features-task/valence-training.jpg';
 
-	var concreteness_options = ["Abstract", "Concrete"]
-	var dynamic_options = ["Still", "Dynamic"]
-	var temperature_options = ["Warm", "Cold"]
-	var valence_options = ["Positive", "Negative"]
+	var concreteness_options = ["Abstract", "Concrete"];
+	var dynamic_options = ["Still", "Dynamic"];
+	var temperature_options = ["Warm", "Cold"];
+	var valence_options = ["Positive", "Negative"];
 
 
 	var showArtsFam ={
@@ -91,7 +91,7 @@ var ArtExperiment = function() {
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[0]
-	}
+	};
 
 	var showArtsLike ={
 		type: 'image-button-response',
@@ -99,7 +99,7 @@ var ArtExperiment = function() {
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[1]
-	}
+	};
 
 	var qFamiliar = {
 		type: 'image-button-response',
@@ -110,7 +110,7 @@ var ArtExperiment = function() {
 		choices: function(){
 				return jsPsych.randomization.shuffle(familiar_options);
 			}
-	}
+	};
 
 	var qLike = {
 		type: 'image-button-response',
@@ -119,7 +119,7 @@ var ArtExperiment = function() {
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
 		choices: allOptions[1]
-	}
+	};
 
   var qCatch = {
     type: 'image-button-response',
@@ -130,16 +130,16 @@ var ArtExperiment = function() {
 		choices: function(){
 				return jsPsych.randomization.shuffle(allOptions[3]);
 			}
-  }
+  };
 
 	var trial_1 = {
     type: 'image-slider-response',
     stimulus: 'img/happy_face_1.jpg',
     labels: ['1 (least happy)', '100 (most happy)'],
     prompt: '<p>How happy is this person on a scale of 1-100?</p>'
-  }
+  };
 
-	var qConcreteness = {
+	var qConc = {
     type: 'image-slider-response',
 		stimulus: arts,
 		training: concreteness,
@@ -147,37 +147,7 @@ var ArtExperiment = function() {
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
 		labels: concreteness_options
-  }
-
-	var qDynamic = {
-		type: 'image-slider-response',
-		stimulus: arts,
-		training: dynamic,
-		prompt: features_questions[1],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		labels: dynamic_options
-	}
-
-	var qTemperature = {
-		type: 'image-slider-response',
-		stimulus: arts,
-		training: temperature,
-		prompt: features_questions[2],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		labels: temperature_options
-	}
-
-	var qValence = {
-		type: 'image-slider-response',
-		stimulus: arts,
-		training: valence,
-		prompt: features_questions[3],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		labels: valence_options
-	}
+  };
 
 	var fixation = {
 		type: 'html-keyboard-response',
@@ -188,7 +158,7 @@ var ArtExperiment = function() {
 		},
 		data: {test_part: 'fixation'},
 		response_ends_trial: false
-	}
+	};
 
 	// write a pause between trial function
 	var pausePeriod = {
@@ -198,7 +168,7 @@ var ArtExperiment = function() {
 		post_trial_gap: 0,
 		choices: ["Begin the new set!"],
 		response_ends_trial: true
-	}
+	};
 
 	// example shows here
 	var showArtsEx1 ={
@@ -207,7 +177,7 @@ var ArtExperiment = function() {
 		trial_duration: artShowTime,
 		response_ends_trial: false,
 		prompt: questions[0]
-	}
+	};
 
 	var qFamEx = {
 		type: 'image-button-response',
@@ -216,7 +186,7 @@ var ArtExperiment = function() {
 		trial_duration: responsePeriodArtist,
 		response_ends_trial: true,
 		choices: allOptions[0] //[, familiar_options, human_options]
-	}
+	};
 
 	var qLikeEx = {
 		type: 'image-button-response',
@@ -225,17 +195,17 @@ var ArtExperiment = function() {
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
 		choices: allOptions[1] //[, familiar_options, human_options]
-	}
+	};
 
 	var qConcEx = {
 		type: 'image-slider-response',
 		stimulus: mona,
 		training: concreteness,
-		prompt: feature_questions[0],
+		prompt: features_questions[0],
 		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		labels: concreteness_options //[, familiar_options, human_options]
-	}
+		labels: concreteness_options
+	};
 
 	var beginRealSurvey ={
 		type: "html-button-response",
@@ -245,7 +215,7 @@ var ArtExperiment = function() {
 				post_trial_gap: 0,
 				choices: instrChoices,
 				response_ends_trial: true
-			}
+	};
 
 	var welcome = {
 		type: 'instructions',
@@ -258,7 +228,7 @@ var ArtExperiment = function() {
 		],
 		show_clickable_nav: true,
 		allow_backward: true
-	}
+	};
 	timeline.push(welcome);
 
 
@@ -280,7 +250,7 @@ var ArtExperiment = function() {
 		],
 		show_clickable_nav: true,
 		allow_backward: true
-	}
+	};
 
 	var repeatConcInstructions = {
 			timeline: [concExpInstr, fixation, qConcEx,
@@ -288,14 +258,14 @@ var ArtExperiment = function() {
 				beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
-					console.log(data)
-					if(data.button_pressed == 0){
+					console.log(data);
+					if(data.button_pressed === 0){
 							return true;
 					} else {
 							return false;
 					}
 			}
-	}
+	};
 	timeline.push(repeatConcInstructions);
 
 	var likeInstructions = {
@@ -307,7 +277,7 @@ var ArtExperiment = function() {
 		post_trial_gap: 0,
 		choices: ["Begin the task!"],
 		response_ends_trial: true
-	}
+	};
 
 	var concInstructions = {
 		type: 'html-button-response',
@@ -318,19 +288,19 @@ var ArtExperiment = function() {
 		post_trial_gap: 0,
 		choices: ["Begin the task!"],
 		response_ends_trial: true
-	}
-	timeline.push(concInstructions)
+	};
+	timeline.push(concInstructions);
 
-	var test;
+	var i;
 
 	for (i = 0; i < testBlocks.length; i++) {
 			var testConc = {
-				timeline: [fixation, qConcreteness],
+				timeline: [fixation, qConc],
 				timeline_variables: testBlocks[i],
 				repetitions: 0,
 				randomize_order: true
-	}
-		timeline.push(testConc)
+	};
+	timeline.push(testConc);
 
 	var surveyIntro = {
 		type: "html-button-response",
@@ -340,7 +310,7 @@ var ArtExperiment = function() {
 		post_trial_gap: 0,
 		choices: ["Next \>"],
 		response_ends_trial: true
-	}
+	};
 	timeline.push(surveyIntro);
 
 	//survey parameters
@@ -352,44 +322,44 @@ var ArtExperiment = function() {
 	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above"];
 	var genders = ["Female", "Male"];
 	var degrees = ["Did not complete High School", "High School/GED", "Some College or Associate Degree",
-								"Bachelor's Degree", "Master's Degree or higher"]
-	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more"]
+								"Bachelor's Degree", "Master's Degree or higher"];
+	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more"];
 	var races = ["American Indian or Alaska Native", "Asian or Asian American", "Black or African American",
-							"Native Hawaiian and Other Pacific Islander", "White or Caucasian"]
+							"Native Hawaiian and Other Pacific Islander", "White or Caucasian"];
 	var features = ["Color", "Composition", "Meaning/Content", "Texture/Brushstrokes",
 								"Shape", "Perspective", "Feeling of Motion", "Balance", "Style",
-								"Mood", "Originality", "Unity", "Others"]
-			features = jsPsych.randomization.shuffle(features)
-	var artSurveyQ = ["Do you have a degree in fine arts or art history?", "How often do you visit arts museum?"]
-	var postSurveyQ = ["How old are you?", "Which gender do you most closely identify yourself as?", "Please select the highest degree you have earned?"]
-	var arrayofartchoices = [yesNo, artMuseum]
-	var arrayofchoices = [ageRange, genders, degrees]
+								"Mood", "Originality", "Unity", "Others"];
+			features = jsPsych.randomization.shuffle(features);
+	var artSurveyQ = ["Do you have a degree in fine arts or art history?", "How often do you visit arts museum?"];
+	var postSurveyQ = ["How old are you?", "Which gender do you most closely identify yourself as?", "Please select the highest degree you have earned?"];
+	var arrayofartchoices = [yesNo, artMuseum];
+	var arrayofchoices = [ageRange, genders, degrees];
 
 	var i;
 	for (i = 0; i < artSurveyQ.length; i++) {
     	var artSur= {
 				type: 'survey-multi-choice',
 				questions: [{prompt: artSurveyQ[i], options: arrayofartchoices[i], required: true}]
-			}
-			timeline.push(artSur)
+			};
+			timeline.push(artSur);
 	}
 
 	var featuresQ = {
 		type: 'survey-multi-select',
 		questions: [{prompt: "What are the important factors you concerned with when judging a piece of artwork?", options: features, required: true}]
-	}
+	};
 	timeline.push(featuresQ);
 
 	var otherFeatures = {
 		type: 'survey-text',
 		questions: [{prompt: "Are there other factors you concerned with when judging a piece of artwork? Please type them down in the box below.", rows: 5, columns: 100}]
-	}
+	};
 	timeline.push(otherFeatures);
 
 	var raceQ = {
 		type: 'survey-multi-select',
 		questions: [{prompt: "Which ethnicity or ethnicities do you closely identify yourself as?", options: races, required: false}]
-	}
+	};
 	timeline.push(raceQ);
 
 	var i;
@@ -397,15 +367,17 @@ var ArtExperiment = function() {
     	var surveyQ = {
 				type: 'survey-multi-choice',
 				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: false}]
-			}
-			timeline.push(surveyQ)
+			};
+			timeline.push(surveyQ);
 	}
 
 	var suggestionsBox = {
 		type: 'survey-text',
 		questions: [{prompt: "Do you have any suggestion or question regarding our task? Please type them down in the box below.", rows: 5, columns: 100}]
-	}
+	};
 	timeline.push(suggestionsBox);
+
+  }
 
 	var all_data = jsPsych.data.get();
 	var interactions = jsPsych.data.getInteractionData();
@@ -424,7 +396,7 @@ var ArtExperiment = function() {
 		}
 	});
 
-}
+};
 
 /****************
 * Questionnaire *

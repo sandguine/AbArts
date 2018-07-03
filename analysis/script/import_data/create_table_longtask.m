@@ -16,7 +16,7 @@ if boolean(strfind(pwd, 'sandy'))
      filename = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/psiTurk-artTask-v3/trialdata.csv'; % v2
     % filename = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/data/180424trialdata.csv';
 elseif boolean(strfind(pwd, 'miles'))
-     filename = '/Users/miles/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
+     filename = '/Users/miles/Dropbox/AbArts/ArtTask/behavioral-all-stims/trialdata.csv';
     % filename = '/Users/miles/Dropbox/AbArts/ArtTask/data/180518trialdata.csv'; % v2
 else
    %  filename = 'D:/Dropbox/AbArts/ArtTask/data/180424trialdata.csv';
@@ -106,7 +106,8 @@ for i=1:l_matrix
     x=char(infos_new{i,1});
     if  x(1:5)== '{"rt"' 
         if ~contains(x, 'instructions') && ~contains(x, 'null') && ~contains(x, 'images/0.jpg') && ~contains(x, 'Ok, very')...
-                &&  ~contains(x, 'In this part of') &&  ~contains(x, 'You are almost done') &&  ~contains(x, 'The new set of') 
+                &&  ~contains(x, 'In this part of') &&  ~contains(x, 'You are almost done') &&  ~contains(x, 'The new set of') ...
+                && ~contains(x, 'This is a break point')
             task_trial=[task_trial;i];
         end
     end
