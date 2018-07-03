@@ -299,6 +299,7 @@ var ArtExperiment = function() {
 				timeline_variables: testBlocks[i],
 				repetitions: 0,
 				randomize_order: true
+			};
 	};
 	timeline.push(testConc);
 
@@ -377,8 +378,6 @@ var ArtExperiment = function() {
 	};
 	timeline.push(suggestionsBox);
 
-  }
-
 	var all_data = jsPsych.data.get();
 	var interactions = jsPsych.data.getInteractionData();
 
@@ -395,9 +394,7 @@ var ArtExperiment = function() {
 							psiTurk.recordTrialData(interactions);
 		}
 	});
-
-};
-
+}
 /****************
 * Questionnaire *
 ****************/
