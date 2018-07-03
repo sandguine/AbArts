@@ -3,7 +3,7 @@ close all
 
 %%
 
-indexing=1;
+indexing=0;
 do_slow_reg =0;
 
 add_categories=0;
@@ -64,7 +64,7 @@ image_name_task_r = cellfun(@(x) extractAfter(extractAfter(x,'/'),'/'),image_r);
 
 %%
 
-load([savdir '/', 'features', '.mat']);
+load([savdir '/', 'features_global_all', '.mat']);
 
 n_images=length(image_file_names.image_names);
 
@@ -134,12 +134,12 @@ if indexing
     end
 
 
-    name_file_2='image_index_main_task';
+    name_file_2='image_index_long_task';
 
     save(fullfile(savdir,name_file_2),'rated_image_index');
 
 else 
-    name_file_2='image_index_main_task';
+    name_file_2='image_index_long_task';
     
     load(fullfile(savdir,name_file_2),'rated_image_index')
     
@@ -167,7 +167,7 @@ clearvars image_features
  
  
  
-load([savdir '/', 'local_features', '.mat']);
+load([savdir '/', 'features_local_all', '.mat']);
  
 local_features= image_features;
 

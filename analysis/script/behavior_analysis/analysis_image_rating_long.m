@@ -3,7 +3,7 @@ close all
 
 %%
 
-indexing=1;
+indexing=0;
 do_slow_reg =0;
 
 add_categories=0;
