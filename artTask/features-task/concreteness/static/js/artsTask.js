@@ -202,9 +202,8 @@ var ArtExperiment = function() {
 		stimulus: mona,
 		training: concreteness,
 		prompt: features_questions[0],
-		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		labels: concreteness_options
+		choices: features_options
 	};
 
 	var beginRealSurvey ={
