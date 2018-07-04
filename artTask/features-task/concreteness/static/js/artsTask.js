@@ -51,7 +51,7 @@ var ArtExperiment = function() {
 	];
 
 	var features_questions = [
-		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown?</p>",
+		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown?</p> </br> <b>-2 = Abstract, -1 = Slightly Abstract, 0 = Neutral, 1 = Slight Concrete, 2 = Concrete</b>",
 		"<p>On a scale of -2 = Still to 2 = Movement, what is the <em>Dynamicity</em> is the artwork shown?</p>",
 		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown?</p>",
 		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown?</p>"
@@ -59,6 +59,7 @@ var ArtExperiment = function() {
 
 	var familiar_options = ["I don't know.", "I know."];
 	var like_options = ["0", "1", "2", "3"];
+	var features_options = ["-2", "-1", "0", "1", "2"];
 	var catch1_options = ["I don't pay attention.", "I pay attention."];
 	var qCatch_options = ["A", "B", "C", "D"];
 	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options];
@@ -133,20 +134,19 @@ var ArtExperiment = function() {
   };
 
 	var trial_1 = {
-    type: 'image-slider-response',
+    type: 'image-button-response',
     stimulus: 'img/happy_face_1.jpg',
     labels: ['1 (least happy)', '100 (most happy)'],
     prompt: '<p>How happy is this person on a scale of 1-100?</p>'
   };
 
 	var qConc = {
-    type: 'image-slider-response',
+    type: 'image-button-response',
 		stimulus: arts,
 		training: concreteness,
 		prompt: features_questions[0],
-		trial_duration: responsePeriodLike,
 		response_ends_trial: true,
-		labels: concreteness_options
+		choices: features_options
   };
 
 	var fixation = {
@@ -198,7 +198,7 @@ var ArtExperiment = function() {
 	};
 
 	var qConcEx = {
-		type: 'image-slider-response',
+		type: 'image-button-response',
 		stimulus: mona,
 		training: concreteness,
 		prompt: features_questions[0],
@@ -241,11 +241,11 @@ var ArtExperiment = function() {
 				"<p>An example of abstract vs concrete image will appear on top of the painting.</p>",
 				//"<p>You have <b>2 seconds</b> to look at the painting.</p>",
 				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
-				"<p>If you think this picture is <b>ABSTRACT</b>, please move the slider to the -2</p>",
-				"<p>If you think this picture is <b>SLIGHTLY ABSTRACT</b>, please move the slider to -1.</p>",
-				"<p>If you think this picture is <b>NEUTRAL</b>, please move the slider to 0.</p>",
-				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please move the slider to 2.</p>",
-				"<p>If you think this picture is <b>CONCRETE</b>, please move the slider to 2.</p>",
+				"<p>If you think this picture is <b>ABSTRACT</b>, please click on \"-2\"</p>",
+				"<p>If you think this picture is <b>SLIGHTLY ABSTRACT</b>, please click on \"-1\".</p>",
+				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
+				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please click on \"2\".</p>",
+				"<p>If you think this picture is <b>CONCRETE</b>, please click on \"2\".</p>",
 				"<p>You have <b>8 seconds</b> to respond.</p>",
 		],
 		show_clickable_nav: true,
@@ -300,8 +300,19 @@ var ArtExperiment = function() {
 				repetitions: 0,
 				randomize_order: true
 			};
-	};
-	timeline.push(testConc);
+			timeline.push(testConc);
+
+			// break variable
+			var breakPoint = {
+				type: 'html-button-response',
+				stimulus: "<p>This is a break point. Please take your time to relax and refresh your eyes.</br></p>" +
+				"<p>Once you're ready to begin again, please click on the button below.</p>",
+				post_trial_gap: 0,
+				choices: ["Begin the next set!"],
+				response_ends_trial: true
+			};
+			timeline.push(breakPoint);
+	}
 
 	var surveyIntro = {
 		type: "html-button-response",
@@ -452,8 +463,6 @@ var Questionnaire = function() {
             },
             error: prompt_resubmit});
 	});
-
-
 };
 
 // Task object to keep track of the current phase
