@@ -153,9 +153,7 @@ var ArtExperiment = function() {
 		type: 'html-keyboard-response',
 		stimulus: '<div style="font-size:60px;">+</div>',
 		choices: jsPsych.NO_KEYS,
-		trial_duration: function(){
-			return jsPsych.randomization.sampleWithoutReplacement([fixationTime], 1)[0];
-		},
+		trial_duration: fixationTime,
 		data: {test_part: 'fixation'},
 		response_ends_trial: false
 	};
@@ -252,9 +250,7 @@ var ArtExperiment = function() {
 	};
 
 	var repeatConcInstructions = {
-			timeline: [concExpInstr, fixation, qConcEx,
-				//qCatchInstr, fixation, showArtsExqCatch, qCatchEx, debriefCatch,
-				beginRealSurvey],
+			timeline: [concExpInstr, fixation, qConcEx, beginRealSurvey],
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data);
@@ -331,7 +327,7 @@ var ArtExperiment = function() {
 	//“Feeling of Motion,” “Balance,”“Style,” “Mood,” “Originality,” “Unity,” etc.
 	var yesNo = ["Yes", "No"];
 	var ageRange = ["18 to 24 years old", "25 to 34 years old", "35 to 44 years old", "45 years old or above"];
-	var genders = ["Female", "Male"];
+	var genders = ["Female", "Male", "Non-binary"];
 	var degrees = ["Did not complete High School", "High School/GED", "Some College or Associate Degree",
 								"Bachelor's Degree", "Master's Degree or higher"];
 	var artMuseum = ["Less than once a month", "1 to 3 times per month", "Once a week or more"];

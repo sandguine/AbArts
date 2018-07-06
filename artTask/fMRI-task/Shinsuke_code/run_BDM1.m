@@ -7,23 +7,23 @@ try
     num_rep = 2;
     
     % image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
-    if boolean(strfind(pwd, 'sandy'))
+    % if boolean(strfind(pwd, 'sandy'))
     % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
-        image_base = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/'
-    elseif  boolean(strfind(pwd, 'miles'))
-        image_base = '/Users/miles/Dropbox/AbArts/artTask/fMRI-task/Shinsuke_code/data/images';
-    else
-        image_base = 'D:/Dropbox/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/';
-    end
+    %    image_base = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/'
+    % elseif  boolean(strfind(pwd, 'miles'))
+    %    image_base = '/Users/miles/Dropbox/AbArts/artTask/fMRI-task/Shinsuke_code/data/images';
+    % else
+    %    image_base = 'D:/Dropbox/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/';
+    % end
 
-    categories = {'abstract','colorFields','cubism','impressionism', 'leslie'};
+    % categories = {'abstract','colorFields','cubism','impressionism', 'leslie'};
 
-    current_folder = [image_base, categories{i_category}, '/', '000/']
+    % current_folder = [image_base, categories{i_category}, '/', '000/']
     
     % Load image files for the subject
     % Change to Arts image folder here
-    % file_items = ['data/item_id_sub_',subID];
-    file_items = dir([current_folder, '*.jpg']);
+    file_items = ['data/item_id_sub_',subID];
+    % file_items = dir([current_folder, '*.jpg']);
     load(file_items) % item_id_sub is loaded
     
     % Set the item list presented

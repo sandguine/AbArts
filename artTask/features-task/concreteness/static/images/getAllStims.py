@@ -7,42 +7,21 @@ Created on Fri Jun 08 18:03:13 2018
 """
 
 import glob, os, random, re
-from PIL import Image
 
 def getArtsNames(dirName):
     os.chdir(dirName)
     artList = []
-    dpiList = []
     for file in glob.glob("*.jpg"):
-        # print('{stimulus: \"img/' + dirName + '/' + file + '\"}, \n')
-        im = Image.open(file)
-        #print(im.info['dpi'])
-        dpiList.append(im.info['dpi'])
+        artList.append(file)
+    for file in glob.glob("*.jpeg"):
         artList.append(file)
     for file in glob.glob("*.bmp"):
-        # print('{stimulus: \"img/' + dirName + '/' + file + '\"}, \n')
-        im = Image.open(file)
-        #print(im.info['dpi'])
-        dpiList.append(im.info['dpi'])
+        artList.append(file)
+    for file in glob.glob("*.png"):
         artList.append(file)
     os.chdir("..")
     return artList
 
-def getDPIs(dirName):
-    os.chdir(dirName)
-    dpiList = []
-    for file in glob.glob("*.jpg"):
-        # print('{stimulus: \"img/' + dirName + '/' + file + '\"}, \n')
-        im = Image.open(file)
-        print(im.info['dpi'])
-        dpiList.append(im.info['dpi'])
-    for file in glob.glob("*.bmp"):
-        # print('{stimulus: \"img/' + dirName + '/' + file + '\"}, \n')
-        im = Image.open(file)
-        print(im.info['dpi'])
-        dpiList.append(im.info['dpi'])
-    os.chdir("..")
-    return dpiList
 
 def getStims():
     allStims = []

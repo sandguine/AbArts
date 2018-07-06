@@ -30,6 +30,8 @@ debugOxjGt:debugYRmQq,0,1530656416539,"{""phase"": ""INSTRUCTIONS"", ""templates
 debugOxjGt:debugYRmQq,1,1530656417401,"{""phase"": ""INSTRUCTIONS"", ""indexOf"": 0, ""viewTime"": 858, ""action"": ""FinishInstructions"", ""template"": ""instructions/instruct-ready.html""}"
 debugWQw6S:debugWWdLS,0,1530657954395,"{""phase"": ""INSTRUCTIONS"", ""templates"": [""instructions/instruct-ready.html""], ""action"": ""Begin""}"
 debugWQw6S:debugWWdLS,1,1530657958327,"{""phase"": ""INSTRUCTIONS"", ""indexOf"": 0, ""viewTime"": 3930, ""action"": ""FinishInstructions"", ""template"": ""instructions/instruct-ready.html""}"
+debugDwzPC:debugXP9Ke,0,1530684355478,"{""phase"": ""INSTRUCTIONS"", ""templates"": [""instructions/instruct-ready.html""], ""action"": ""Begin""}"
+debugDwzPC:debugXP9Ke,1,1530684356498,"{""phase"": ""INSTRUCTIONS"", ""indexOf"": 0, ""viewTime"": 1016, ""action"": ""FinishInstructions"", ""template"": ""instructions/instruct-ready.html""}"
 debugu6h6e:debugFOhOU,0,1530662699464,"{""phase"": ""INSTRUCTIONS"", ""templates"": [""instructions/instruct-ready.html""], ""action"": ""Begin""}"
 debugu6h6e:debugFOhOU,1,1530662703067,"{""phase"": ""INSTRUCTIONS"", ""indexOf"": 0, ""viewTime"": 3600, ""action"": ""FinishInstructions"", ""template"": ""instructions/instruct-ready.html""}"
 debugu6h6e:debugFOhOU,2,1530662706159,"{""trial_type"": ""fullscreen"", ""time_elapsed"": 3006, ""trial_index"": 0, ""success"": true, ""internal_node_id"": ""0.0-0.0""}"
@@ -478,3 +480,7 @@ debugu6h6e:debugFOhOU,444,1530663476896,"{""rt"": 708, ""trial_type"": ""survey-
 debugu6h6e:debugFOhOU,445,1530663476896,{}
 debugu6h6e:debugFOhOU,446,1530663477740,"{""rt"": 843, ""trial_type"": ""survey-text"", ""responses"": ""{\""Q0\"":\""\""}"", ""internal_node_id"": ""0.0-14.0"", ""time_elapsed"": 774588, ""trial_index"": 222}"
 debugu6h6e:debugFOhOU,447,1530663477740,{}
+debug37dk8:debugZUhrd,0,1530664053187,"{""phase"": ""INSTRUCTIONS"", ""templates"": [""instructions/instruct-ready.html""], ""action"": ""Begin""}"
+debug37dk8:debugZUhrd,1,1530664054616,"{""phase"": ""INSTRUCTIONS"", ""indexOf"": 0, ""viewTime"": 1426, ""action"": ""FinishInstructions"", ""template"": ""instructions/instruct-ready.html""}"
+debugaWihx:debugIGCHl,0,1530823490398,"{""phase"": ""INSTRUCTIONS"", ""templates"": [""instructions/instruct-ready.html""], ""action"": ""Begin""}"
+debugaWihx:debugIGCHl,1,1530823491035,"{""phase"": ""INSTRUCTIONS"", ""indexOf"": 0, ""viewTime"": 634, ""action"": ""FinishInstructions"", ""template"": ""instructions/instruct-ready.html""}"

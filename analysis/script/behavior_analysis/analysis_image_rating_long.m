@@ -205,11 +205,47 @@ for i_sub=1:length(list_id)
       non_nan_x=double(non_nan_x);
       
       X2 =  [zscore(non_nan_x),ones(size(non_nan_x,1),1)];
-     [bs2(i_sub,:), ~,~,~, stats{i_sub}] = regress(current_response_list(non_nan_index,1),X2)  ;
+     [bs2(i_sub,:), bs2_int{i_sub},~,~, stats{i_sub}] = regress(current_response_list(non_nan_index,1),X2)  ;
      
      bs3(i_sub,:)= regress(zscore(current_response_list(non_nan_index,1)),zscore(non_nan_x))'  ;
      end
 end
+X=bs2(:,1:end-1);
+
+figure(1)
+plot(bs2(:,1:end-1)', 'o')
+
+figure(2)
+Y=abs(X);
+e=errorbar(1:size(X,2),mean(Y),std(Y)/sqrt(4),'black')
+  e.LineStyle = 'none';
+  hold all
+  bar(1:size(X,2),mean(Y),0.9)
+  xlim([0,40])
+  
+  
+figure(3)
+for j=1:4
+    subplot(2,2,j)
+    clearvars b bint
+    b=X(j,:);
+    bint=bs2_int{j};
+    
+    e=errorbar(1:length(b),b,b-bint(1:end-1,1)',bint(1:end-1,2)'-b,'black')
+  %  e=errorbar(1:size(X,2),mean(Y),std(Y)/sqrt(4),'black')
+      e.LineStyle = 'none';
+      hold all
+      bar(1:length(b),b,0.9)
+      xlim([0,40])
+end
+%  
+%  figure(101)
+% 
+% br=b(1:40);
+%  
+%  bar(1:length(br),br,0.9)
+% end
+
 
 %bs2(375,:)=[];
 
