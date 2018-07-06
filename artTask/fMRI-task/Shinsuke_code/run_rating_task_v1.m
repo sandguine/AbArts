@@ -1,10 +1,25 @@
-function run_BDM1(subID)
-%% run_BDM1('150424a')
+function run_rating_task_v1(subID)
+%% Art rating task kiigaya@gmail.com, mostly based on Shinsuke Suzuki's code
 %% run_BDM1('000000a')
 
 try
     run_idx = 1;
     num_rep = 2;
+    
+    %image_folder = 'D:\Dropbox\AbArts\ArtTask\features-task\concreteness\static\images';
+     if boolean(strfind(pwd, 'sandy'))
+         
+     elseif boolean(strfind(pwd, 'miles'))
+         load('/Users/miles/Dropbox/AbArts/analysis/data/features_global_all.mat'); 
+     else
+         load('D:\Dropbox\AbArts\analysis\data\features_global_all.mat');  %% image_file_names
+     end
+         
+         
+   % load('D:\Dropbox\AbArts\analysis\data\features_global_all.mat');  %% image_file_names
+    Im_folders = image_file_names.image_folder;
+    Im_names = image_file_names.image_names;
+    
     
     % image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
     % if boolean(strfind(pwd, 'sandy'))
@@ -30,11 +45,9 @@ try
     item_list = item_id_sub{run_idx};
     item_idx = [];
     for i = 1:num_rep
-        idx_rnd = randperm(length(item_list));
+        idx_rnd = randperm(length(item_list));   %% generate random index
         item_idx = [item_idx; item_list(idx_rnd)];
-        endScreen('CloseAll')
-        Screen('CloseAll')
-        
+    end
     num_trials = length(item_idx);
     
     % Set window pointer
@@ -73,7 +86,9 @@ try
         
         % DEC (PRESENTATION)
         % images are here
-        shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
+        
+       % shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
+        shown_item = [Im_folders{item_idx(i)}, Im_names{item_idx(i)}]
         time_DECstrt = GetSecs - time_zero;
         disp_item(wpt, w, h, shown_item, durDEC);
         time_DECend = GetSecs - time_zero;

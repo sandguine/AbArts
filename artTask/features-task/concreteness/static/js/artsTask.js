@@ -43,13 +43,6 @@ var ArtExperiment = function() {
 	});
 
 	/* declare necessary variables */
-	var questions = [
-		"<p>Do you know the name of the artist who painted this picture?</p>",
-		"<p>How much do you like the artwork shown?</br>\"0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'\"</br></p>",
-		"<p>Do you know the name of the artist who painted this picture?</br>Please click \"I pay attention\.\"</br></p>",
-		"<p>How much do you like the artwork shown?</br>Please click on \"C\" to confirm that you pay attention.</br></p>"
-	];
-
 	var features_questions = [
 		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown?</p> </br> <b>-2 = Abstract, -1 = Slightly Abstract, 0 = Neutral, 1 = Slight Concrete, 2 = Concrete</b>",
 		"<p>On a scale of -2 = Still to 2 = Movement, what is the <em>Dynamicity</em> is the artwork shown?</p>",
@@ -57,17 +50,10 @@ var ArtExperiment = function() {
 		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown?</p>"
 	];
 
-	var familiar_options = ["I don't know.", "I know."];
-	var like_options = ["0", "1", "2", "3"];
 	var features_options = ["-2", "-1", "0", "1", "2"];
-	var catch1_options = ["I don't pay attention.", "I pay attention."];
-	var qCatch_options = ["A", "B", "C", "D"];
-	var allOptions = [familiar_options, like_options, catch1_options, qCatch_options];
 	var arts = jsPsych.timelineVariable('stimulus');
   var catchMe = jsPsych.timelineVariable('stimulus');
 	var artShowTime = 0;
-	var responsePeriodArtist = 3000;
-	var responsePeriodLike = 8000;
 	var fixationTime = 250;
 	var instrChoices = ["Repeat the example.", "I'm ready!"];
 	var mona = 'static/images/0.jpg';
@@ -85,60 +71,6 @@ var ArtExperiment = function() {
 	var temperature_options = ["Warm", "Cold"];
 	var valence_options = ["Positive", "Negative"];
 
-
-	var showArtsFam ={
-		type: 'image-button-response',
-		stimulus: arts,
-		trial_duration: artShowTime,
-		response_ends_trial: false,
-		prompt: questions[0]
-	};
-
-	var showArtsLike ={
-		type: 'image-button-response',
-		stimulus: arts,
-		trial_duration: artShowTime,
-		response_ends_trial: false,
-		prompt: questions[1]
-	};
-
-	var qFamiliar = {
-		type: 'image-button-response',
-		stimulus: arts,
-		prompt: questions[0],
-		trial_duration: responsePeriodArtist,
-		response_ends_trial: true,
-		choices: function(){
-				return jsPsych.randomization.shuffle(familiar_options);
-			}
-	};
-
-	var qLike = {
-		type: 'image-button-response',
-		stimulus: arts,
-		prompt:  questions[1],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: allOptions[1]
-	};
-
-  var qCatch = {
-    type: 'image-button-response',
-		stimulus: catchMe,
-		prompt: questions[3],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: function(){
-				return jsPsych.randomization.shuffle(allOptions[3]);
-			}
-  };
-
-	var trial_1 = {
-    type: 'image-button-response',
-    stimulus: 'img/happy_face_1.jpg',
-    labels: ['1 (least happy)', '100 (most happy)'],
-    prompt: '<p>How happy is this person on a scale of 1-100?</p>'
-  };
 
 	var qConc = {
     type: 'image-button-response',
@@ -169,31 +101,6 @@ var ArtExperiment = function() {
 	};
 
 	// example shows here
-	var showArtsEx1 ={
-		type: 'image-button-response',
-		stimulus: mona,
-		trial_duration: artShowTime,
-		response_ends_trial: false,
-		prompt: questions[0]
-	};
-
-	var qFamEx = {
-		type: 'image-button-response',
-		stimulus: mona,
-		prompt: questions[0],
-		trial_duration: responsePeriodArtist,
-		response_ends_trial: true,
-		choices: allOptions[0] //[, familiar_options, human_options]
-	};
-
-	var qLikeEx = {
-		type: 'image-button-response',
-		stimulus: mona,
-		prompt: questions[1],
-		trial_duration: responsePeriodLike,
-		response_ends_trial: true,
-		choices: allOptions[1] //[, familiar_options, human_options]
-	};
 
 	var qConcEx = {
 		type: 'image-button-response',
@@ -236,14 +143,12 @@ var ArtExperiment = function() {
 				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
 				"<p>A painting will appear at the center of the screen.</p>",
 				"<p>An example of abstract vs concrete image will appear on top of the painting.</p>",
-				//"<p>You have <b>2 seconds</b> to look at the painting.</p>",
 				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
 				"<p>If you think this picture is <b>ABSTRACT</b>, please click on \"-2\"</p>",
 				"<p>If you think this picture is <b>SLIGHTLY ABSTRACT</b>, please click on \"-1\".</p>",
 				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
 				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please click on \"2\".</p>",
-				"<p>If you think this picture is <b>CONCRETE</b>, please click on \"2\".</p>",
-				"<p>You have <b>8 seconds</b> to respond.</p>",
+				"<p>If you think this picture is <b>CONCRETE</b>, please click on \"2\".</p>"
 		],
 		show_clickable_nav: true,
 		allow_backward: true
@@ -254,7 +159,7 @@ var ArtExperiment = function() {
 			loop_function: function(data){
 					var data = jsPsych.data.get().last(1).values()[0];
 					console.log(data);
-					if(data.button_pressed === 0){
+					if(data.button_pressed == 0){
 							return true;
 					} else {
 							return false;
@@ -437,8 +342,6 @@ var Questionnaire = function() {
                 psiTurk.computeBonus('compute_bonus', function(){
                 	psiTurk.completeHIT(); // when finished saving compute bonus, the quit
                 });
-
-
 			},
 			error: prompt_resubmit
 		});
