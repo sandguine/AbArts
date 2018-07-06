@@ -21,7 +21,7 @@ try
     Im_names = image_file_names.image_names;
     
     
-    % image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+     image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
     % if boolean(strfind(pwd, 'sandy'))
     % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
     %    image_base = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/'
@@ -88,7 +88,7 @@ try
         % images are here
         
        % shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
-        shown_item = [Im_folders{item_idx(i)}, Im_names{item_idx(i)}]
+        shown_item = [Im_folders{item_idx(i)},'/' Im_names{item_idx(i)}]
         time_DECstrt = GetSecs - time_zero;
         disp_item(wpt, w, h, shown_item, durDEC);
         time_DECend = GetSecs - time_zero;

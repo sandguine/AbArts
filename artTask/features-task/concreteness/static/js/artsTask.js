@@ -44,10 +44,10 @@ var ArtExperiment = function() {
 
 	/* declare necessary variables */
 	var features_questions = [
-		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown?</p> </br> <b>-2 = Abstract, -1 = Slightly Abstract, 0 = Neutral, 1 = Slight Concrete, 2 = Concrete</b>",
-		"<p>On a scale of -2 = Still to 2 = Movement, what is the <em>Dynamicity</em> is the artwork shown?</p>",
-		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown?</p>",
-		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown?</p>"
+		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown? </br> <b>-2 = Abstract, -1 = Slightly Abstract, 0 = Neutral, 1 = Slight Concrete, 2 = Concrete</b> </p>",
+		"<p>On a scale of -2 = Still to 2 = Dynamic, what is the <em>Dynamicity</em> is the artwork shown? </br> <b>-2 = Still, -1 = Slightly Still, 0 = Neutral, 1 = Slight Dynamic, 2 = Dynamic</b> </p>",
+		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown? </br> <b>-2 = Warm, -1 = Slightly Warm, 0 = Neutral, 1 = Slight Cold, 2 = Cold</b> </p>",
+		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown? </br> <b>-2 = Negative, -1 = Slightly Negative, 0 = Neutral, 1 = Slight Positive, 2 = Positive</b> </p>"
 	];
 
 	var features_options = ["-2", "-1", "0", "1", "2"];
@@ -62,21 +62,42 @@ var ArtExperiment = function() {
 	test_stimuli_r6, test_stimuli_r7, test_stimuli_r8, test_stimuli_r9, test_stimuli_r10];
 
 	var concreteness = 'static/images/training-for-features-task/abstract-training.bmp';
-	var dynamics = 'static/images/training-for-features-task/dynamic-training.jpg';
+	var dynamic = 'static/images/training-for-features-task/dynamic-training.jpg';
 	var temperature = 'static/images/training-for-features-task/colortemperature-training.bmp';
 	var valence = 'static/images/training-for-features-task/valence-training.jpg';
-
-	var concreteness_options = ["Abstract", "Concrete"];
-	var dynamic_options = ["Still", "Dynamic"];
-	var temperature_options = ["Warm", "Cold"];
-	var valence_options = ["Positive", "Negative"];
-
 
 	var qConc = {
     type: 'image-button-response',
 		stimulus: arts,
 		training: concreteness,
 		prompt: features_questions[0],
+		response_ends_trial: true,
+		choices: features_options
+  };
+
+	var qDyna = {
+    type: 'image-button-response',
+		stimulus: arts,
+		training: dynamic,
+		prompt: features_questions[1],
+		response_ends_trial: true,
+		choices: features_options
+  };
+
+	var qTemp = {
+    type: 'image-button-response',
+		stimulus: arts,
+		training: temperature,
+		prompt: features_questions[2],
+		response_ends_trial: true,
+		choices: features_options
+  };
+
+	var qVale = {
+    type: 'image-button-response',
+		stimulus: arts,
+		training: valence,
+		prompt: features_questions[3],
 		response_ends_trial: true,
 		choices: features_options
   };
@@ -111,6 +132,33 @@ var ArtExperiment = function() {
 		choices: features_options
 	};
 
+	var qDynaEx = {
+    type: 'image-button-response',
+		stimulus: mona,
+		training: dynamic,
+		prompt: features_questions[1],
+		response_ends_trial: true,
+		choices: features_options
+  };
+
+	var qTempEx = {
+    type: 'image-button-response',
+		stimulus: mona,
+		training: temperature,
+		prompt: features_questions[2],
+		response_ends_trial: true,
+		choices: features_options
+  };
+
+	var qValeEx = {
+    type: 'image-button-response',
+		stimulus: mona,
+		training: valence,
+		prompt: features_questions[3],
+		response_ends_trial: true,
+		choices: features_options
+  };
+
 	var beginRealSurvey ={
 		type: "html-button-response",
 		stimulus: "<p>Ok, very simple, right?</p>" +
@@ -127,7 +175,7 @@ var ArtExperiment = function() {
 				"<p>Welcome to our easy and simple survey!</p>",
 				"<p>In this survey, you will see various paintings created by different artists.</p>" +
 				"<p>We will ask you a few simple questions about the artwork.</p>",
-				"<p>You will recieve <b>$40</b> when you complete the task regardless of your knowledge and preferences.</p>" +
+				"<p>You will recieve <b>$15</b> when you complete the task regardless of your knowledge and preferences.</p>" +
 				"<p><b>This is not a test of your knowledge, so please answer as honestly as you can.</b></p>"
 		],
 		show_clickable_nav: true,
@@ -135,20 +183,73 @@ var ArtExperiment = function() {
 	};
 	timeline.push(welcome);
 
-
 	var concExpInstr = {
 		type: 'instructions',
 		pages: [
 				"<p>Ok, let's do an example.</p>",
 				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
 				"<p>A painting will appear at the center of the screen.</p>",
-				"<p>An example of abstract vs concrete image will appear on top of the painting.</p>",
+				"<p>An example of <b>ABSTRACT</b> vs <b>CONCRETE</b> image will appear on top of the painting.</p>",
 				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
 				"<p>If you think this picture is <b>ABSTRACT</b>, please click on \"-2\"</p>",
 				"<p>If you think this picture is <b>SLIGHTLY ABSTRACT</b>, please click on \"-1\".</p>",
 				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
 				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please click on \"2\".</p>",
 				"<p>If you think this picture is <b>CONCRETE</b>, please click on \"2\".</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	};
+
+	var dynaExpInstr = {
+		type: 'instructions',
+		pages: [
+				"<p>Ok, let's do an example.</p>",
+				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
+				"<p>A painting will appear at the center of the screen.</p>",
+				"<p>An example of <b>STILL</b> vs <b>DYNAMIC</b> image will appear on top of the painting.</p>",
+				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
+				"<p>If you think this picture is <b>STILL</b>, please click on \"-2\"</p>",
+				"<p>If you think this picture is <b>SLIGHTLY STILL</b>, please click on \"-1\".</p>",
+				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
+				"<p>If you think this picture is <b>SLIGHTLY DYNAMIC</b>, please click on \"2\".</p>",
+				"<p>If you think this picture is <b>DYNAMIC</b>, please click on \"2\".</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	};
+
+	var tempExpInstr = {
+		type: 'instructions',
+		pages: [
+				"<p>Ok, let's do an example.</p>",
+				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
+				"<p>A painting will appear at the center of the screen.</p>",
+				"<p>An example of <b>WARM</b> vs <b>COLD</b> image will appear on top of the painting.</p>",
+				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
+				"<p>If you think this picture is <b>WARM</b>, please click on \"-2\"</p>",
+				"<p>If you think this picture is <b>SLIGHTLY WARM</b>, please click on \"-1\".</p>",
+				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
+				"<p>If you think this picture is <b>SLIGHTLY COLD</b>, please click on \"2\".</p>",
+				"<p>If you think this picture is <b>COLD</b>, please click on \"2\".</p>"
+		],
+		show_clickable_nav: true,
+		allow_backward: true
+	};
+
+	var valeExpInstr = {
+		type: 'instructions',
+		pages: [
+				"<p>Ok, let's do an example.</p>",
+				"<p>You will see a <b>\"+\"</b> at the beginning of each round.</p>",
+				"<p>A painting will appear at the center of the screen.</p>",
+				"<p>An example of <b>NEGATIVE</b> vs <b>POSITIVE</b> image will appear on top of the painting.</p>",
+				"<p>You can slide to select the option that will appear at the bottom of the screen.</p>",
+				"<p>If you think this picture is <b>NEGATIVE</b>, please click on \"-2\"</p>",
+				"<p>If you think this picture is <b>SLIGHTLY NEGATIVE</b>, please click on \"-1\".</p>",
+				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
+				"<p>If you think this picture is <b>SLIGHTLY POSITIVE</b>, please click on \"2\".</p>",
+				"<p>If you think this picture is <b>POSITIVE</b>, please click on \"2\".</p>"
 		],
 		show_clickable_nav: true,
 		allow_backward: true
@@ -167,17 +268,6 @@ var ArtExperiment = function() {
 			}
 	};
 	timeline.push(repeatConcInstructions);
-
-	var likeInstructions = {
-		type: 'html-button-response',
-		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
-		"<p><b>\"How much do you like the artwork shown?\"</b></br></p>"+
-		"<b>0 = \'Not at all\', 1 = \'Like a little\', 2 = \'Like\', and 3 = \'Strongly Like\'.\"</b></br></p>" +
-		"<p>Click on the button below to begin.</p>",
-		post_trial_gap: 0,
-		choices: ["Begin the task!"],
-		response_ends_trial: true
-	};
 
 	var concInstructions = {
 		type: 'html-button-response',
@@ -246,6 +336,12 @@ var ArtExperiment = function() {
 	var postSurveyQ = ["How old are you?", "Which gender do you most closely identify yourself as?", "Please select the highest degree you have earned?"];
 	var arrayofartchoices = [yesNo, artMuseum];
 	var arrayofchoices = [ageRange, genders, degrees];
+
+	var participantID = {
+		type: 'survey-text',
+		questions: [{prompt: "Please enter your participant ID:", rows: 1, columns: 10}]
+	};
+	timeline.push(participantID);
 
 	var i;
 	for (i = 0; i < artSurveyQ.length; i++) {

@@ -1,0 +1,16 @@
+clear all
+close all
+
+image_base= '/Users/miles/Dropbox/AbArts/ArtsScraper/database'
+
+categories = {'abstract','colorFields','cubism','impressionism','leslie'}]
+
+image_names;
+
+for j=1:length(categories)
+    
+    name = [image_base, '/', categories{j}
+
+    listing = dir(name);
+    
+    image_names = listimg.name
