@@ -10,18 +10,19 @@ try
      if boolean(strfind(pwd, 'sandy'))
          
      elseif boolean(strfind(pwd, 'miles'))
-         load('/Users/miles/Dropbox/AbArts/analysis/data/features_global_all.mat'); 
+         image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
      else
-         load('D:\Dropbox\AbArts\analysis\data\features_global_all.mat');  %% image_file_names
+       
      end
+     
+    load('data/images/image_names.mat'); %% image_names, image_categories
+    
          
          
    % load('D:\Dropbox\AbArts\analysis\data\features_global_all.mat');  %% image_file_names
-    Im_folders = image_file_names.image_folder;
-    Im_names = image_file_names.image_names;
+   
     
     
-     image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
     % if boolean(strfind(pwd, 'sandy'))
     % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
     %    image_base = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/'
@@ -52,14 +53,18 @@ try
     
     % Set window pointer
     [wpt, rect] = Screen('OpenWindow', 0, [0, 0, 0], [0 0 800 600] *1.5); w = rect(3); h = rect(4);
+    
+   % [wpt, rect] = Screen('OpenWindow', 0, [0, 0, 0], [0 0 800 600] *5); w = rect(3); h = rect(4);
+    
+    
     %[wpt, rect] = Screen('OpenWindow', 1, [0, 0, 0]); w = rect(3); h = rect(4);
     Screen('BlendFunction', wpt, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     % Preparation
-    durITI = linspace(2,12,num_trials);
-    %durITI = linspace(1,2,num_trials);
+   % durITI = linspace(2,12,num_trials);
+    durITI = linspace(1,2,num_trials);
     durITI = durITI(randperm(num_trials));
-    durDEC = 3; durOUT = 0.5; durRES = 2.5;
+    durDEC = 10; durOUT = 1.5; durRES = 4;
     %durDEC = 1; durOUT = 1; durRES = 2;
     pst_V = [];
     for i = 1:num_trials
@@ -88,9 +93,9 @@ try
         % images are here
         
        % shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
-        shown_item = [Im_folders{item_idx(i)},'/' Im_names{item_idx(i)}]
+        shown_item = [image_base, image_categories{item_idx(i)}, '/' image_names{item_idx(i)}]
         time_DECstrt = GetSecs - time_zero;
-        disp_item(wpt, w, h, shown_item, durDEC);
+        disp_item(wpt, w*4, h, shown_item, durDEC);
         time_DECend = GetSecs - time_zero;
         time_DEC = [time_DEC; [time_DECstrt, time_DECend]];
     
@@ -127,7 +132,7 @@ try
         
         % OUTCOME (FEEDBACK)
         time_OUTstrt = GetSecs - time_zero;
-        disp_out(wpt, w, h, valueBDM, durOUT)
+        disp_out_v2(wpt, w, h, valueBDM, durOUT)
         time_OUTend = GetSecs - time_zero;
         time_OUT = [time_OUT; [time_OUTstrt, time_OUTend]];
         
@@ -141,7 +146,7 @@ try
     fname_log = ['logs/bdm_',num2str(run_idx),'_sub_',subID];
     save(fname_log,'value','item','pst_V');
     
-    durITI = 14;
+    durITI = 2;
     time_ITIstrt = GetSecs - time_zero;
     disp_fix(wpt, w, h, durITI)
     time_ITIend = GetSecs - time_zero;

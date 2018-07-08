@@ -44,10 +44,10 @@ var ArtExperiment = function() {
 
 	/* declare necessary variables */
 	var features_questions = [
-		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown? </br> <b>-2 = Abstract, -1 = Slightly Abstract, 0 = Neutral, 1 = Slight Concrete, 2 = Concrete</b> </p>",
-		"<p>On a scale of -2 = Still to 2 = Dynamic, what is the <em>Dynamicity</em> is the artwork shown? </br> <b>-2 = Still, -1 = Slightly Still, 0 = Neutral, 1 = Slight Dynamic, 2 = Dynamic</b> </p>",
-		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown? </br> <b>-2 = Warm, -1 = Slightly Warm, 0 = Neutral, 1 = Slight Cold, 2 = Cold</b> </p>",
-		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown? </br> <b>-2 = Negative, -1 = Slightly Negative, 0 = Neutral, 1 = Slight Positive, 2 = Positive</b> </p>"
+		"<p>On a scale of -2 = Abstract to 2 = Concrete, what is the <em>Realisticity</em> of the artwork shown? </br> <b>-2 = Abstract, -1 = Slightly Abstract, 0 = Neutral, 1 = Slightly Concrete, 2 = Concrete</b> </p>",
+		"<p>On a scale of -2 = Still to 2 = Dynamic, what is the <em>Dynamicity</em> is the artwork shown? </br> <b>-2 = Still, -1 = Slightly Still, 0 = Neutral, 1 = Slightly Dynamic, 2 = Dynamic</b> </p>",
+		"<p>On a scale of -2 = Warm to 2 = Cold, what is the <em>Temperature</em> of the artwork shown? </br> <b>-2 = Warm, -1 = Slightly Warm, 0 = Neutral, 1 = Slightly Cold, 2 = Cold</b> </p>",
+		"<p>On a scale of -2 = Negative to 2 = Positive, what is the <em>Valence</em> of the artwork shown? </br> <b>-2 = Negative, -1 = Slightly Negative, 0 = Neutral, 1 = Slightly Positive, 2 = Positive</b> </p>"
 	];
 
 	var features_options = ["-2", "-1", "0", "1", "2"];
@@ -269,6 +269,45 @@ var ArtExperiment = function() {
 	};
 	timeline.push(repeatConcInstructions);
 
+	var repeatDynaInstructions = {
+			timeline: [dynaExpInstr, fixation, qDynaEx, beginRealSurvey],
+			loop_function: function(data){
+					var data = jsPsych.data.get().last(1).values()[0];
+					console.log(data);
+					if(data.button_pressed == 0){
+							return true;
+					} else {
+							return false;
+					}
+			}
+	};
+
+	var repeatTempInstructions = {
+			timeline: [tempExpInstr, fixation, qTempEx, beginRealSurvey],
+			loop_function: function(data){
+					var data = jsPsych.data.get().last(1).values()[0];
+					console.log(data);
+					if(data.button_pressed == 0){
+							return true;
+					} else {
+							return false;
+					}
+			}
+	};
+
+	var repeatValeInstructions = {
+			timeline: [valeExpInstr, fixation, qValeEx, beginRealSurvey],
+			loop_function: function(data){
+					var data = jsPsych.data.get().last(1).values()[0];
+					console.log(data);
+					if(data.button_pressed == 0){
+							return true;
+					} else {
+							return false;
+					}
+			}
+	};
+
 	var concInstructions = {
 		type: 'html-button-response',
 		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
@@ -280,6 +319,39 @@ var ArtExperiment = function() {
 		response_ends_trial: true
 	};
 	timeline.push(concInstructions);
+
+	var dynaInstructions = {
+		type: 'html-button-response',
+		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
+		"<p><b>\"What is the DYNAMICITY the artwork shown?\"</b></br></p>"+
+		"<b>-2 = \'STILL\', -1 = \'SLIGHTLY STILL\', 0 = \'NEUTRAL\', 1 = \'SLIGHTLY DYNAMIC\',  and 2 = \'DYNAMIC\'.\"</b></br></p>" +
+		"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Begin the task!"],
+		response_ends_trial: true
+	};
+
+	var tempInstructions = {
+		type: 'html-button-response',
+		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
+		"<p><b>\"What is the TEMPERATURE the artwork shown?\"</b></br></p>"+
+		"<b>-2 = \'WARM\', -1 = \'SLIGHTLY WARM\', 0 = \'NEUTRAL\', 1 = \'SLIGHTLY COLD\',  and 2 = \'COLD\'.\"</b></br></p>" +
+		"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Begin the task!"],
+		response_ends_trial: true
+	};
+
+	var valeInstructions = {
+		type: 'html-button-response',
+		stimulus: "<p>In this part of survey, we ask you to answer the following question.</br></p>" +
+		"<p><b>\"What is the VALENCE the artwork shown?\"</b></br></p>"+
+		"<b>-2 = \'NEGATIVE\', -1 = \'SLIGHTLY NEGATIVE\', 0 = \'NEUTRAL\', 1 = \'SLIGHTLY POSITIVE\',  and 2 = \'POSITIVE\'.\"</b></br></p>" +
+		"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Begin the task!"],
+		response_ends_trial: true
+	};
 
 	var i;
 

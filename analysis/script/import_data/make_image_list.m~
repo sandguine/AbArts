@@ -3,14 +3,33 @@ close all
 
 image_base= '/Users/miles/Dropbox/AbArts/ArtsScraper/database'
 
-categories = {'abstract','colorFields','cubism','impressionism','leslie'}]
+categories = {'abstract','colorFields','cubism','impressionism','leslie'}
 
-image_names;
+%image_names=[];
+%image_categories=[];
+
+index=0
 
 for j=1:length(categories)
     
-    name = [image_base, '/', categories{j}
+    foldername = [image_base, '/', categories{j}];
 
-    listing = dir(name);
+    listing = dir(foldername);
     
-    image_names = listimg.name
+    for i= 1: length(listing)
+        
+        x=listing(i).name;
+        
+        if  x(1) ~= '.'
+            index=index+1;
+        
+    
+            image_names{index} = x;
+
+            image_categories{index} = categories{j};
+        end
+    end
+    
+end
+    
+   

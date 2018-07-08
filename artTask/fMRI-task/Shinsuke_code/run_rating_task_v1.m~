@@ -10,18 +10,19 @@ try
      if boolean(strfind(pwd, 'sandy'))
          
      elseif boolean(strfind(pwd, 'miles'))
-         load('/Users/miles/Dropbox/AbArts/analysis/data/features_global_all.mat'); 
-     elseif
-         load('D:\Dropbox\AbArts\analysis\data\features_global_all.mat');  %% image_file_names
+         image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+     else
+       
      end
+     
+    load('data/images/image_names.mat'); %% image_names, image_categories
+    
          
          
    % load('D:\Dropbox\AbArts\analysis\data\features_global_all.mat');  %% image_file_names
-    Im_folders = image_file_names.image_folder;
-    Im_names = image_file_names.image_names;
+   
     
     
-    % image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
     % if boolean(strfind(pwd, 'sandy'))
     % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
     %    image_base = '/Users/sandy/Dropbox/Caltech/AbArts/artTask/fMRI-task/Shinsuke_code/data/images/'
@@ -51,7 +52,11 @@ try
     num_trials = length(item_idx);
     
     % Set window pointer
-    [wpt, rect] = Screen('OpenWindow', 0, [0, 0, 0], [0 0 800 600] *1.5); w = rect(3); h = rect(4);
+  %  [wpt, rect] = Screen('OpenWindow', 0, [0, 0, 0], [0 0 800 600] *1.5); w = rect(3); h = rect(4);
+    
+   % [wpt, rect] = Screen('OpenWindow', 0, [0, 0, 0], [0 0 800 600] *5); w = rect(3); h = rect(4);
+    
+    
     %[wpt, rect] = Screen('OpenWindow', 1, [0, 0, 0]); w = rect(3); h = rect(4);
     Screen('BlendFunction', wpt, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
@@ -88,9 +93,9 @@ try
         % images are here
         
        % shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
-        shown_item = [Im_folders{item_idx(i)}, Im_names{item_idx(i)}]
+        shown_item = [image_base, image_categories{item_idx(i)}, '/' image_names{item_idx(i)}]
         time_DECstrt = GetSecs - time_zero;
-        disp_item(wpt, w, h, shown_item, durDEC);
+        disp_item(wpt, w*3, h, shown_item, durDEC);
         time_DECend = GetSecs - time_zero;
         time_DEC = [time_DEC; [time_DECstrt, time_DECend]];
     
