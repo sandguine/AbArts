@@ -16,48 +16,51 @@ os.chdir(cwd)
 #os.chdir(path)
 pattern = 'https?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+.jpg(?:!)'
 
-ab = open("abstract.txt", 'r')
-ab_str = ab.read()
+#ab = open("abstract.txt", 'r')
+#ab_str = ab.read()
 
-cb = open("cubism.txt", 'r')
-cb_str = cb.read()
+#cb = open("cubism.txt", 'r')
+#cb_str = cb.read()
 
-cf = open("colorField.txt", 'r')
-cf_str = cf.read()
+#cf = open("colorField.txt", 'r')
+#cf_str = cf.read()
 
 im = open("impressionism.txt", 'r')
 im_str = im.read()
 
-ab_pictures = re.findall(pattern, ab_str)
+#ab_pictures = re.findall(pattern, ab_str)
 
-cb_pictures = re.findall(pattern, cb_str)
+#cb_pictures = re.findall(pattern, cb_str)
 
-cf_pictures = re.findall(pattern, cf_str)
+#cf_pictures = re.findall(pattern, cf_str)
 
 im_pictures = re.findall(pattern, im_str)
 
-list = [ab_pictures, cb_pictures, cf_pictures, im_pictures]
+#list = [ab_pictures, cb_pictures, cf_pictures, im_pictures]
 
-ab_txt = open("ab_pics", 'w')
+#ab_txt = open("ab_pics.txt", 'w+')
 
-for ab in ab_pictures:
-  ab_txt.write("%s\n" % ab)
+#for ab in ab_pictures:
+#  ab_txt.write("%s\n" % ab)
+'''
+cb_txt = open("cb_pics.txt", 'w+')
 
-cb_txt = open("cb_pics", 'w')
 
 for cb in cb_pictures:
   cb_txt.write("%s\n" % cb)
 
-cf_txt = open("cf_pics", 'w')
+cf_txt = open("cf_pics.txt", 'w+')
 
 for cf in cf_pictures:
   cf_txt.write("%s\n" % cf)
+  
+'''
 
-im_txt = open("im_pics", 'w')
+im_txt = open("im_pics.txt", 'w+')
+
 
 for im in im_pictures:
   im_txt.write("%s\n" % im)
-
 
 
 
