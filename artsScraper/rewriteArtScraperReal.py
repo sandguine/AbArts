@@ -19,14 +19,22 @@ styles = ['ab', 'cb', 'cf' ] #, 'im']
 
 def getFiles():
     fileList = []
-    for file in glob.glob("*_pics.txt"):
-        im = open(file, 'r')
+    txtFiles = []
+    for file in glob.glob("*.txt"):
+        txtFiles.append(open(file, 'r'))
         fileList.append(file)
-    return fileList
+    return txtFiles
 
 txts = getFiles()
+strings = []
+urls = []
 
-for style in styles:
+for txt in txts:
+    strings.append(txt.read())
+
+for string in strings:
+    urls.append(re.findall(pattern, string))
+    
     
     
 #ab = open("abstract.txt", 'r')
