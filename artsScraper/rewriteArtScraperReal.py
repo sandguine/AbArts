@@ -12,28 +12,29 @@ import glob, os, re
 
 cwd = os.getcwd()
 os.chdir(cwd)
-<<<<<<< HEAD
-#path = '/Users/sandy/Dropbox/Caltech/AbArts/artsScraper/'
-#os.chdir(path)
-#pattern = 'https?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+.jpg(?:!)'
-pattern = 'https?://(.*?).jpg'
-=======
 
 pattern = 'https?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+.jpg(?:!)'
->>>>>>> ac6ce2d82f8c3331940d69f4cfbd1d64cf08f6bf
 
 styles = ['ab', 'cb', 'cf' ] #, 'im']
 
 def getFiles():
     fileList = []
-    for file in glob.glob("*_pics.txt"):
-        im = open(file, 'r')
+    txtFiles = []
+    for file in glob.glob("*.txt"):
+        txtFiles.append(open(file, 'r'))
         fileList.append(file)
-    return fileList
+    return txtFiles
 
 txts = getFiles()
+strings = []
+urls = []
 
-for style in styles:
+for txt in txts:
+    strings.append(txt.read())
+
+for string in strings:
+    urls.append(re.findall(pattern, string))
+    
     
     
 #ab = open("abstract.txt", 'r')
@@ -45,17 +46,17 @@ for style in styles:
 #cf = open("colorField.txt", 'r')
 #cf_str = cf.read()
 
-im = open("urls_txt/impressionism_abrev.txt", 'r')
-print('reading')
+im = open("impressionism.txt", 'r')
 im_str = im.read()
+
 #ab_pictures = re.findall(pattern, ab_str)
 
 #cb_pictures = re.findall(pattern, cb_str)
 
 #cf_pictures = re.findall(pattern, cf_str)
-print('finding all')
+
 im_pictures = re.findall(pattern, im_str)
-print(im_pictures)
+
 #list = [ab_pictures, cb_pictures, cf_pictures, im_pictures]
 
 #ab_txt = open("ab_pics.txt", 'w+')
@@ -78,12 +79,11 @@ for cf in cf_pictures:
 
 im_txt = open("im_pics.txt", 'w+')
 
-print('writing')
-for im in im_pictures:
-  im_txt.write("%s\n" % ('https://' + im + '.jpg!'))
 
-im_txt.close()
-print('done')
+for im in im_pictures:
+  im_txt.write("%s\n" % im)
+
+
 
 '''
 for style in styles:
