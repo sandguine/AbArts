@@ -7,7 +7,7 @@ import numpy as np
 import urllib.request
 
 
-categories = ['abstract', 'colorField', 'cubism']#, 'impressionism']
+categories = ['impressionism'] #['abstract', 'colorField', 'cubism']#, 'impressionism']
 
 for category in categories:
 	# get all names of currently saved images
@@ -17,7 +17,7 @@ for category in categories:
 	if category == 'abstract': cat = 'ab_pics'
 	elif category == 'colorField': cat = 'cf_pics'
 	elif category == 'cubism': cat = 'cb_pics'
-	elif category == 'impressionism': cat = 'impressionism'
+	elif category == 'impressionism': cat = 'im_pics'
 	else: print('error')
 	all_urls = np.loadtxt(cat + '.txt', dtype='str', delimiter='\n')
 	# find matching URL for each image
