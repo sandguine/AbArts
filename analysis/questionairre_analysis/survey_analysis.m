@@ -328,7 +328,7 @@ figure;bar3(feat_by_deg);
 ylabel('Features Considered');xlabel('Degree');
 
 
-%% Do people with different degrees tend to rate differently?
+%% Do people with different art degrees tend to rate differently?
 
 ratings_by_ad = zeros(4,2);
 
