@@ -194,7 +194,7 @@ var ArtExperiment = function() {
 				"<p>If you think this picture is <b>ABSTRACT</b>, please click on \"-2\"</p>",
 				"<p>If you think this picture is <b>SLIGHTLY ABSTRACT</b>, please click on \"-1\".</p>",
 				"<p>If you think this picture is <b>NEUTRAL</b>, please click on \"0\".</p>",
-				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please click on \"2\".</p>",
+				"<p>If you think this picture is <b>SLIGHTLY CONCRETE</b>, please click on \"1\".</p>",
 				"<p>If you think this picture is <b>CONCRETE</b>, please click on \"2\".</p>"
 		],
 		show_clickable_nav: true,

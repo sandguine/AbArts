@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+  The consent.html displays the text of your IRB-approved
+  consent form.  Even if you are not required to provide
+  a consent form, it is helpful to use this form to
+  describe what people can do if an error comes up, etc...
+
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Art Task - Informed Consent Form</title>
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="/static/css/style.css" type="text/css" />
+        <script type="text/javascript">
+            function onexit() {
+              self.close(); // no harm, no foul here
+            }
+        </script>
+    </head>
+    <body>
+        <div id="container-consent">
+            <div id="consent">
+                <h1>We need your consent to proceed</h1>
+                <hr />
+                <div class="legal well">
+                    <p>
+                      You are invited to participate in a brief survey that will be conducted online
+                      from the California Institute of Technology in the laboratory of Prof. John O’Doherty.
+                    </p>
+
+                    <p>
+                      This study has been evaluated by the California Institute of Technology, Institutional Review Board (IRB) and had been deemed exempted.
+                      This survey consists of a series of questions related to your subjective evaluations
+                      of artwork. These questions are designed to give us a snapshot of how people make
+                      decisions about artwork.
+                    </p>
+
+                    <p>
+                      We expect that these questions will take approximately 45 minutes of your
+                      time to complete. To compensate you for the time, we will provide you with a reimbursement
+                      of $15. The reimbursement will not depend on your answers; but failure to respond or complete
+                      the task may reduce your compensation.
+                    </p>
+
+                    <p>
+                      The data you provide will be collected through a secure online system called Amazon Mechanical Turk.
+                      The collected data will be fully anonymized and confidentiality will be maintained. We may report
+                      the data in scientific publications and the data may ultimately be stored in online repositories so
+                      that other researchers can utilize this information in future research. However, any such data will
+                      be completely anonymized and you will not in any way be identifiable from the data stored online or
+                      reported in publications.
+                    </p>
+
+                    <p>
+                      Your participation in this research study is voluntary. You are free to terminate your participation
+                      and forgo the $15 compensation at any time. If you have any questions or concerns, feel free to contact
+                      Dr. Kiyohito Iigaya at kiigaya[at]caltech.edu or Ms. Sandy Tanwisuth at kstanwis[at]caltech.edu.
+                    </p>
+
+                    <p>
+                      Please click below, to provide your consent to participate in this online survey or to decline to participate:
+                    </p>
+                    <button type="button" class="btn btn-default btn-sm" onClick="window.print();">
+                    <span class="glyphicon glyphicon-print"></span> Print a copy of this
+                    </button>
+                </div>
+
+                <hr />
+                <h4>Do you understand and consent to these terms?</h4>
+                <br />
+
+                <center>
+                    <button type="button" class="btn btn-primary btn-lg" onClick="window.location='/exp?hitId={{ hitid }}&assignmentId={{ assignmentid }}&workerId={{ workerid }}'">
+                    <span class="glyphicon glyphicon-ok"></span> I agree
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger btn-lg" onClick="onexit()">
+                    <span class="glyphicon glyphicon-ban-circle"></span> No thanks, I do not want to do this HIT
+                    </button>
+                </center>
+
+            </div>
+        </div>
+    </body>
+</html>
