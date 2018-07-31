@@ -2,23 +2,58 @@ function run_Art_Rating_v2(subID, eyetrack)
 %% Art rating task kiigaya@gmail.com, mostly based on Shinsuke Suzuki's code
 %% run_BDM1('000000a')
 
+mysterious_v=0;  %% I don't know what this is for... 
+
+pulseKeyCode = [KbName('5'), KbName('5%')];
+
+
+% define keys of interests
+var.leftKey   = [ KbName('9('), KbName('9') ];
+var.rightKey  = [ KbName('6^'), KbName('6') ];
+var.confKey1  = [ KbName('7&'), KbName('7') ];
+var.confKey2  = [ KbName('8*'), KbName('8') ];
+var.mycontrol = KbName('space');
+var.pulseKeyCode = [KbName('5'), KbName('5%')];
+
 try
     run_idx = 1;
     num_rep = 2;
     
     %image_folder = 'D:\Dropbox\AbArts\ArtTask\features-task\concreteness\static\images';
-     if boolean(strfind(pwd, 'sandy'))
-         
-     elseif boolean(strfind(pwd, 'miles'))
-         image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
-     else
-       
-     end
+%      if boolean(strfind(pwd, 'sandy'))
+%          
+%      elseif boolean(strfind(pwd, 'miles'))
+%          image_base='/Users/miles/Dropbox/AbArts/ArtsScraper/database/';
+%      else
+%        image_base='D:\Dropbox\AbArts\ArtsScraper\database\';
+%      end
      
     load('data/images/image_names.mat'); %% image_names, image_categories
     
     
+ 
     
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ % open PTS
+PsychDefaultSetup(1);% Here we call some default settings for setting up PTB
+screenNumber = max(Screen('Screens')); % check if there are one or two screens and use the second screen when if there is one
+if mysterious_v == 1
+    [wPtr,rect] = Screen('OpenWindow',screenNumber, [0 0 0]);
+else
+    [wPtr,rect] = Screen('OpenWindow',screenNumber, [100 100 100], [20 20 500 500]);
+end
+
+%data.screen = rect;
+%var.favoriteUS_1 = str2double (input('skittles:1, raisins:2, chocoRaisins:3, YoguRaisins:4, M&Ms:5, chocoCoco:6, chocoRise:7, chocoAlmond:8, or chocoDrop:9 ?\n  (1 2 3 4 5 6 7 8 or 9) ','s'));
+%var.favoriteUS_2 = str2double (input('pretzelStick:10, patatoStick:11, miniPretzel:12, Ritz:13, cracker:14, popcorn:15, cashew:16, chaddarCracker:17 or peanuts:18 ? \n(10 11 12 13 14 15 16 17 or 18) ','s'));
+%var.session      = str2double (input('session 1 2 3?', 's'));
+
+%[resultFile, participantID, resultName] = createResultFile(var.session);
+%data.SubDate= datestr(now, 24); % Use datestr to get the date in the format dd/mm/yyyy
+%data.SubHour= datestr(now, 13); % Use datestr to get the time in the format hh:mm:ss
+%save(resultFile,'data'); % We save immediately the session's informations
+
+
     
     
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -146,14 +181,14 @@ Screen('FillRect', wPtr, [0 0 0]); % reset blackground
 
 %%%%%%%%%%%%%%%% Syncronize stimuli and EL with scanner Pulse %%%%%%%%%%%%%
 
-showInstruction(wPtr,'instructions/wait.txt');
+%showInstruction(wPtr,'instructions/wait.txt');
 triggerscanner = 0;
 WaitSecs(0.4);
 while ~triggerscanner
     [down, secs, keycode, d] = KbCheck(-3,2);
     keyresp = find(keycode);
     if (down == 1)
-        if ismember (keyresp, var.pulseKeyCode)
+        if ismember (keyresp, pulseKeyCode)
             triggerscanner = 1;
         end
     end
@@ -193,7 +228,9 @@ end
         % images are here
         
        % shown_item = ['data/imgs/item_',num2str(item_idx(i)),'.jpg'];
-        shown_item = [image_base, image_categories{item_idx(i)}, '/' image_names{item_idx(i)}]
+        shown_item = ['data/images/', image_categories{item_idx(i)}, '/' image_names{item_idx(i)}];
+        
+      %  shown_item = [image_base, image_categories{item_idx(i)}, '/' image_names{item_idx(i)}]
         time_DECstrt = GetSecs - time_zero;
         
         if eyetrack
@@ -286,6 +323,18 @@ end
     
     fname_log_time = ['logs/bdm_',num2str(run_idx),'_sub_',subID,'_time'];
     save(fname_log_time, 'time_ITI','time_DEC','time_RES','time_OUT');
+    
+    
+
+    if eyetrack % close and save eyelink
+
+        Eyelink('StopRecording')
+        Eyelink('CloseFile');
+        status = Eyelink('ReceiveFile'); % dowload file 
+        Eyelink('Shutdown');
+
+    end
+
     
     Screen('CloseAll');
 
