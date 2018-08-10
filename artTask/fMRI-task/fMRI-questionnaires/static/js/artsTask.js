@@ -57,21 +57,32 @@ var ArtExperiment = function() {
 							"Native Hawaiian and Other Pacific Islander", "White or Caucasian"];
 	var ses = ["Less than $5,000", "$5,000 through $11,999", "$12,000 through $15,999",
 						"$16,000 through $24,999", "$25,000 through $34,999", "$35,000 through $49,999",
-						"$50,000 through $74,999", "$75,000 through $99,999", "$100,000 and greater",
-						"Don't know", "Choose not to answer"];
-	var features = ["Color", "Composition", "Meaning/Content", "Texture/Brushstrokes",
-								"Shape", "Perspective", "Feeling of Motion", "Balance", "Style",
-								"Mood", "Originality", "Unity", "Others"];
+						"$50,000 through $74,999", "$75,000 through $99,999", "$100,000 and greater", "Don't know"];
+	var features = ["Color", "Complexity", "Composition", "Familiarity", "Meaning/Content", "Texture/Brushstrokes", "Quality of Techniques Used",
+								"Shape", "Perspective", "Feeling of Motion", "Balance", "Style", "Historical Context", "Symmetry", "Mood", "Originality", "Unity"];
 			features = jsPsych.randomization.shuffle(features);
+			features = features.push("Others");
 	var artSurveyQ = ["Do you have a degree in fine arts or art history?", "How often do you visit arts museum?"];
 	var postSurveyQ = ["How old are you?", "Which gender do you most closely identify yourself as?", "Please select the highest degree you have earned?",
 	"Which of these categories best describes your total combined family income for the past 12 months?"];
 	var arrayofartchoices = [yesNo, artMuseum];
-	var arrayofchoices = [ageRange, genders, ses, degrees];
+	var arrayofchoices = [ageRange, genders, degrees, ses];
+
+	var surveyIntro = {
+		type: "html-button-response",
+		stimulus: "<p>You are almost done!</p>" +
+					"<p>Please answer a few more questions. For demographic questions, if you prefer not to answer please leave it blank and press continue.</p>"
+					"<p>Click on the button below to begin.</p>",
+		post_trial_gap: 0,
+		choices: ["Next \>"],
+		response_ends_trial: true
+	};
+	timeline.push(surveyIntro);
 
 	var participantID = {
 		type: 'survey-text',
-		questions: [{prompt: "Please enter your participant ID:", rows: 1, columns: 10}]
+		questions: [{prompt: "Please enter your participant ID:", rows: 1, columns: 10}],
+		required: true
 	};
 	timeline.push(participantID);
 
@@ -81,26 +92,26 @@ var ArtExperiment = function() {
 				type: 'survey-multi-choice',
 				questions: [{prompt: artSurveyQ[i], options: arrayofartchoices[i], required: true}]
 			};
-			//timeline.push(artSur);
+			timeline.push(artSur);
 	}
 
 	var featuresQ = {
 		type: 'survey-multi-select',
-		questions: [{prompt: "What are the important factors you concerned with when judging a piece of artwork?", options: features, required: true}]
+		questions: [{prompt: "What are the important factors you are concerned with when judging a piece of artwork?", options: features, required: true}]
 	};
-	//timeline.push(featuresQ);
+	timeline.push(featuresQ);
 
 	var otherFeatures = {
 		type: 'survey-text',
-		questions: [{prompt: "Are there other factors you concerned with when judging a piece of artwork? Please type them down in the box below.", rows: 5, columns: 100}]
+		questions: [{prompt: "Are there other factors you are concerned with when judging a piece of artwork? Please type them down in the box below.", rows: 5, columns: 100}]
 	};
-	//timeline.push(otherFeatures);
+	timeline.push(otherFeatures);
 
 	var raceQ = {
 		type: 'survey-multi-select',
 		questions: [{prompt: "Which ethnicity or ethnicities do you closely identify yourself as?", options: races, required: false}]
 	};
-	//timeline.push(raceQ);
+	timeline.push(raceQ);
 
 	var i;
 	for (i = 0; i < postSurveyQ.length; i++) {
@@ -108,7 +119,7 @@ var ArtExperiment = function() {
 				type: 'survey-multi-choice',
 				questions: [{prompt: postSurveyQ[i], options: arrayofchoices[i], required: false}]
 			};
-			//timeline.push(surveyQ);
+			timeline.push(surveyQ);
 	}
 
 	var suggestionsBox = {
