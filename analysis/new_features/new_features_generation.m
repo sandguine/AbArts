@@ -131,7 +131,7 @@ end
 %% Image Segmentation - by texture
 % https://www.mathworks.com/help/images/examples/texture-segmentation-using-texture-filters.html
 close all;
-for i=383:length(ims)
+for i=1:length(ims)
     if mod(i,50)==0
         fprintf('.');
     end
@@ -139,7 +139,7 @@ for i=383:length(ims)
     if size(im,3) ~= 3
         continue;
     end
- %    figure;subplot(1,3,1);imshow(im);
+     figure;subplot(1,3,1);imshow(im);
     im = rgb2gray(im);
 %     subplot(1,3,2);imshow(im);
     Eim = entropyfilt(im);
@@ -154,7 +154,7 @@ for i=383:length(ims)
     closeBWao = imclose(BWao,nhood);
     % figure;imshow(closeBWao);
     roughMask = imfill(closeBWao,'holes');
-    %subplot(1,3,3);imshow(roughMask);
+    subplot(1,3,3);imshow(roughMask);
     cnt = 37;
     new_feats(i,cnt) = sum(sum(roughMask==1)) - sum(sum(roughMask==0));
     
@@ -178,6 +178,9 @@ for i=383:length(ims)
         new_feats(i,cnt+12) = entropy(im(roughMask==1)) - entropy(im(roughMask==0));
     end
     
+    for plus = 0:12
+        new_feats(i,cnt+plus) = new_feats(i,cnt+plus)/(size(im,1)*size(im,2));
+    end
 end
 %clearvars -except ims new_feats
 
@@ -275,7 +278,7 @@ for i=1:length(ims)
     end
     %     figure;subplot(1,2,1);imshow(im);
     [counts, ~] = imhist(im,10);
-    new_feats(i,52:61) = counts;
+    new_feats4(i,52:61) = counts/(size(im,1)*size(im,2));
 end
 
 %% Image Quality Measurements
@@ -310,8 +313,8 @@ for i=1:length(ims)
         continue;
     end
     im = rgb2gray(im);
-    new_feats4(i,63) = immse(im, fliplr(im));
-    new_feats4(i,64) = immse(im, flipud(im));
+    new_feats(i,63) = immse(im, fliplr(im));
+    new_feats(i,64) = immse(im, flipud(im));
 end
 %clearvars -except ims new_feats
 
@@ -491,7 +494,8 @@ for i=1:length(ims)
         end
     end
     cnt = 68;
-    new_feats(i,cnt) = nonZeroPixel/(rows*columns);
+    new_feats(i,cnt) = nonZeroPixel/(rows*columns); % how many colors
+    %rgb range
     new_feats(i,cnt+1) = min(r);
     new_feats(i,cnt+2) = max(r);
     new_feats(i,cnt+3) = min(g);
@@ -559,5 +563,5 @@ for i=1:length(ims)
     hist(r2,g2,b2) = 0;
     m3 = max(max(max(hist)));
     [r3,g3,b3] = ind2sub(size(hist), find(hist == m3));
-    new_feats4(i,84:95) = [r1 g1 b1 r2 g2 b2 r3 g3 b3 m1 m2 m3];
+    new_feats(i,84:95) = [r1 g1 b1 r2 g2 b2 r3 g3 b3 m1 m2 m3];
 end
