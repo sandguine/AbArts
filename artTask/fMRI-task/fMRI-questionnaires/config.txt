@@ -13,7 +13,7 @@ browser_exclude_rule = None
 allow_repeats = false
 
 [Database Parameters]
-database_url = postgres://uifpqmexcmxapn:17ba0c4f46a91b2a876f6be83dd625b7df1618d2c2aaee65a77703de66968e0c@ec2-184-73-174-171.compute-1.amazonaws.com:5432/df0oq273aqgebt
+database_url = postgres://vkhfflgangmsxs:61d788659b6c64472712fc7d088e0304ba1af1e384cd0a6e4b7b1f6b06cc2268@ec2-50-16-196-138.compute-1.amazonaws.com:5432/d18l589p3e8ros
 table_name = artTask
 
 [Server Parameters]
@@ -45,4 +45,4 @@ launch_in_sandbox_mode = true
 #   https://<host>:<port>/ad 
 
 use_psiturk_ad_server = false
-ad_location = https://floating-harbor-34847.herokuapp.com/pub
+ad_location = https://peaceful-escarpment-18152.herokuapp.com/pub
