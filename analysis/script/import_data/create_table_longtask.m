@@ -248,7 +248,7 @@ end
 maintask_table=table(name_maintask,sub_id,trial_type,trial_type_1or2, Response,button_order,response_meaning, RT,image_path);
 
 
-name_file_1='main_task_long_v1';
+name_file_1='main_task_long_v2';
 
 if boolean(strfind(pwd, 'sandy'))
     % savdir = '/Users/sandy/Dropbox/Caltech/AbArts/analysis/data';
