@@ -61,7 +61,7 @@ var ArtExperiment = function() {
 	var features = ["Color", "Complexity", "Composition", "Familiarity", "Meaning/Content", "Texture/Brushstrokes", "Quality of Techniques Used",
 								"Shape", "Perspective", "Feeling of Motion", "Balance", "Style", "Historical Context", "Symmetry", "Mood", "Originality", "Unity"];
 			features = jsPsych.randomization.shuffle(features);
-			features = features.push("Others");
+			features = features.concat("Others");
 	var artSurveyQ = ["Do you have a degree in fine arts or art history?", "How often do you visit arts museum?"];
 	var postSurveyQ = ["How old are you?", "Which gender do you most closely identify yourself as?", "Please select the highest degree you have earned?",
 	"Which of these categories best describes your total combined family income for the past 12 months?"];
@@ -71,7 +71,8 @@ var ArtExperiment = function() {
 	var surveyIntro = {
 		type: "html-button-response",
 		stimulus: "<p>You are almost done!</p>" +
-					"<p>Please answer a few more questions. For demographic questions, if you prefer not to answer please leave it blank and press continue.</p>"
+					"<p>Please answer a few more questions.</p>" +
+					"<p>For demographic questions, if you prefer not to answer please leave it blank and press continue.</p>"+
 					"<p>Click on the button below to begin.</p>",
 		post_trial_gap: 0,
 		choices: ["Next \>"],
@@ -106,6 +107,12 @@ var ArtExperiment = function() {
 		questions: [{prompt: "Are there other factors you are concerned with when judging a piece of artwork? Please type them down in the box below.", rows: 5, columns: 100}]
 	};
 	timeline.push(otherFeatures);
+
+	var colorOpinions = {
+		type: 'image-button-response'
+		questions:
+	};
+	timeline.push(colorOpinions);
 
 	var raceQ = {
 		type: 'survey-multi-select',
