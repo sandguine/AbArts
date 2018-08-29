@@ -87,7 +87,7 @@ end
 
 figure;
 for d = 1:4
-subplot(2,2,d);imagesc(ppt_rsquared_results(:,:,d));colorbar;title(feat_labels{d});xlabel('participant');ylabel('category');caxis([-.75 .75]);
+subplot(2,2,d);imagesc(ppt_rsquared_results(:,:,d));colorbar;title(feat_labels{d});xlabel('participant');ylabel('category');caxis([-1 1]);
 set(gca, 'YTick', yticks, 'YTickLabel', ylabels);
 end
 
@@ -110,7 +110,7 @@ for rID=participants
                         temp(:,mapping(rID)) vale(:,mapping(rID))]];
     RATE_VEC = [RATE_VEC; ratings(:,rID)];
 end
-
+FEAT
 FEAT_VEC = zscore(FEAT_VEC);
 RATE_VEC = zscore(RATE_VEC);
 for c=1:length(categories)-1
@@ -118,18 +118,19 @@ for c=1:length(categories)-1
     cstart = categories(c); cend = categories(c+1)-1;
     high_featsc = [];
     ratingsc = [];
-    for rID=1:length(participants)
-        high_featsrID = FEAT_VEC(1001*(rID-1)+1 : 1001*rID,:);
-        % high_featsrIDz = zscore(high_featsrID);            
+    for rID=participants
+        high_featsrID = [conc(:,mapping(rID)) dyna(:,mapping(rID)) ...
+                        temp(:,mapping(rID)) vale(:,mapping(rID))];
+        high_featsrIDz = zscore(high_featsrID);            
         high_featsc = [high_featsc; high_featsrIDz(cstart:cend,:)];
-        ratingsrID = RATE_VEC(1001*(rID-1)+1 : 1001*rID,:);
+        ratingsrIDz = zscore(ratings(:,rID));
         ratingsc = [ratingsc; ratingsrID(cstart:cend,:)];
     end
     lm = fitlm(high_featsc, ratingsc, 'linear');
     rsquared_results(c) = lm.Rsquared.Adjusted;
     weight_results(c, :) = lm.Coefficients.Estimate(2:end); 
 end
-figure;imagesc(weight_results);xlabel('category');ylabel('feature');caxis([-.75 .75]);colorbar;
+figure;imagesc(weight_results);xlabel('category');ylabel('feature');caxis([-.1 1]);colorbar;
 set(gca, 'XTick', xticks, 'XTickLabel', xlabels,'YTick', yticks, 'YTickLabel', ylabels);
 
     
