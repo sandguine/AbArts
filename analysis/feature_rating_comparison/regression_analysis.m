@@ -55,7 +55,85 @@ for rating=[1:3 5:7]
     lm = fitlm(X,y,'linear');
     disp(lm.Rsquared.Adjusted);
 end
+
+%% Regression by Painting Category
+% Impressionism: 1:204
+% Abstract: 205:417
+% ColorFields: 418:621
+% Cubism: 622:826
+% Leslie: 827:1001
+
+categories = [1 205 418 622 827 1002];
+participants = [1 2 3 5 6 7];
+ppt_rsquared_results = zeros(length(categories)-1, max(participants), 4); % 4 = 4 feature weights
+
+% do separate regression within each category
+for rID=participants
+    % get features and ratings for current participant
+    high_featsrID = [conc(:,mapping(rID)) dyna(:,mapping(rID)) ...
+        temp(:,mapping(rID)) vale(:,mapping(rID))];
+    ratingsrID = ratings(:,rID);
+    high_featsrIDz = zscore(high_featsrID);
+    ratingsrIDz = zscore(ratingsrID);
+    for c=1:length(categories)-1
+        % now get rID's features and ratings in the current category
+        cstart = categories(c); cend = categories(c+1)-1;
+        high_featsrIDzc = high_featsrIDz(cstart:cend,:);
+        ratingsrIDzc = ratingsrIDz(cstart:cend,:);
+        lm = fitlm(high_featsrIDzc, ratingsrIDzc, 'linear');
+        ppt_rsquared_results(c, rID,:) = lm.Coefficients.Estimate(2:end);
+    end
+end
+
+figure;
+for d = 1:4
+subplot(2,2,d);imagesc(ppt_rsquared_results(:,:,d));colorbar;title(feat_labels{d});xlabel('participant');ylabel('category');caxis([-.75 .75]);
+set(gca, 'YTick', yticks, 'YTickLabel', ylabels);
+end
+
+%% Regression by Category Over All Participants
+
+% Impressionism: 1:204
+% Abstract: 205:417
+% ColorFields: 418:621
+% Cubism: 622:826
+% Leslie: 827:1001
+
+categories = [1 205 418 622 827 1002];
+participants = [1 2 3 5 6 7];
+weight_results = zeros(length(categories)-1, 4); % 4 = 4 feature weights
+rsquared_results = zeros(length(categories)-1,1);
+FEAT_VEC = [];
+RATE_VEC = [];
+for rID=participants
+    FEAT_VEC = [FEAT_VEC; [conc(:,mapping(rID)) dyna(:,mapping(rID)) ...
+                        temp(:,mapping(rID)) vale(:,mapping(rID))]];
+    RATE_VEC = [RATE_VEC; ratings(:,rID)];
+end
+
+FEAT_VEC = zscore(FEAT_VEC);
+RATE_VEC = zscore(RATE_VEC);
+for c=1:length(categories)-1
+    % now get rID's features and ratings in the current category
+    cstart = categories(c); cend = categories(c+1)-1;
+    high_featsc = [];
+    ratingsc = [];
+    for rID=1:length(participants)
+        high_featsrID = FEAT_VEC(1001*(rID-1)+1 : 1001*rID,:);
+        % high_featsrIDz = zscore(high_featsrID);            
+        high_featsc = [high_featsc; high_featsrIDz(cstart:cend,:)];
+        ratingsrID = RATE_VEC(1001*(rID-1)+1 : 1001*rID,:);
+        ratingsc = [ratingsc; ratingsrID(cstart:cend,:)];
+    end
+    lm = fitlm(high_featsc, ratingsc, 'linear');
+    rsquared_results(c) = lm.Rsquared.Adjusted;
+    weight_results(c, :) = lm.Coefficients.Estimate(2:end); 
+end
+figure;imagesc(weight_results);xlabel('category');ylabel('feature');caxis([-.75 .75]);colorbar;
+set(gca, 'XTick', xticks, 'XTickLabel', xlabels,'YTick', yticks, 'YTickLabel', ylabels);
+
     
+
 %% Neural Net
 % X = [];
 % y = [];
