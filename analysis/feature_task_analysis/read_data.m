@@ -5,7 +5,7 @@ NUM_IMGS = 1001;
 formatSpec = '%q%f%f%q%[^\n\r]';
 delimiter = ',';
 
-for c=1:4
+for c=3
     % load data
     fname = [file_path categories{c} '/trialdata.csv'];
     fileID = fopen(fname, 'r');
@@ -19,7 +19,14 @@ for c=1:4
     % find trial starts and ends to distinguish between classifiers
     seq = table2array(data(:,2));
     starts = find(seq==0);
+    if c==3
+        starts = sort(union(starts, [44509]));
+    end
     ends = [starts(2:end)-1; length(seq)];
+
+    disp(starts);
+    disp(ends);
+
     dif = ends-starts;
     ends(find(dif<100))=[];
     starts(find(dif<100))=[];
