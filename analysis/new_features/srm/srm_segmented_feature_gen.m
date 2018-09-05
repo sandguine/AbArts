@@ -60,22 +60,22 @@ end
 
 %% load masks
 
-% load('region_masks1.mat');
-% load('region_masks2.mat');
-% load('region_masks3.mat');
-% load('region_masks4.mat');
-% load('region_masks5.mat');
-% 
-% masks = [region_masks1 region_masks2 region_masks3 region_masks4 region_masks5];
-masks = region_masks;
+load('region_masks12.mat');
+load('region_masks22.mat');
+load('region_masks32.mat');
+load('region_masks42.mat');
+load('region_masks52.mat');
+
+masks = [region_masks1; region_masks2; region_masks3; region_masks4; region_masks5];
+% masks = region_masks;
 %% Initialize New Feature Set
 seg_feats = zeros(NUM_IMGS, 100);
-top_clusters = 3;
+num_clusters = 3;
 
 %% Calculate Relative Cluster Sizes For Each Image Beforehand
 % and also store percent sizes of top 3 as features
 orders = zeros(NUM_IMGS, num_clusters);
-for i=1:length(ims)
+for i=1 %:length(ims)
     curr_feat = 1;
 
     if mod(i,100)==0
@@ -99,11 +99,11 @@ for i=1:length(ims)
     % store orders for later
     orders(i,:) = cluster_sizes(1:3,1)';
     % store sizes as features
-    for c=1:3
-        seg_feats(i,curr_feat) = cluster_sizes(c,2)/(size(im,1)*size(im,2));
-        curr_feat = curr_feat + 1;
-
-    end 
+%     for c=1:3
+%         seg_feats(i,curr_feat) = cluster_sizes(c,2)/(size(im,1)*size(im,2));
+%         curr_feat = curr_feat + 1;
+% 
+%     end 
 end
 %% Mean Hue, saturation, color value Per Segment
 % This should address most color considerations
@@ -340,8 +340,8 @@ end
 %% Symmetry by Segment
 fprintf('\n');
 
-for i=1:length(ims)
-    curr_feat = 38;
+for i=1 %:length(ims)
+    curr_feat = 70;
     if mod(i,100)==0
         fprintf('.');
     end
@@ -386,9 +386,13 @@ for i=1:length(ims)
             end
         end
         cropped = mask(min_up:min_down, min_left:min_right);
-        seg_feats(i,curr_feat) = immse(cropped, fliplr(cropped));
-        curr_feat = curr_feat + 1;
-        seg_feats(i,curr_feat) = immse(cropped, flipud(cropped));
-        curr_feat = curr_feat + 1;
+        figure;imagesc(cropped);
+        figure;imagesc(fliplr(cropped));
+        figure;imagesc(flipud(cropped));
+        area = (min_down-min_up)*(min_right-min_left);
+%         all_feats_reduced2(i,curr_feat) = immse(cropped, fliplr(cropped))/area;
+%         curr_feat = curr_feat + 1;
+%         all_feats_reduced2(i,curr_feat) = immse(cropped, flipud(cropped))/area;
+%         curr_feat = curr_feat + 1;
     end
 end

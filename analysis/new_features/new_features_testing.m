@@ -25,7 +25,7 @@ for i=1:length(ims)
     % repeat the clustering 3 times to avoid local minima
     [cluster_idx, cluster_center] = kmeans(ab,nColors,'distance','sqEuclidean', 'Replicates',3);
     pixel_labels = reshape(cluster_idx,nrows,ncols);
-    % figure;imshow(pixel_labels,[]), title('image labeled by cluster index');
+    figure;imshow(pixel_labels,[]), title('image labeled by cluster index');
     
     segmented_images = cell(1,3);
     rgb_label = repmat(pixel_labels,[1 1 3]);
@@ -36,12 +36,11 @@ for i=1:length(ims)
         segmented_images{k} = color;
     end
 
-    figure;imshow(segmented_images{1}), title('objects in cluster 1');
-    figure;imshow(segmented_images{2}), title('objects in cluster 2');
-    figure;imshow(segmented_images{3}), title('objects in cluster 3');
+%     figure;imshow(segmented_images{1}), title('objects in cluster 1');
+%     figure;imshow(segmented_images{2}), title('objects in cluster 2');
+%     figure;imshow(segmented_images{3}), title('objects in cluster 3');
 
 end
-clearvars -except ims
 %% Image Segmentation - by watershed segmentation
 % https://www.mathworks.com/help/images/examples/marker-controlled-watershed-segmentation.html?prodcode=IP&language=en
 close all;

@@ -14,22 +14,22 @@ temp = temp.classifications;
 vale = load('../feature_task_analysis/valence_data.mat');
 vale = vale.classifications;
 
-% Load Li-Features
-glbl = load('../data/features_global_all.mat');
-lcl = load('../data/features_local_all.mat');
-li_feats = [glbl.image_features(:,[1:6 8:end]) lcl.image_features(:,13:39)];
-
-% Load New Low-Level Features
-load('../new_features/new_feats4.mat');
-% using seg_feats as well.
+% % Load Li-Features
+% glbl = load('../data/features_global_all.mat');
+% lcl = load('../data/features_local_all.mat');
+% li_feats = [glbl.image_features(:,[1:6 8:end]) lcl.image_features(:,13:39)];
+% 
+% % Load New Low-Level Features
+% load('../new_features/new_feats4.mat');
+% % using seg_feats as well.
 
 % Load Ratings and Response Times
-trial_data = load('trial_data.mat');
+trial_data = load('../feature_rating_comparison/trial_data.mat');
 ratings = trial_data.classifications;
 rts = trial_data.response_times;
 
 % Features to Ratings Mapping
-mapping = [12 11 10 nan 6 7 8];
+mapping = [12 11 10 13 6 7 8];
 % (get the rating-th cell for the corresponding feature ID)
 
 %% Leave-one-out Regression
@@ -135,15 +135,15 @@ ylim([-.03 .005]);
 
 %% Let's determine which features are best by their linreg weights instead of rsquared
 
-ALL_FEATS = all_feats_reduced2(:,no_third);
+ALL_FEATS = all_feats_reduced3(:,:);
 num_weights = 1:size(ALL_FEATS,2);
 rsquareds = zeros(length(num_weights), 7);
 
 WEIGHTS = zeros(size(ALL_FEATS,2),7); % store feature weights for each person
-for nw=num_weights
+% for nw=num_weights
     ratings(ratings==6)=0;
     % Do analysis for each participant separately 
-    for rID=[1:3 5:7]
+    for rID=[1:7]
         % Combine all features
         %high_feats = [conc(:,mapping(rID)) dyna(:,mapping(rID)) temp(:,mapping(rID)) vale(:,mapping(rID))];
         %ALL_FEATS = [high_feats li_feats seg_feats new_feats4 ppl];
@@ -158,16 +158,14 @@ for nw=num_weights
     %     PCA_FEATS = ALL_FEATSz * coeff(:,1:90);
 
         % first do full regression as baseline
-        lm = fitlm(ALL_FEATSz(:,I(1:nw)), zscore(ratings(:,rID)), 'linear');
-        if nw==45
-            fprintf(['Rating Participant: ' num2str(rID) ...
-                '    Adj R-Squared: ' num2str(lm.Rsquared.Adjusted) ...
-                '    RMSE: ' num2str(lm.RMSE) '\n']);
-        end
-        %WEIGHTS(:,rID) = lm.Coefficients.Estimate(2:end);
-        rsquareds(nw,rID) = lm.Rsquared.Adjusted;
+        lm = fitlm(ALL_FEATSz(:,:), zscore(ratings(:,rID)), 'linear');
+        fprintf(['Rating Participant: ' num2str(rID) ...
+            '    Adj R-Squared: ' num2str(lm.Rsquared.Adjusted) ...
+            '    RMSE: ' num2str(lm.RMSE) '\n']);
+        WEIGHTS(:,rID) = lm.Coefficients.Estimate(2:end);
+        %rsquareds(nw,rID) = lm.Rsquared.Adjusted;
     end
-end
+%end
 
 %%
 figure;plot(1:size(ALL_FEATS,2), rsquareds);xlabel('Number of Features, Ordered by Descending Weight Magnitude'); ylabel('Adjusted R-squared');
@@ -175,18 +173,18 @@ xticks = 1:size(ALL_FEATS,2);
 xlabels = feature_names_reduced2(no_third);
 xlabels = xlabels(I);
 set(gca, 'Xtick', xticks, 'XTicklabel', xlabels);xtickangle(45);
-
 %% Plot WEIGHTS mean and std with feature labels
 mweights = mean(abs(WEIGHTS(:,[1:3 5:7])),2);
 sweights = std(abs(WEIGHTS(:,[1:3 5:7]))')';
 [~,I] = sort(mweights,'descend');
 xticks = 1:size(WEIGHTS,1);
-xlabels = feature_names_reduced2;
+xlabels = feature_names_reduced3;
 xlabels = xlabels(I);
 figure;errorbar(1:size(WEIGHTS,1),mweights(I),sweights(I),'or'); grid on; set(gca, 'Xtick', xticks, 'XTicklabel', xlabels);xtickangle(45);
 ylabel('Feature Weight');
 xlabel('Feature');
 title('Mean and Standard Deviation of Feature Weights Across Participants 1:7');
+
 %% changing weight threshold
 threshs = .15;
 rsquareds = zeros(length(threshs), 7);

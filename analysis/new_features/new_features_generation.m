@@ -2,6 +2,7 @@
 
 NUM_FEATS = 100;
 NUM_IMGS = 1001;
+
 new_feats = zeros(NUM_IMGS, NUM_FEATS);
 
 %% Construct collection of images to calculate features for
@@ -139,7 +140,7 @@ for i=1:length(ims)
     if size(im,3) ~= 3
         continue;
     end
-     figure;subplot(1,3,1);imshow(im);
+    % figure;subplot(1,3,1);imshow(im);
     im = rgb2gray(im);
 %     subplot(1,3,2);imshow(im);
     Eim = entropyfilt(im);
@@ -154,33 +155,33 @@ for i=1:length(ims)
     closeBWao = imclose(BWao,nhood);
     % figure;imshow(closeBWao);
     roughMask = imfill(closeBWao,'holes');
-    subplot(1,3,3);imshow(roughMask);
+    % subplot(1,3,3);imshow(roughMask);
     cnt = 37;
-    new_feats(i,cnt) = sum(sum(roughMask==1)) - sum(sum(roughMask==0));
+    final_new_feats(i,19) = (sum(sum(roughMask==1)) - sum(sum(roughMask==0)))/(size(im,1)*size(im,2));
     
-    third_x = round(size(roughMask,1)/3); third_y = round(size(roughMask,2)/3);
+%     third_x = round(size(roughMask,1)/3); third_y = round(size(roughMask,2)/3);
+%     
+%     final_new_feats(i,cnt+1) = sum(sum(roughMask(1:third_x,1:third_y)==1)) - sum(sum(roughMask(1:third_x,1:third_y)==0));
+%     final_new_feats(i,cnt+2) = sum(sum(roughMask(third_x+1:2*third_x+1, 1:third_y)==1)) - sum(sum(roughMask(third_x+1:2*third_x+1, 1:third_y)==0));
+%     final_new_feats(i,cnt+3) = sum(sum(roughMask(2*third_x+2:end, 1:third_y)==1)) - sum(sum(roughMask(2*third_x+2:end, 1:third_y)==0));
+%    
+%     final_new_feats(i,cnt+4) = sum(sum(roughMask(1:third_x,third_y+1:2*third_y+1)==1)) - sum(sum(roughMask(1:third_x, third_y+1:2*third_y+1)==0));
+%     final_new_feats(i,cnt+5) = sum(sum(roughMask(third_x+1:2*third_x+1, third_y+1:2*third_y+1)==1)) - sum(sum(roughMask(third_x+1:2*third_x+1, third_y+1:2*third_y+1)==0));
+%     final_new_feats(i,cnt+6) = sum(sum(roughMask(2*third_x+2:end, third_y+1:2*third_y+1)==1)) - sum(sum(roughMask(2*third_x+2:end, third_y+1:2*third_y+1)==0));
+%     
+%     final_new_feats(i,cnt+7) = sum(sum(roughMask(1:third_x, 2*third_y+2:end)==1)) - sum(sum(roughMask(1:third_x,2*third_y+2:end)==0));
+%     final_new_feats(i,cnt+8) = sum(sum(roughMask(third_x+1:2*third_x+1, 2*third_y+2:end)==1)) - sum(sum(roughMask(third_x+1:2*third_x+1, 2*third_y+2:end)==0));
+%     final_new_feats(i,cnt+9) = sum(sum(roughMask(2*third_x+2:end, 2*third_y+2:end)==1)) - sum(sum(roughMask(2*third_x+2:end, 2*third_y+2:end)==0));
+%     new_feats(i,cnt+10) = mean2(Eim(Eim>3*max(Eim)/4));
+%     new_feats(i,cnt+11) = mean2(Eim(Eim<3*max(Eim)/4));
     
-    new_feats(i,cnt+1) = sum(sum(roughMask(1:third_x,1:third_y)==1)) - sum(sum(roughMask(1:third_x,1:third_y)==0));
-    new_feats(i,cnt+2) = sum(sum(roughMask(third_x+1:2*third_x+1, 1:third_y)==1)) - sum(sum(roughMask(third_x+1:2*third_x+1, 1:third_y)==0));
-    new_feats(i,cnt+3) = sum(sum(roughMask(2*third_x+2:end, 1:third_y)==1)) - sum(sum(roughMask(2*third_x+2:end, 1:third_y)==0));
-   
-    new_feats(i,cnt+4) = sum(sum(roughMask(1:third_x,third_y+1:2*third_y+1)==1)) - sum(sum(roughMask(1:third_x, third_y+1:2*third_y+1)==0));
-    new_feats(i,cnt+5) = sum(sum(roughMask(third_x+1:2*third_x+1, third_y+1:2*third_y+1)==1)) - sum(sum(roughMask(third_x+1:2*third_x+1, third_y+1:2*third_y+1)==0));
-    new_feats(i,cnt+6) = sum(sum(roughMask(2*third_x+2:end, third_y+1:2*third_y+1)==1)) - sum(sum(roughMask(2*third_x+2:end, third_y+1:2*third_y+1)==0));
+%     if length(im(roughMask==1))~=0 & length(im(roughMask==0))~=0
+%         new_feats(i,cnt+12) = entropy(im(roughMask==1)) - entropy(im(roughMask==0));
+%     end
     
-    new_feats(i,cnt+7) = sum(sum(roughMask(1:third_x, 2*third_y+2:end)==1)) - sum(sum(roughMask(1:third_x,2*third_y+2:end)==0));
-    new_feats(i,cnt+8) = sum(sum(roughMask(third_x+1:2*third_x+1, 2*third_y+2:end)==1)) - sum(sum(roughMask(third_x+1:2*third_x+1, 2*third_y+2:end)==0));
-    new_feats(i,cnt+9) = sum(sum(roughMask(2*third_x+2:end, 2*third_y+2:end)==1)) - sum(sum(roughMask(2*third_x+2:end, 2*third_y+2:end)==0));
-    new_feats(i,cnt+10) = mean2(Eim(Eim>3*max(Eim)/4));
-    new_feats(i,cnt+11) = mean2(Eim(Eim<3*max(Eim)/4));
-    
-    if length(im(roughMask==1))~=0 & length(im(roughMask==0))~=0
-        new_feats(i,cnt+12) = entropy(im(roughMask==1)) - entropy(im(roughMask==0));
-    end
-    
-    for plus = 0:12
-        new_feats(i,cnt+plus) = new_feats(i,cnt+plus)/(size(im,1)*size(im,2));
-    end
+%     for plus = 0:9
+%         final_new_feats(i,cnt+plus) = final_new_feats(i,cnt+plus)/(size(im,1)*size(im,2));
+%     end
 end
 %clearvars -except ims new_feats
 
@@ -233,7 +234,7 @@ for i=1:length(ims)
     D = bwdist(bw);
     DL = watershed(D);
     bgm = DL == 0;
-    subplot(1,3,2);imshow(bgm), title('Watershed ridge lines (bgm)');
+    % subplot(1,3,2);imshow(bgm), title('Watershed ridge lines (bgm)');
     gradmag2 = imimposemin(gradmag, bgm | fgm4);
     L = watershed(gradmag2); 
     % I4 = I;
@@ -267,8 +268,7 @@ end
 % clearvars -except ims new_feats
 
 %% Image Intensity Histogram
-close all;
-for i=1:length(ims)
+for i=2%length(ims)
     if mod(i,50)==0
         fprintf('.');
     end
@@ -277,8 +277,9 @@ for i=1:length(ims)
         continue;
     end
     %     figure;subplot(1,2,1);imshow(im);
-    [counts, ~] = imhist(im,10);
-    new_feats4(i,52:61) = counts/(size(im,1)*size(im,2));
+    [counts, ~] = imhist(im,5);
+    figure;(imhist(im,5));set(gcf, 'color', 'white');
+    intensity_temp(i,:) = counts/(size(im,1)*size(im,2));
 end
 
 %% Image Quality Measurements
@@ -532,36 +533,66 @@ for i=1:length(ims)
 %     ylabel('G');%, 'FontSize', fontSize);
 %     zlabel('B');%, 'FontSize', fontSize);
 end
-
-%% 
+%%
+peaks_temp = zeros(1001,6);
 for i=1:length(ims)
     if mod(i,50)==0
         fprintf('.');
     end
-    im = ims{i};
-    if size(im,3) ~= 3
+    rgbImage = ims{i};
+    if size(rgbImage,3) ~= 3
         continue;
     end
-    new_im = zeros(size(im,1), size(im,2),size(im,3));
-    round_level = 4;
-    new_im(:,:,1) = round_level*round(double(im(:,:,1)/round_level),-1);
-    new_im(:,:,2) = round_level*round(double(im(:,:,2)/round_level),-1);
-    new_im(:,:,3) = round_level*round(double(im(:,:,3)/round_level),-1);
-    new_im(new_im>255)=255;
-    hist = zeros(256,256,256);
-    for row = 1:size(new_im,1)
-        for col = 1:size(new_im,2)
-            rgb = squeeze(new_im(row, col, :));
-            hist(rgb(1)+1, rgb(2)+1, rgb(3)+1) = hist(rgb(1)+1, rgb(2)+1, rgb(3)+1) + 1;
-        end
-    end
-    m1 = max(max(max(hist)));
-    [r1,g1,b1] = ind2sub(size(hist), find(hist == m1));
-    hist(r1,g1,b1) = 0;
-    m2 = max(max(max(hist)));
-    [r2,g2,b2] = ind2sub(size(hist), find(hist == m2));
-    hist(r2,g2,b2) = 0;
-    m3 = max(max(max(hist)));
-    [r3,g3,b3] = ind2sub(size(hist), find(hist == m3));
-    new_feats(i,84:95) = [r1 g1 b1 r2 g2 b2 r3 g3 b3 m1 m2 m3];
+    imgr = rgbImage(:,:,1);
+    moder = mode(reshape(imgr,[],1));
+    imgg = rgbImage(:,:,2);
+    modeg = mode(reshape(imgg,[],1));
+    imgb = rgbImage(:,:,3);
+    modeb = mode(reshape(imgb,[],1));
+    peaks_temp(i,1) = moder;
+    peaks_temp(i,2) = modeg;
+    peaks_temp(i,3) = modeb;
+    
+    hsvImage = rgb2hsv(rgbImage);
+    imgh = hsvImage(:,:,1);
+    modeh = mode(reshape(imgh,[],1));
+    imgs = hsvImage(:,:,2);
+    modes = mode(reshape(imgs,[],1));
+    imgv = hsvImage(:,:,3);
+    modev = mode(reshape(imgv,[],1));
+    peaks_temp(i,4) = modeh;
+    peaks_temp(i,5) = modes;
+    peaks_temp(i,6) = modev;
 end
+%% 
+% for i=1:length(ims)
+%     if mod(i,50)==0
+%         fprintf('.');
+%     end
+%     im = ims{i};
+%     if size(im,3) ~= 3
+%         continue;
+%     end
+%     new_im = zeros(size(im,1), size(im,2),size(im,3));
+%     round_level = 4;
+%     new_im(:,:,1) = round_level*round(double(im(:,:,1)/round_level),-1);
+%     new_im(:,:,2) = round_level*round(double(im(:,:,2)/round_level),-1);
+%     new_im(:,:,3) = round_level*round(double(im(:,:,3)/round_level),-1);
+%     new_im(new_im>255)=255;
+%     hist = zeros(256,256,256);
+%     for row = 1:size(new_im,1)
+%         for col = 1:size(new_im,2)
+%             rgb = squeeze(new_im(row, col, :));
+%             hist(rgb(1)+1, rgb(2)+1, rgb(3)+1) = hist(rgb(1)+1, rgb(2)+1, rgb(3)+1) + 1;
+%         end
+%     end
+%     m1 = max(max(max(hist)));
+%     [r1,g1,b1] = ind2sub(size(hist), find(hist == m1));
+%     hist(r1,g1,b1) = 0;
+%     m2 = max(max(max(hist)));
+%     [r2,g2,b2] = ind2sub(size(hist), find(hist == m2));
+%     hist(r2,g2,b2) = 0;
+%     m3 = max(max(max(hist)));
+%     [r3,g3,b3] = ind2sub(size(hist), find(hist == m3));
+%     new_feats(i,84:95) = [r1 g1 b1 r2 g2 b2 r3 g3 b3 m1 m2 m3];
+% end
